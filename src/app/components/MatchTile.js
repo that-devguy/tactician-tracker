@@ -25,7 +25,9 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     const participant = participants.find(
       (participant) => participant.puuid === summonerId
     );
-    return participant ? participant.augments : [];
+    const augments = participant ? participant.augments : [];
+    const augmentArray = augments.map((augments) => <p key={augments}>{augments}</p>);
+    return augmentArray;
   };
 
   // Converting game_datetime to time difference between now and that game
