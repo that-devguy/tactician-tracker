@@ -59,10 +59,11 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const placement = getParticipantPlacement(summonerId);
   const playTimeDate = getGameTimeDiff();
   const gameLength = getGameLengthInMins();
+  const queueType = getQueueType();
 
   return (
     <div className="mb-5">
-      <p>{queue_id === 1100 ? "Ranked" : "Normal"}</p>
+      <p>{queueType}</p>
       <p>{playTimeDate}</p>
       <p>{gameLength}</p>
       <p>{game_version}</p>
