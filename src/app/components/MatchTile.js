@@ -42,15 +42,29 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     }
   };
 
+  // Converting game_length from seconds to minutes
+  const getGameLengthInMins = () => {
+    const gameLength = Math.floor((game_length) / 60);
+    return `${gameLength} minutes`;
+  }
+
+  // Converting queue id into queue type - ranked or normal
+  const getQueueType = () => {
+    const queueType = queue_id;
+    
+    return `${queueType === 1100 ? "Ranked" : "Normal"}` 
+  }
+
   const level = getParticipantLevel(summonerId);
   const placement = getParticipantPlacement(summonerId);
   const playTimeDate = getGameTimeDiff();
+  const gameLength = getGameLengthInMins();
 
   return (
     <div className="mb-5">
       <p>{queue_id === 1100 ? "Ranked" : "Normal"}</p>
       <p>{playTimeDate}</p>
-      <p>{game_length}</p>
+      <p>{gameLength}</p>
       <p>{game_version}</p>
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
