@@ -55,18 +55,25 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     return `${queueType === 1100 ? "Ranked" : "Normal"}` 
   }
 
+  // Extracting patch number from game_version
+  const getPatchNum = () => {
+    const patchNum = game_version.match(/Releases\/(\d+\.\d+)/)[1];
+    return patchNum;
+  }
+
   const level = getParticipantLevel(summonerId);
   const placement = getParticipantPlacement(summonerId);
   const playTimeDate = getGameTimeDiff();
   const gameLength = getGameLengthInMins();
   const queueType = getQueueType();
+  const patch = getPatchNum();
 
   return (
     <div className="mb-5">
       <p>{queueType}</p>
       <p>{playTimeDate}</p>
       <p>{gameLength}</p>
-      <p>{game_version}</p>
+      <p>{patch}</p>
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
       </p>
