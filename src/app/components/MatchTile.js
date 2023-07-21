@@ -2,6 +2,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   // Extracting necessary information from matchDetails
   const {
     info: { participants, queue_id, game_datetime, game_length, game_version },
+    metadata: { match_id },
   } = matchDetails;
 
   // Extracting participant levels
@@ -18,6 +19,13 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       (participant) => participant.puuid === summonerId
     );
     return participant ? participant.placement : null;
+  };
+
+  const getParticipantAugments = (summonerId) => {
+    const participant = participants.find(
+      (participant) => participant.puuid === summonerId
+    );
+    return participant ? participant.augments : [];
   };
 
   // Converting game_datetime to time difference between now and that game
@@ -44,22 +52,22 @@ const MatchTile = ({ matchDetails, summonerId }) => {
 
   // Converting game_length from seconds to minutes
   const getGameLengthInMins = () => {
-    const gameLength = Math.floor((game_length) / 60);
+    const gameLength = Math.floor(game_length / 60);
     return `${gameLength} minutes`;
-  }
+  };
 
   // Converting queue id into queue type - ranked or normal
   const getQueueType = () => {
     const queueType = queue_id;
-    
-    return `${queueType === 1100 ? "Ranked" : "Normal"}` 
-  }
+
+    return `${queueType === 1100 ? "Ranked" : "Normal"}`;
+  };
 
   // Extracting patch number from game_version
   const getPatchNum = () => {
     const patchNum = game_version.match(/Releases\/(\d+\.\d+)/)[1];
     return patchNum;
-  }
+  };
 
   const level = getParticipantLevel(summonerId);
   const placement = getParticipantPlacement(summonerId);
@@ -67,13 +75,16 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const gameLength = getGameLengthInMins();
   const queueType = getQueueType();
   const patch = getPatchNum();
+  const augments = getParticipantAugments(summonerId);
 
   return (
     <div className="mb-5">
+      <p>{match_id}</p>
       <p>{queueType}</p>
       <p>{playTimeDate}</p>
       <p>{gameLength}</p>
       <p>{patch}</p>
+      <p>{augments}</p>
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
       </p>
