@@ -1,3 +1,4 @@
+import Image from "next/image";
 import getSummoner from "@/app/libs/getSummoner";
 import getMatchHistory from "@/app/libs/getMatchHistory";
 import getMatch from "@/app/libs/getMatch";
@@ -20,9 +21,9 @@ export default async function profile({ params: { summonerName } }) {
       <div>Profile</div>
       <h1>{summonerData.name}</h1>
       <h2>{summonerData.summonerLevel} {summonerData.puuid}</h2>
-      <img
+      <Image
         src={`http://ddragon.leagueoflegends.com/cdn/13.14.1/img/profileicon/${summonerData.profileIconId}.png`}
-        alt=""
+        alt={summonerData.name}
         height="100"
         width="100"
       />

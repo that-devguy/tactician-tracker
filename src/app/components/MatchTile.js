@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const MatchTile = ({ matchDetails, summonerId }) => {
   // Extracting necessary information from matchDetails
   const {
@@ -38,11 +40,18 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     const participant = participants.find(
       (participant) => participant.puuid === summonerId
     );
-    const units = participant ? participant.units : [];
-    const unitNames = units.map((unit) => (
-      <p key={unit.character_id}>{unit.character_id}</p>
+    const unitsArray = participant ? participant.units : [];
+    const units = unitsArray.map((unitsArray) => (
+      <Image
+        key={unitsArray.character_id}
+        src={`https://raw.communitydragon.org/latest/game/assets/ux/tft/championsplashes/${unitsArray.character_id.toLowerCase()}_mobile.tft_set9.png`}
+        alt={unitsArray.character_id}
+        height="50"
+        width="50"
+      />
+      // <p key={unit.character_id}>{unit.character_id}</p>
     ));
-    return unitNames;
+    return units;
   };
 
   // Converting game_datetime to time difference between now and that game
@@ -93,7 +102,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const queueType = getQueueType();
   const patch = getPatchNum();
   const augments = getParticipantAugments(summonerId);
-  const unitNames = getParticipantUnits(summonerId);
+  const units = getParticipantUnits(summonerId);
 
   return (
     <div className="mb-5">
@@ -102,8 +111,8 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       <p>{playTimeDate}</p>
       <p>{gameLength}</p>
       <p>{patch}</p>
-      <p>{augments}</p>
-      <p>{unitNames}</p>
+      <div>{augments}</div>
+      <div className="flex gap-2">{units}</div>
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
       </p>
