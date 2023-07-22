@@ -21,13 +21,28 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     return participant ? participant.placement : null;
   };
 
+  // Extracting participant augments
   const getParticipantAugments = (summonerId) => {
     const participant = participants.find(
       (participant) => participant.puuid === summonerId
     );
     const augments = participant ? participant.augments : [];
-    const augmentArray = augments.map((augments) => <p key={augments}>{augments}</p>);
+    const augmentArray = augments.map((augments) => (
+      <p key={augments}>{augments}</p>
+    ));
     return augmentArray;
+  };
+
+  // Extracting participants units
+  const getParticipantUnits = (summonerId) => {
+    const participant = participants.find(
+      (participant) => participant.puuid === summonerId
+    );
+    const units = participant ? participant.units : [];
+    const unitNames = units.map((unit) => (
+      <p key={unit.name}>{unit.name}</p>
+    ));
+    return unitNames;
   };
 
   // Converting game_datetime to time difference between now and that game
@@ -78,6 +93,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const queueType = getQueueType();
   const patch = getPatchNum();
   const augments = getParticipantAugments(summonerId);
+  const unitNames = getParticipantUnits(summonerId);
 
   return (
     <div className="mb-5">
@@ -87,6 +103,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       <p>{gameLength}</p>
       <p>{patch}</p>
       <p>{augments}</p>
+      <p>{unitNames}</p>
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
       </p>
