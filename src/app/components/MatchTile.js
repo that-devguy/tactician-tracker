@@ -40,7 +40,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     );
     const units = participant ? participant.units : [];
     const unitNames = units.map((unit) => (
-      <p key={unit.name}>{unit.name}</p>
+      <p key={unit.character_id}>{unit.character_id}</p>
     ));
     return unitNames;
   };
