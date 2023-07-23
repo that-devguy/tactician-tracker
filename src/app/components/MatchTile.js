@@ -3,7 +3,7 @@ import Image from "next/image";
 const MatchTile = ({ matchDetails, summonerId }) => {
   // Extracting necessary information from matchDetails
   const {
-    info: { participants, queue_id, game_datetime, game_length, game_version },
+    info: { participants, queue_id, game_datetime, game_length, game_version, tft_set_number },
     metadata: { match_id },
   } = matchDetails;
 
@@ -44,12 +44,11 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     const units = unitsArray.map((unitsArray) => (
       <Image
         key={unitsArray.character_id}
-        src={`https://raw.communitydragon.org/latest/game/assets/ux/tft/championsplashes/${unitsArray.character_id.toLowerCase()}_mobile.tft_set9.png`}
+        src={`https://raw.communitydragon.org/pbe/game/assets/characters/${unitsArray.character_id.toLowerCase()}/hud/${unitsArray.character_id.toLowerCase()}_square.tft_set${tft_set_number}.png`}
         alt={unitsArray.character_id}
         height="50"
         width="50"
       />
-      // <p key={unit.character_id}>{unit.character_id}</p>
     ));
     return units;
   };
