@@ -1,5 +1,4 @@
 import SummonerSearch from "./components/SummonerSearch";
-import axios from "axios";
 
 export default function Home() {
   return (

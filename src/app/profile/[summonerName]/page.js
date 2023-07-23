@@ -20,7 +20,9 @@ export default async function profile({ params: { summonerName } }) {
     <div>
       <div>Profile</div>
       <h1>{summonerData.name}</h1>
-      <h2>{summonerData.summonerLevel} {summonerData.puuid}</h2>
+      <h2>
+        {summonerData.summonerLevel} {summonerData.puuid}
+      </h2>
       <Image
         src={`http://ddragon.leagueoflegends.com/cdn/13.14.1/img/profileicon/${summonerData.profileIconId}.png`}
         alt={summonerData.name}

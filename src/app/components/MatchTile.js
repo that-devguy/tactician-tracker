@@ -1,9 +1,16 @@
 import Image from "next/image";
 
-const MatchTile = ({ matchDetails, summonerId }) => {
+const MatchTile = ({ matchDetails, summonerId, championData }) => {
   // Extracting necessary information from matchDetails
   const {
-    info: { participants, queue_id, game_datetime, game_length, game_version, tft_set_number },
+    info: {
+      participants,
+      queue_id,
+      game_datetime,
+      game_length,
+      game_version,
+      tft_set_number,
+    },
     metadata: { match_id },
   } = matchDetails;
 
@@ -36,22 +43,23 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   };
 
   // Extracting participants units
-  const getParticipantUnits = (summonerId) => {
-    const participant = participants.find(
-      (participant) => participant.puuid === summonerId
-    );
-    const unitsArray = participant ? participant.units : [];
-    const units = unitsArray.map((unitsArray) => (
-      <Image
-        key={unitsArray.character_id}
-        src={`https://raw.communitydragon.org/pbe/game/assets/characters/${unitsArray.character_id.toLowerCase()}/hud/${unitsArray.character_id.toLowerCase()}_square.tft_set${tft_set_number}.png`}
-        alt={unitsArray.character_id}
-        height="50"
-        width="50"
-      />
-    ));
-    return units;
-  };
+  // const getParticipantUnits = (summonerId) => {
+  //   const participant = participants.find(
+  //     (participant) => participant.puuid === summonerId
+  //   );
+  //   const unitsArray = participant ? participant.units : [];
+  //   const units = unitsArray.map((unitsArray) => (
+  //     <Image
+  //       key={unitsArray.character_id}
+  //       src={`https://raw.communitydragon.org/pbe/game/assets/characters/${unitsArray.character_id.toLowerCase()}/hud/${unitsArray.character_id.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+  //       alt={unitsArray.character_id}
+  //       height="50"
+  //       width="50"
+  //     />
+  //   ));
+  //   return units;
+  // };
+  console.log(championData);
 
   // Converting game_datetime to time difference between now and that game
   const getGameTimeDiff = () => {
@@ -101,7 +109,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const queueType = getQueueType();
   const patch = getPatchNum();
   const augments = getParticipantAugments(summonerId);
-  const units = getParticipantUnits(summonerId);
+  // const units = getParticipantUnits(summonerId);
 
   return (
     <div className="mb-5">
@@ -111,7 +119,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       <p>{gameLength}</p>
       <p>{patch}</p>
       <div>{augments}</div>
-      <div className="flex gap-2">{units}</div>
+      {/* <div className="flex gap-2">{unitData}</div> */}
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
       </p>
