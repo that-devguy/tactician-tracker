@@ -1,6 +1,30 @@
 import Image from "next/image";
 
-const MatchTile = ({ matchDetails, summonerId, cdData }) => {
+const getUnitData = async (tft_set_number) => {
+  try {
+    const res = await fetch(
+      `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
+      {
+        cache: "no-store",
+      }
+    );
+    const cdData = await res.json();
+    let champions = [];
+
+    if (cdData.sets && cdData.sets[tft_set_number]) {
+      champions = cdData.sets[tft_set_number].champions.map((champion) => ({
+        apiName: champion.apiName,
+        name: champion.name,
+      }));
+    }
+
+    return champions;
+  } catch (error) {
+    console.error("Error fetching or filtering champion data:", error);
+  }
+};
+
+const MatchTile = ({ matchDetails, summonerId }) => {
   // Extracting necessary information from matchDetails
   const {
     info: {
@@ -43,23 +67,30 @@ const MatchTile = ({ matchDetails, summonerId, cdData }) => {
   };
 
   // Extracting participants units
-  // const getParticipantUnits = (summonerId) => {
-  //   const participant = participants.find(
-  //     (participant) => participant.puuid === summonerId
-  //   );
-  //   const unitsArray = participant ? participant.units : [];
-  //   const units = unitsArray.map((unitsArray) => (
-  //     <Image
-  //       key={unitsArray.character_id}
-  //       src={`https://raw.communitydragon.org/pbe/game/assets/characters/${unitsArray.character_id.toLowerCase()}/hud/${unitsArray.character_id.toLowerCase()}_square.tft_set${tft_set_number}.png`}
-  //       alt={unitsArray.character_id}
-  //       height="50"
-  //       width="50"
-  //     />
-  //   ));
-  //   return units;
-  // };
-  console.log(cdData);
+  const getParticipantUnits = async (summonerId) => {
+    const participant = participants.find(
+      (participant) => participant.puuid === summonerId
+    );
+    const unitsArray = participant ? participant.units : [];
+    const unitData = await getUnitData(tft_set_number);
+    const filteredUnitData = unitData.filter((champion) =>
+      unitsArray.some((unit) => unit.character_id === champion.apiName)
+    );
+
+    const units = filteredUnitData.map((champion) => (
+      <div key={champion.apiName} className="flex flex-col">
+        <Image
+          src={`https://raw.communitydragon.org/pbe/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+          alt={champion.name}
+          height="50"
+          width="50"
+        />
+        <p>{champion.apiName}</p>
+      </div>
+    ));
+
+    return units;
+  };
 
   // Converting game_datetime to time difference between now and that game
   const getGameTimeDiff = () => {
@@ -104,12 +135,12 @@ const MatchTile = ({ matchDetails, summonerId, cdData }) => {
 
   const level = getParticipantLevel(summonerId);
   const placement = getParticipantPlacement(summonerId);
-  const playTimeDate = getGameTimeDiff(); 
+  const playTimeDate = getGameTimeDiff();
   const gameLength = getGameLengthInMins();
   const queueType = getQueueType();
   const patch = getPatchNum();
   const augments = getParticipantAugments(summonerId);
-  // const units = getParticipantUnits(summonerId);
+  const units = getParticipantUnits(summonerId);
 
   return (
     <div className="mb-5">
@@ -119,7 +150,7 @@ const MatchTile = ({ matchDetails, summonerId, cdData }) => {
       <p>{gameLength}</p>
       <p>{patch}</p>
       <div>{augments}</div>
-      {/* <div className="flex gap-2">{unitData}</div> */}
+      <div className="flex gap-2">{units}</div>
       <p>
         Level: {level !== null ? level : "Summoner not found in match details"}
       </p>
