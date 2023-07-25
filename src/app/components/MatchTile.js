@@ -15,6 +15,7 @@ const getUnitData = async (tft_set_number) => {
       champions = cdData.sets[tft_set_number].champions.map((champion) => ({
         apiName: champion.apiName,
         name: champion.name,
+        cost: champion.cost,
       }));
     }
 
@@ -77,17 +78,22 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       unitsArray.some((unit) => unit.character_id === champion.apiName)
     );
 
-    const units = filteredUnitData.map((champion) => (
-      <div key={champion.apiName} className="flex flex-col">
-        <Image
-          src={`https://raw.communitydragon.org/pbe/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
-          alt={champion.name}
-          height="50"
-          width="50"
-        />
-        <p>{champion.apiName}</p>
-      </div>
-    ));
+    const units = filteredUnitData.map((champion) => {
+      const urlName = champion.apiName.replace(/^(.*Ryze).*/, "$1");
+
+      return (
+        <div key={champion.apiName} className="flex-col items-center justify-center">
+          <Image
+            className="rounded-full mx-auto"
+            src={`https://raw.communitydragon.org/pbe/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+            alt={champion.name}
+            height="50"
+            width="50"
+          />
+          <p className="text-sm text-center">{champion.name}</p>
+        </div>
+      );
+    });
 
     return units;
   };
