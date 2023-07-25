@@ -4,7 +4,7 @@ import getMatchHistory from "@/app/libs/getMatchHistory";
 import getMatch from "@/app/libs/getMatch";
 import MatchTile from "@/app/components/MatchTile";
 
-export default async function profile({ params: { summonerName } }) {
+export default async function profile({ params: { summonerName, cdData } }) {
   const summonerData = await getSummoner(summonerName);
   const summonerId = summonerData.puuid;
   const matchHistoryArray = await getMatchHistory(summonerId);
@@ -34,9 +34,18 @@ export default async function profile({ params: { summonerName } }) {
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}
+          cdData={cdData}
           summonerId={summonerId}
         />
       ))}
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const res = await fetch(
+    `https://raw.communitydragon.org/pbe/cdragon/tft/en_us.json`
+  );
+  const cdData = await res.json();
+  return { props: { cdData } };
 }

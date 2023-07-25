@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const MatchTile = ({ matchDetails, summonerId, championData }) => {
+const MatchTile = ({ matchDetails, summonerId, cdData }) => {
   // Extracting necessary information from matchDetails
   const {
     info: {
@@ -59,7 +59,7 @@ const MatchTile = ({ matchDetails, summonerId, championData }) => {
   //   ));
   //   return units;
   // };
-  console.log(championData);
+  console.log(cdData);
 
   // Converting game_datetime to time difference between now and that game
   const getGameTimeDiff = () => {
@@ -104,7 +104,7 @@ const MatchTile = ({ matchDetails, summonerId, championData }) => {
 
   const level = getParticipantLevel(summonerId);
   const placement = getParticipantPlacement(summonerId);
-  const playTimeDate = getGameTimeDiff();
+  const playTimeDate = getGameTimeDiff(); 
   const gameLength = getGameLengthInMins();
   const queueType = getQueueType();
   const patch = getPatchNum();
