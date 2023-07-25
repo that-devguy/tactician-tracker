@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const getUnitData = async (tft_set_number) => {
   try {
@@ -93,10 +95,39 @@ const MatchTile = ({ matchDetails, summonerId }) => {
         costColor = "four-cost";
       } else if (champion.cost === 5) {
         costColor = "five-cost";
-      }    
+      }
+
+      const unitInUnitsArray = unitsArray.find(
+        (unit) => unit.character_id === champion.apiName
+      );
+      const starLevel = unitInUnitsArray ? unitInUnitsArray.tier : 0;
 
       return (
-        <div key={champion.apiName} className="flex-col items-center justify-center w-14">
+        <div
+          key={champion.apiName}
+          className="flex-col items-center justify-center w-14"
+        >
+          <div className="flex justify-center">
+            {starLevel === 1 && (
+              <>
+              <FontAwesomeIcon className="w-3 mb-1 invisible" icon={faStar} />
+              </>
+            )}
+            {starLevel === 2 && (
+              <>
+                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+              </>
+            )}
+            {starLevel >= 3 && (
+              <>
+                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+              </>
+            )}
+          </div>
+
           <Image
             className={`rounded-full mx-auto mb-2 ${costColor}`}
             src={`https://raw.communitydragon.org/pbe/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
