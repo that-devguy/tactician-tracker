@@ -81,16 +81,30 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     const units = filteredUnitData.map((champion) => {
       const urlName = champion.apiName.replace(/^(.*Ryze).*/, "$1");
 
+      let costColor = "";
+
+      if (champion.cost === 1) {
+        costColor = "one-cost";
+      } else if (champion.cost === 2) {
+        costColor = "two-cost";
+      } else if (champion.cost === 3) {
+        costColor = "three-cost";
+      } else if (champion.cost === 4) {
+        costColor = "four-cost";
+      } else if (champion.cost === 5) {
+        costColor = "five-cost";
+      }    
+
       return (
-        <div key={champion.apiName} className="flex-col items-center justify-center">
+        <div key={champion.apiName} className="flex-col items-center justify-center w-14">
           <Image
-            className="rounded-full mx-auto"
+            className={`rounded-full mx-auto mb-2 ${costColor}`}
             src={`https://raw.communitydragon.org/pbe/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={champion.name}
-            height="50"
-            width="50"
+            height="45"
+            width="45"
           />
-          <p className="text-sm text-center">{champion.name}</p>
+          <p className="text-xs text-center truncate">{champion.name}</p>
         </div>
       );
     });
