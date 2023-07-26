@@ -115,15 +115,23 @@ const MatchTile = ({ matchDetails, summonerId }) => {
             )}
             {starLevel === 2 && (
               <>
-                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-zinc-400" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-zinc-400" icon={faStar} />
               </>
             )}
-            {starLevel >= 3 && (
+            {starLevel === 3 && (
               <>
-                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-amber-400" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-amber-400" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-amber-400" icon={faStar} />
+              </>
+            )}
+            {starLevel >= 4 && (
+              <>
+                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
               </>
             )}
           </div>
