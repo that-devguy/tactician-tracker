@@ -19,16 +19,29 @@ export default async function profile({ params: { summonerName } }) {
   return (
     <div>
       <div>Profile</div>
-      <h1>{summonerData.name}</h1>
-      <h2>
-        {summonerData.summonerLevel} {summonerData.puuid}
-      </h2>
-      <Image
-        src={`http://ddragon.leagueoflegends.com/cdn/13.14.1/img/profileicon/${summonerData.profileIconId}.png`}
-        alt={summonerData.name}
-        height="100"
-        width="100"
-      />
+      <div className="profile-headerCard flex items-center gap-5 py-4">
+        <div className="flex flex-col justify-center py-2">
+          <Image
+            className="rounded-full ring-4 ring-brand-main border-4 border-transparent"
+            src={`http://ddragon.leagueoflegends.com/cdn/13.14.1/img/profileicon/${summonerData.profileIconId}.png`}
+            alt={summonerData.name}
+            height="100"
+            width="100"
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center gap-3">
+            <h1 className="font-bold text-4xl">{summonerData.name}</h1>
+            <p className="font-bold text-md bg-brand-bg2 px-3 py-1 rounded-md">
+              NA
+            </p>
+          </div>
+          <p className="w-fit font-black text-xs bg-brand-secondary text-brand-bg mx-1 px-3 py-1 rounded-md">
+            Level {summonerData.summonerLevel}
+          </p>
+        </div>
+      </div>
+
       <h2>Match History:</h2>
       {matchDetailsArray.map((matchDetails) => (
         <MatchTile

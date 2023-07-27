@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg-brand-bg text-white ${inter.className}`}>
         <Navbar />
-        {children}
+        <main className="px-10 py-5">{children}</main>
       </body>
     </html>
   );

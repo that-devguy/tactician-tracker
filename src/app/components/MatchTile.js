@@ -110,28 +110,55 @@ const MatchTile = ({ matchDetails, summonerId }) => {
           <div className="flex justify-center">
             {starLevel === 1 && (
               <>
-              <FontAwesomeIcon className="w-3 mb-1 invisible" icon={faStar} />
+                <FontAwesomeIcon className="w-3 mb-1 invisible" icon={faStar} />
               </>
             )}
             {starLevel === 2 && (
               <>
-                <FontAwesomeIcon className="w-3 mb-1 text-zinc-400" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1 text-zinc-400" icon={faStar} />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-zinc-400"
+                  icon={faStar}
+                />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-zinc-400"
+                  icon={faStar}
+                />
               </>
             )}
             {starLevel === 3 && (
               <>
-                <FontAwesomeIcon className="w-3 mb-1 text-amber-400" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1 text-amber-400" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1 text-amber-400" icon={faStar} />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-amber-400"
+                  icon={faStar}
+                />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-amber-400"
+                  icon={faStar}
+                />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-amber-400"
+                  icon={faStar}
+                />
               </>
             )}
             {starLevel >= 4 && (
               <>
-                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
-                <FontAwesomeIcon className="w-3 mb-1 text-emerald-400" icon={faStar} />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-emerald-400"
+                  icon={faStar}
+                />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-emerald-400"
+                  icon={faStar}
+                />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-emerald-400"
+                  icon={faStar}
+                />
+                <FontAwesomeIcon
+                  className="w-3 mb-1 text-emerald-400"
+                  icon={faStar}
+                />
               </>
             )}
           </div>
@@ -202,12 +229,14 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const units = getParticipantUnits(summonerId);
 
   return (
-    <div className="mb-5">
-      <p>{match_id}</p>
-      <p>{queueType}</p>
-      <p>{playTimeDate}</p>
-      <p>{gameLength}</p>
-      <p>{patch}</p>
+    <div className="flex mb-5 bg-brand-bg2">
+      {/* <p>{match_id}</p> */}
+      <div>
+        <p>{queueType}</p>
+        <p>{playTimeDate}</p>
+        <p>{gameLength}</p>
+        <p>{patch}</p>
+      </div>
       <div>{augments}</div>
       <div className="flex gap-2">{units}</div>
       <p>
