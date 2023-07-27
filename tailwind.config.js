@@ -7,7 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        brand: {
+          bg: "#101115",
+          bg2: "#222327",
+          bg3: "#323338",
+          main: "#ff571d",
+          secondary: "#c0ff32",
+          accent: "#3e1f7d"
+        }
+      },
     },
   },
   plugins: [],

@@ -104,7 +104,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
 
       return (
         <div
-          key={champion.apiName}
+          key={`${starLevel} ${champion.apiName}`}
           className="flex-col items-center justify-center w-14"
         >
           <div className="flex justify-center">
