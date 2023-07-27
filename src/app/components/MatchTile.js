@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
 const getUnitData = async (tft_set_number) => {
   try {
@@ -54,7 +54,16 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     const participant = participants.find(
       (participant) => participant.puuid === summonerId
     );
-    return participant ? participant.placement : null;
+
+    if (participant.placement === 1) {
+      return `${participant.placement}st`;
+    } else if (participant.placement === 2) {
+      return `${participant.placement}nd`;
+    } else if (participant.placement === 3) {
+      return `${participant.placement}rd`;
+    } else {
+      return `${participant.placement}th`;
+    }
   };
 
   // Extracting participant augments
@@ -210,7 +219,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const getQueueType = () => {
     const queueType = queue_id;
 
-    return `${queueType === 1100 ? "Ranked" : "Normal"}`;
+    return `${queueType === 1100 ? "RANKED" : "NORMAL"}`;
   };
 
   // Extracting patch number from game_version
@@ -229,23 +238,32 @@ const MatchTile = ({ matchDetails, summonerId }) => {
   const units = getParticipantUnits(summonerId);
 
   return (
-    <div className="flex mb-5 bg-brand-bg2">
-      {/* <p>{match_id}</p> */}
-      <div>
-        <p>{queueType}</p>
+    <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md">
+      <div className="flex justify-between my-5 gap-2 bg-brand-bg2 rounded-md">
+        {/* <p>{match_id}</p> */}
+        <div className="flex flex-col justify-center w-fit">
+          <div className="match-placement justify-center">
+            <p className="font-semibold text-4xl">{placement}</p>
+            <p className="text-center text-xs">Place</p>
+          </div>
+
+          {/* <p>
+          Level:{" "}
+          {level !== null ? level : "Summoner not found in match details"}
+        </p> */}
+        </div>
+        <div className="flex flex-col my-auto">{augments}</div>
+        <div className="flex gap-2">{units}</div>
+      </div>
+      <div className="flex items-center gap-3 text-xs text-white/50">
+        <p className="font-bold text-white">{queueType}</p>
+        <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
         <p>{playTimeDate}</p>
+        <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
         <p>{gameLength}</p>
+        <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
         <p>{patch}</p>
       </div>
-      <div>{augments}</div>
-      <div className="flex gap-2">{units}</div>
-      <p>
-        Level: {level !== null ? level : "Summoner not found in match details"}
-      </p>
-      <p>
-        Placement:{" "}
-        {placement !== null ? placement : "Summoner not found in match details"}
-      </p>
     </div>
   );
 };
