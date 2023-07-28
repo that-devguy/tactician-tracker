@@ -17,7 +17,7 @@ export default async function profile({ params: { summonerName } }) {
   );
 
   return (
-    <div>
+    <section className="max-w-5xl mx-auto">
       <div>Profile</div>
       <div className="profile-headerCard flex items-center gap-5 py-4">
         <div className="flex flex-col justify-center py-2">
@@ -50,6 +50,6 @@ export default async function profile({ params: { summonerName } }) {
           summonerId={summonerId}
         />
       ))}
-    </div>
+    </section>
   );
 }

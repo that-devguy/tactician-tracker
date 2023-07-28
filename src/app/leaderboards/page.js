@@ -1,7 +1,7 @@
 export default function Leaderboards() {
   return (
-    <main>
+    <section>
       <div>Leaderboards</div>
-    </main>
+    </section>
   );
 }

@@ -2,8 +2,8 @@ import SummonerSearch from "./components/SummonerSearch";
 
 export default function Home() {
   return (
-    <main>
+    <section>
       <div>Home</div>
-    </main>
+    </section>
   );
 }

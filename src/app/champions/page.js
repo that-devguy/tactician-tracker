@@ -1,7 +1,7 @@
 export default function Champions() {
   return (
-    <main>
+    <section>
       <div>Champions</div>
-    </main>
+    </section>
   );
 }

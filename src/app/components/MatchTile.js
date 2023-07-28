@@ -242,8 +242,8 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       <div className="flex justify-between my-5 gap-2 bg-brand-bg2 rounded-md">
         {/* <p>{match_id}</p> */}
         <div className="flex flex-col justify-center w-fit">
-          <div className="match-placement justify-center">
-            <p className="font-semibold text-4xl">{placement}</p>
+          <div className="match-placement justify-center px-2">
+            <p className="font-semibold text-3xl">{placement}</p>
             <p className="text-center text-xs">Place</p>
           </div>
 
@@ -255,7 +255,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
         <div className="flex flex-col my-auto">{augments}</div>
         <div className="flex gap-2">{units}</div>
       </div>
-      <div className="flex items-center gap-3 text-xs text-white/50">
+      <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
         <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
         <p>{playTimeDate}</p>
