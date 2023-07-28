@@ -1,31 +1,38 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
-const getUnitData = async (tft_set_number) => {
-  try {
-    const res = await fetch(
-      `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
-      {
-        cache: "no-store",
-      }
-    );
-    const cdData = await res.json();
-    let champions = [];
+// const getCdragData = async (tft_set_number) => {
+//   try {
+//     const res = await fetch(
+//       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
+//       {
+//         cache: "no-store",
+//       }
+//     );
+//     const cdData = await res.json();
+//     let champions = [];
+//     let augments = [];
 
-    if (cdData.sets && cdData.sets[tft_set_number]) {
-      champions = cdData.sets[tft_set_number].champions.map((champion) => ({
-        apiName: champion.apiName,
-        name: champion.name,
-        cost: champion.cost,
-      }));
-    }
+//     if (cdData.sets && cdData.sets[tft_set_number]) {
+//       champions = cdData.sets[tft_set_number].champions.map((champion) => ({
+//         apiName: champion.apiName,
+//         name: champion.name,
+//         cost: champion.cost,
+//       }));
+//       augments = cdData.items.map((augment) => ({
+//         apiName: augment.apiName,
+//         name: augment.name,
+//         icon: augment.icon,
+//       }));
+//     }
 
-    return champions;
-  } catch (error) {
-    console.error("Error fetching or filtering champion data:", error);
-  }
-};
+//     return champions, augments;
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// };
 
 const MatchTile = ({ matchDetails, summonerId }) => {
   // Extracting necessary information from matchDetails
@@ -40,6 +47,43 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     },
     metadata: { match_id },
   } = matchDetails;
+
+  const [cdragData, setCdragData] = useState({
+    champions: [],
+    augments: [],
+  });
+
+  useEffect(() => {
+    const fetchCdragData = async () => {
+      const res = await fetch(
+        "https://raw.communitydragon.org/latest/cdragon/tft/en_us.json",
+        {
+          cache: "no-store",
+        }
+      );
+      const cdData = await res.json();
+
+      let champions = [];
+      let augments = [];
+
+      if (cdData.sets && cdData.sets[tft_set_number]) {
+        champions = cdData.sets[tft_set_number].champions.map((champion) => ({
+          apiName: champion.apiName,
+          name: champion.name,
+          cost: champion.cost,
+        }));
+        augments = cdData.items.map((augment) => ({
+          apiName: augment.apiName,
+          name: augment.name,
+          icon: augment.icon,
+        }));
+      }
+
+      setCdragData({ champions, augments });
+    };
+
+    fetchCdragData();
+  }, [tft_set_number]);
 
   // Extracting participant levels
   const getParticipantLevel = (summonerId) => {
@@ -84,7 +128,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       (participant) => participant.puuid === summonerId
     );
     const unitsArray = participant ? participant.units : [];
-    const unitData = await getUnitData(tft_set_number);
+    const unitData = await cdragData(tft_set_number);
     const filteredUnitData = unitData.filter((champion) =>
       unitsArray.some((unit) => unit.character_id === champion.apiName)
     );
