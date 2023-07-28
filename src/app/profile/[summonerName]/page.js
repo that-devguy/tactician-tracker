@@ -18,8 +18,7 @@ export default async function profile({ params: { summonerName } }) {
 
   return (
     <section className="max-w-5xl mx-auto">
-      <div>Profile</div>
-      <div className="profile-headerCard flex items-center gap-5 py-4">
+      <div className="profile-headerCard flex items-center gap-5 p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
             className="rounded-full ring-4 ring-brand-main border-4 border-transparent"
@@ -41,8 +40,6 @@ export default async function profile({ params: { summonerName } }) {
           </p>
         </div>
       </div>
-
-      <h2>Match History:</h2>
       {matchDetailsArray.map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}

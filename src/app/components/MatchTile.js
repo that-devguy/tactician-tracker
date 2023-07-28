@@ -253,7 +253,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
         </p> */}
         </div>
         <div className="flex flex-col my-auto">{augments}</div>
-        <div className="flex gap-2">{units}</div>
+        <div className="flex flex-wrap gap-1">{units}</div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
