@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
-const MatchTile = ({ matchDetails, summonerId, championData }) => {
+const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
   // Extracting necessary information from matchDetails
   const {
     info: {
@@ -42,15 +42,31 @@ const MatchTile = ({ matchDetails, summonerId, championData }) => {
   };
 
   // Extracting participant augments
-  const getParticipantAugments = (summonerId) => {
+  const getParticipantAugments = async (summonerId) => {
     const participant = participants.find(
       (participant) => participant.puuid === summonerId
     );
-    const augments = participant ? participant.augments : [];
-    const augmentArray = augments.map((augments) => (
-      <p key={augments}>{augments}</p>
-    ));
-    return augmentArray;
+    const augmentsArray = participant ? participant.augments : [];
+
+    const filteredAugments = augmentsArray.map((augmentApiName) =>
+      augmentData.find((augment) => augment.apiName === augmentApiName)
+    );
+
+    const augments = filteredAugments.map((augment, index) => {
+      const icon = augment.icon.replace(/\.tex$/, ".png");
+
+      return (
+        <Image
+          key={`${augment.name}${index}`}
+          className={`rounded-full mx-auto mb-1`}
+          src={`https://raw.communitydragon.org/pbe/game/${icon.toLowerCase()}`}
+          alt={augment.name}
+          height="30"
+          width="30"
+        />
+      );
+    });
+    return augments;
   };
 
   // Extracting participants units
@@ -59,8 +75,7 @@ const MatchTile = ({ matchDetails, summonerId, championData }) => {
       (participant) => participant.puuid === summonerId
     );
     const unitsArray = participant ? participant.units : [];
-    const unitData = championData;
-    const filteredUnitData = unitData.filter((champion) =>
+    const filteredUnitData = championData.filter((champion) =>
       unitsArray.some((unit) => unit.character_id === champion.apiName)
     );
 
@@ -79,6 +94,8 @@ const MatchTile = ({ matchDetails, summonerId, championData }) => {
         costColor = "four-cost";
       } else if (champion.cost === 5) {
         costColor = "five-cost";
+      } else {
+        costColor = "random-cost";
       }
 
       const unitInUnitsArray = unitsArray.find(
@@ -227,8 +244,10 @@ const MatchTile = ({ matchDetails, summonerId, championData }) => {
           {level !== null ? level : "Summoner not found in match details"}
         </p> */}
         </div>
-        <div className="flex flex-col my-auto">{augments}</div>
-        <div className="flex flex-wrap justify gap-1">{units}</div>
+        <div className="flex gap-5">
+          <div className="flex flex-col my-auto">{augments}</div>
+          <div className="flex flex-wrap justify gap-1">{units}</div>
+        </div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>

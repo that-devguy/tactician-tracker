@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 /* unit border based on unit cost */
-.one-cost, .two-cost, .three-cost, .four-cost, .five-cost {
-  border: 1px solid transparent;
+.one-cost, .two-cost, .three-cost, .four-cost, .five-cost, .random-cost {
+  border: 2px solid transparent;
 }
 .one-cost {
   outline: 3px solid #808080;
@@ -24,4 +24,8 @@
 
 .five-cost {
   outline: 3px solid #ffb93b;
+}
+
+.random-cost {
+  outline: 3px solid #101115;
 }
