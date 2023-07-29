@@ -1,9 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import getSummoner from "@/app/libs/getSummoner";
 import getMatchHistory from "@/app/libs/getMatchHistory";
 import getMatch from "@/app/libs/getMatch";
+import getUnitData from "@/app/libs/getUnitData";
 import MatchTile from "@/app/components/MatchTile";
 
 export default async function profile({ params: { summonerName } }) {
@@ -17,6 +16,9 @@ export default async function profile({ params: { summonerName } }) {
       return matchDetails;
     })
   );
+
+  const tft_set_number = matchDetailsArray[0]?.info?.tft_set_number || 9;
+  const championData = await getUnitData(tft_set_number);
 
   return (
     <section className="max-w-5xl mx-auto">
@@ -47,6 +49,7 @@ export default async function profile({ params: { summonerName } }) {
           key={matchDetails.matchId}
           matchDetails={matchDetails}
           summonerId={summonerId}
+          championData={championData}
         />
       ))}
     </section>

@@ -1,40 +1,8 @@
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
-// const getCdragData = async (tft_set_number) => {
-//   try {
-//     const res = await fetch(
-//       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
-//       {
-//         cache: "no-store",
-//       }
-//     );
-//     const cdData = await res.json();
-//     let champions = [];
-//     let augments = [];
-
-//     if (cdData.sets && cdData.sets[tft_set_number]) {
-//       champions = cdData.sets[tft_set_number].champions.map((champion) => ({
-//         apiName: champion.apiName,
-//         name: champion.name,
-//         cost: champion.cost,
-//       }));
-//       augments = cdData.items.map((augment) => ({
-//         apiName: augment.apiName,
-//         name: augment.name,
-//         icon: augment.icon,
-//       }));
-//     }
-
-//     return champions, augments;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// };
-
-const MatchTile = ({ matchDetails, summonerId }) => {
+const MatchTile = ({ matchDetails, summonerId, championData }) => {
   // Extracting necessary information from matchDetails
   const {
     info: {
@@ -47,43 +15,6 @@ const MatchTile = ({ matchDetails, summonerId }) => {
     },
     metadata: { match_id },
   } = matchDetails;
-
-  const [cdragData, setCdragData] = useState({
-    champions: [],
-    augments: [],
-  });
-
-  useEffect(() => {
-    const fetchCdragData = async () => {
-      const res = await fetch(
-        "https://raw.communitydragon.org/latest/cdragon/tft/en_us.json",
-        {
-          cache: "no-store",
-        }
-      );
-      const cdData = await res.json();
-
-      let champions = [];
-      let augments = [];
-
-      if (cdData.sets && cdData.sets[tft_set_number]) {
-        champions = cdData.sets[tft_set_number].champions.map((champion) => ({
-          apiName: champion.apiName,
-          name: champion.name,
-          cost: champion.cost,
-        }));
-        augments = cdData.items.map((augment) => ({
-          apiName: augment.apiName,
-          name: augment.name,
-          icon: augment.icon,
-        }));
-      }
-
-      setCdragData({ champions, augments });
-    };
-
-    fetchCdragData();
-  }, [tft_set_number]);
 
   // Extracting participant levels
   const getParticipantLevel = (summonerId) => {
@@ -128,7 +59,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
       (participant) => participant.puuid === summonerId
     );
     const unitsArray = participant ? participant.units : [];
-    const unitData = await cdragData(tft_set_number);
+    const unitData = championData;
     const filteredUnitData = unitData.filter((champion) =>
       unitsArray.some((unit) => unit.character_id === champion.apiName)
     );
@@ -297,7 +228,7 @@ const MatchTile = ({ matchDetails, summonerId }) => {
         </p> */}
         </div>
         <div className="flex flex-col my-auto">{augments}</div>
-        <div className="flex flex-wrap gap-1">{units}</div>
+        <div className="flex flex-wrap justify gap-1">{units}</div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
