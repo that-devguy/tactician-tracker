@@ -59,7 +59,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
         <Image
           key={`${augment.name}${index}`}
           className={`rounded-full mx-auto mb-1`}
-          src={`https://raw.communitydragon.org/pbe/game/${icon.toLowerCase()}`}
+          src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
           alt={augment.name}
           height="30"
           width="30"
@@ -166,7 +166,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
 
           <Image
             className={`rounded-full mx-auto mb-2 ${costColor}`}
-            src={`https://raw.communitydragon.org/pbe/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+            src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={champion.name}
             height="45"
             width="45"
