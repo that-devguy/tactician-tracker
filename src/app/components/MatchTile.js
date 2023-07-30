@@ -1,5 +1,6 @@
 import Image from "next/image";
-import getSummoner from "@/app/libs/getSummoner";
+import Link from "next/link";
+import getSummonerById from "@/app/libs/getSummonerById";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,16 +27,34 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
   };
 
   // Extracting participant names with icons
-  const getParticipants = async () => {
-    const participantsArray = participants.map(
-      (participant) => participant.puuid
-    );
-    // console.log(participantsArray);
-    const participantData = participantsArray.map(participant => participant);
-
-    console.log(participantData);
+  const renderParticipantData = async () => {
+    try {
+      const participantsArray = await Promise.all(
+        participants.map((participant) => getSummonerById(participant.puuid))
+      );
+      const participantData = participantsArray.map((participant) => {
+        const { name, profileIconId } = participant;
+        return (
+          <div key={name} className="flex items-center gap-3">
+            <Image
+              className="rounded-full"
+              src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${profileIconId}.jpg`}
+              alt={name}
+              width={18}
+              height={18}
+            />
+            <Link className="text-xs text-white/50 hover:text-white truncate" href={`/profile/${name}`}>
+              {name}
+            </Link>
+          </div>
+        );
+      });
+      return participantData;
+    } catch (error) {
+      console.error("Error fetching summoner data:", error);
+      return null;
+    }
   };
-  getParticipants();
 
   // Extracting participant placements
   const getParticipantPlacement = (summonerId) => {
@@ -241,14 +260,15 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
   const patch = getPatchNum();
   const augments = getParticipantAugments(summonerId);
   const units = getParticipantUnits(summonerId);
+  const allParticipants = renderParticipantData();
 
   return (
     <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md">
-      <div className="flex justify-between my-5 gap-2 bg-brand-bg2 rounded-md">
+      <div className="flex justify-between my-5 gap-5 bg-brand-bg2 rounded-md">
         {/* <p>{match_id}</p> */}
-        <div className="flex flex-col justify-center w-fit">
+        <div className="flex flex-col justify-center w-1/12">
           <div className="match-placement justify-center px-2">
-            <p className="font-semibold text-3xl">{placement}</p>
+            <p className="text-center font-semibold text-3xl">{placement}</p>
             <p className="text-center text-xs">Place</p>
           </div>
 
@@ -257,10 +277,11 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
           {level !== null ? level : "Summoner not found in match details"}
         </p> */}
         </div>
-        <div className="flex gap-5">
+        <div className="flex gap-5 justify-end w-9/12">
           <div className="flex flex-col my-auto">{augments}</div>
           <div className="flex flex-wrap justify gap-1">{units}</div>
         </div>
+        <div className="grid grid-cols-2 gap-2 w-3/12">{allParticipants}</div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>

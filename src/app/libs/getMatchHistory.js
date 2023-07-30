@@ -1,7 +1,7 @@
 export default async function getMatchHistory(summonerId) {
   const riotAPI = process.env.API_KEY;
   const matchHistoryResponse = await fetch(
-    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerId}/ids?start=0&count=20&api_key=${riotAPI}`
+    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerId}/ids?start=0&count=1&api_key=${riotAPI}`
   );
 
   if (!matchHistoryResponse.ok) {
