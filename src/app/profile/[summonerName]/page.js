@@ -28,7 +28,7 @@ export default async function profile({ params: { summonerName } }) {
         <div className="flex flex-col justify-center py-2">
           <Image
             className="rounded-full ring-4 ring-brand-main border-4 border-transparent"
-            src={`http://ddragon.leagueoflegends.com/cdn/13.14.1/img/profileicon/${summonerData.profileIconId}.png`}
+            src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${summonerData.profileIconId}.jpg`}
             alt={summonerData.name}
             height="100"
             width="100"

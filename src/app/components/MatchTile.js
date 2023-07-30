@@ -35,7 +35,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       const participantData = participantsArray.map((participant) => {
         const { name, profileIconId } = participant;
         return (
-          <div key={name} className="flex items-center gap-3">
+          <div key={name} className="flex items-center gap-1">
             <Image
               className="rounded-full"
               src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${profileIconId}.jpg`}
@@ -281,7 +281,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
           <div className="flex flex-col my-auto">{augments}</div>
           <div className="flex flex-wrap justify gap-1">{units}</div>
         </div>
-        <div className="grid grid-cols-2 gap-2 w-3/12">{allParticipants}</div>
+        <div className="grid grid-cols-2 gap-1 w-3/12">{allParticipants}</div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
