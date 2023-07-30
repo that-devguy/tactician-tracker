@@ -35,7 +35,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       const participantData = participantsArray.map((participant) => {
         const { name, profileIconId } = participant;
         return (
-          <div key={name} className="flex items-center gap-1">
+          <div key={name} className="flex items-center gap-1 h-fit mb-2">
             <Image
               className="rounded-full"
               src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${profileIconId}.jpg`}
@@ -43,7 +43,10 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
               width={18}
               height={18}
             />
-            <Link className="text-xs text-white/50 hover:text-white truncate" href={`/profile/${name}`}>
+            <Link
+              className="text-xs text-white/50 hover:text-white hover:underline truncate"
+              href={`/profile/${name}`}
+            >
               {name}
             </Link>
           </div>
@@ -90,7 +93,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       return (
         <Image
           key={`${augment.name}${index}`}
-          className={`rounded-full mx-auto mb-1`}
+          className={`rounded-full`}
           src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
           alt={augment.name}
           height="30"
@@ -143,17 +146,17 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
           <div className="flex justify-center">
             {starLevel === 1 && (
               <>
-                <FontAwesomeIcon className="w-3 mb-1 invisible" icon={faStar} />
+                <FontAwesomeIcon className="w-2.5 mb-1 invisible" icon={faStar} />
               </>
             )}
             {starLevel === 2 && (
               <>
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-zinc-400"
+                  className="w-2.5 mb-1 text-zinc-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-zinc-400"
+                  className="w-2.5 mb-1 text-zinc-400"
                   icon={faStar}
                 />
               </>
@@ -161,15 +164,15 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
             {starLevel === 3 && (
               <>
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-amber-400"
+                  className="w-2.5 mb-1 text-amber-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-amber-400"
+                  className="w-2.5 mb-1 text-amber-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-amber-400"
+                  className="w-2.5 mb-1 text-amber-400"
                   icon={faStar}
                 />
               </>
@@ -177,19 +180,19 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
             {starLevel >= 4 && (
               <>
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-emerald-400"
+                  className="w-2.5 mb-1 text-emerald-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-emerald-400"
+                  className="w-2.5 mb-1 text-emerald-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-emerald-400"
+                  className="w-2.5 mb-1 text-emerald-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-3 mb-1 text-emerald-400"
+                  className="w-2.5 mb-1 text-emerald-400"
                   icon={faStar}
                 />
               </>
@@ -209,6 +212,25 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
     });
 
     return units;
+  };
+
+  // Extracting participant traits
+  const getParticipantTraits = (summonerId) => {
+    const participant = participants.find(
+      (participant) => participant.puuid === summonerId
+    );
+    const participantTraits = participant.traits;
+    console.log("participantTraits:", participantTraits);
+    const traits = participantTraits.map((trait) => {
+      if (trait.style > 0) {
+        return (
+          <div key={trait.name}>
+            <p>{trait.name}</p>
+          </div>
+        );
+      }
+    });
+    return traits;
   };
 
   // Converting game_datetime to time difference between now and that game
@@ -261,10 +283,11 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
   const augments = getParticipantAugments(summonerId);
   const units = getParticipantUnits(summonerId);
   const allParticipants = renderParticipantData();
+  const traits = getParticipantTraits(summonerId);
 
   return (
     <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md">
-      <div className="flex justify-between my-5 gap-5 bg-brand-bg2 rounded-md">
+      <div className="flex justify-between items-center my-5 gap-5 bg-brand-bg2 rounded-md">
         {/* <p>{match_id}</p> */}
         <div className="flex flex-col justify-center w-1/12">
           <div className="match-placement justify-center px-2">
@@ -277,11 +300,12 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
           {level !== null ? level : "Summoner not found in match details"}
         </p> */}
         </div>
-        <div className="flex gap-5 justify-end w-9/12">
-          <div className="flex flex-col my-auto">{augments}</div>
-          <div className="flex flex-wrap justify gap-1">{units}</div>
+        <div className="flex gap-5 justify-start w-9/12">
+          <div className="flex flex-col items-center justify-center">{traits}</div>
+          <div className="flex flex-col items-center justify-center gap-1">{augments}</div>
+          <div className="flex flex-wrap justify-start gap-1">{units}</div>
         </div>
-        <div className="grid grid-cols-2 gap-1 w-3/12">{allParticipants}</div>
+        <div className="grid grid-cols-2 gap-1 w-3/12 h-fit">{allParticipants}</div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
