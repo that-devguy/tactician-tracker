@@ -1,4 +1,5 @@
 import Image from "next/image";
+import getSummoner from "@/app/libs/getSummoner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,6 +24,18 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
     );
     return participant ? participant.level : null;
   };
+
+  // Extracting participant names with icons
+  const getParticipants = async () => {
+    const participantsArray = participants.map(
+      (participant) => participant.puuid
+    );
+    // console.log(participantsArray);
+    const participantData = participantsArray.map(participant => participant);
+
+    console.log(participantData);
+  };
+  getParticipants();
 
   // Extracting participant placements
   const getParticipantPlacement = (summonerId) => {
