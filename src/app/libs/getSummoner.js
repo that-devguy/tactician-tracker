@@ -1,4 +1,9 @@
+const summonerCache = {};
+
 export default async function getSummoner(summonerName) {
+  if (summonerCache[summonerName]) {
+    return summonerCache[summonerName];
+  }
   const riotAPI = process.env.API_KEY;
   const response = await fetch(
     `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/${summonerName}?api_key=${riotAPI}`

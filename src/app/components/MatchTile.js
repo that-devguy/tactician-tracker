@@ -145,7 +145,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       return (
         <div
           key={`${starLevel} ${champion.apiName}`}
-          className="flex-col items-center justify-center w-12"
+          className="flex-col items-center justify-center w-14"
         >
           <div className="flex justify-center">
             {starLevel === 1 && (
@@ -210,8 +210,8 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
             className={`rounded-full mx-auto mb-2 ${costColor}`}
             src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={champion.name}
-            height="40"
-            width="40"
+            height="45"
+            width="45"
           />
           <p className="text-xs text-center truncate">{champion.name}</p>
         </div>
@@ -299,7 +299,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
 
   return (
     <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md">
-      <div className="flex justify-between items-center my-5 gap-5 bg-brand-bg2 rounded-md">
+      <div className="flex justify-between items-center my-5 gap-3 bg-brand-bg2 rounded-md">
         {/* <p>{match_id}</p> */}
         <div className="flex flex-col justify-center w-1/12">
           <div className="match-placement justify-center px-2">
@@ -313,7 +313,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
         </p> */}
         </div>
         <div className="flex gap-5 items-center justify-start w-9/12">
-          <div className="flex flex-row flex-wrap gap-1 items-center justify-end w-2/12">
+          <div className="flex flex-row flex-wrap gap-1 items-center justify-center w-2/12">
             {traits}
           </div>
           <div className="flex flex-col items-center justify-center gap-2">

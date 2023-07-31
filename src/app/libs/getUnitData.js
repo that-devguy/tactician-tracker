@@ -2,9 +2,9 @@ const getUnitData = async (tft_set_number) => {
   try {
     const res = await fetch(
       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
-      {
-        cache: "no-store",
-      }
+      // {
+      //   cache: "no-store",
+      // }
     );
     const cdData = await res.json();
     let champions = [];
