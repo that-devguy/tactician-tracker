@@ -4,6 +4,7 @@ import getMatchHistory from "@/app/libs/getMatchHistory";
 import getMatch from "@/app/libs/getMatch";
 import getUnitData from "@/app/libs/getUnitData";
 import getAugmentData from "@/app/libs/getAugmentData";
+import getTraitsData from "@/app/libs/getTraitsData";
 import MatchTile from "@/app/components/MatchTile";
 
 export default async function profile({ params: { summonerName } }) {
@@ -21,6 +22,7 @@ export default async function profile({ params: { summonerName } }) {
   const tft_set_number = matchDetailsArray[0]?.info?.tft_set_number || 9;
   const championData = await getUnitData(tft_set_number);
   const augmentData = await getAugmentData();
+  const traitData = await getTraitsData(tft_set_number);
 
   return (
     <section className="max-w-5xl mx-auto">
@@ -53,6 +55,7 @@ export default async function profile({ params: { summonerName } }) {
           summonerId={summonerId}
           championData={championData}
           augmentData={augmentData}
+          traitData={traitData}
         />
       ))}
     </section>

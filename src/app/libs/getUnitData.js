@@ -2,9 +2,9 @@ const getUnitData = async (tft_set_number) => {
   try {
     const res = await fetch(
       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
-      // {
-      //   cache: "no-store",
-      // }
+      {
+        cache: "no-store",
+      }
     );
     const cdData = await res.json();
     let champions = [];
@@ -22,5 +22,6 @@ const getUnitData = async (tft_set_number) => {
     console.error("Error fetching or filtering champion data:", error);
   }
 };
+
 
 export default getUnitData;

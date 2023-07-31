@@ -4,7 +4,13 @@ import getSummonerById from "@/app/libs/getSummonerById";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
-const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
+const MatchTile = ({
+  matchDetails,
+  summonerId,
+  championData,
+  augmentData,
+  traitData,
+}) => {
   // Extracting necessary information from matchDetails
   const {
     info: {
@@ -227,8 +233,11 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       (participant) => participant.puuid === summonerId
     );
     const participantTraits = participant.traits;
-    console.log("participantTraits:", participantTraits);
+    // console.log("participantTraits:", participantTraits);
     const traits = participantTraits.map((trait) => {
+
+      // const traitIcon = traitData.find((data) => data.apiName === trait.name);
+      // console.log(traitIcon);
       if (trait.style > 0) {
         return (
           <Image
