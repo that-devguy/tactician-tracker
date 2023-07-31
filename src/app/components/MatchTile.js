@@ -235,15 +235,19 @@ const MatchTile = ({
     const participantTraits = participant.traits;
     // console.log("participantTraits:", participantTraits);
     const traits = participantTraits.map((trait) => {
+      const traitRawData = traitData.find(
+        (data) => data.apiName === trait.name
+      );
+      const traitIcon = traitRawData.icon
+        .toLowerCase()
+        .replace(/\.tex$/, ".png");
 
-      // const traitIcon = traitData.find((data) => data.apiName === trait.name);
-      // console.log(traitIcon);
       if (trait.style > 0) {
         return (
           <Image
             key={trait.name}
             className={``}
-            src={`https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_targon.tft_set9.png`}
+            src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
             alt={trait.name}
             height="25"
             width="25"

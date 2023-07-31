@@ -23,5 +23,4 @@ const getUnitData = async (tft_set_number) => {
   }
 };
 
-
 export default getUnitData;
