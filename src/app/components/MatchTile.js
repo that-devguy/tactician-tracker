@@ -27,7 +27,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
   };
 
   // Extracting participant names with icons
-  const renderParticipantData = async () => {
+  const renderParticipantData = async (summonerId) => {
     try {
       const participantsArray = await Promise.all(
         participants.map((participant) => getSummonerById(participant.puuid))
@@ -35,7 +35,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       const participantData = participantsArray.map((participant) => {
         const { name, profileIconId } = participant;
         return (
-          <div key={name} className="flex items-center gap-1 h-fit mb-2">
+          <div key={name} className="flex items-center gap-1 h-fit mb-1">
             <Image
               className="rounded-full"
               src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${profileIconId}.jpg`}
@@ -44,7 +44,11 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
               height={18}
             />
             <Link
-              className="text-xs text-white/50 hover:text-white hover:underline truncate"
+              className={`text-xs text-white/50 hover:text-white hover:underline truncate ${
+                summonerId === participant.puuid
+                  ? "font-semibold text-white/75"
+                  : ""
+              }`}
               href={`/profile/${name}`}
             >
               {name}
@@ -96,8 +100,8 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
           className={`rounded-full`}
           src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
           alt={augment.name}
-          height="30"
-          width="30"
+          height="27"
+          width="27"
         />
       );
     });
@@ -141,12 +145,15 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
       return (
         <div
           key={`${starLevel} ${champion.apiName}`}
-          className="flex-col items-center justify-center w-14"
+          className="flex-col items-center justify-center w-12"
         >
           <div className="flex justify-center">
             {starLevel === 1 && (
               <>
-                <FontAwesomeIcon className="w-2.5 mb-1 invisible" icon={faStar} />
+                <FontAwesomeIcon
+                  className="w-2.5 mb-1 invisible"
+                  icon={faStar}
+                />
               </>
             )}
             {starLevel === 2 && (
@@ -203,8 +210,8 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
             className={`rounded-full mx-auto mb-2 ${costColor}`}
             src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={champion.name}
-            height="45"
-            width="45"
+            height="40"
+            width="40"
           />
           <p className="text-xs text-center truncate">{champion.name}</p>
         </div>
@@ -224,9 +231,14 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
     const traits = participantTraits.map((trait) => {
       if (trait.style > 0) {
         return (
-          <div key={trait.name}>
-            <p>{trait.name}</p>
-          </div>
+          <Image
+            key={trait.name}
+            className={``}
+            src={`https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_targon.tft_set9.png`}
+            alt={trait.name}
+            height="25"
+            width="25"
+          />
         );
       }
     });
@@ -282,7 +294,7 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
   const patch = getPatchNum();
   const augments = getParticipantAugments(summonerId);
   const units = getParticipantUnits(summonerId);
-  const allParticipants = renderParticipantData();
+  const allParticipants = renderParticipantData(summonerId);
   const traits = getParticipantTraits(summonerId);
 
   return (
@@ -300,12 +312,20 @@ const MatchTile = ({ matchDetails, summonerId, championData, augmentData }) => {
           {level !== null ? level : "Summoner not found in match details"}
         </p> */}
         </div>
-        <div className="flex gap-5 justify-start w-9/12">
-          <div className="flex flex-col items-center justify-center">{traits}</div>
-          <div className="flex flex-col items-center justify-center gap-1">{augments}</div>
-          <div className="flex flex-wrap justify-start gap-1">{units}</div>
+        <div className="flex gap-5 items-center justify-start w-9/12">
+          <div className="flex flex-row flex-wrap gap-1 items-center justify-end w-2/12">
+            {traits}
+          </div>
+          <div className="flex flex-col items-center justify-center gap-2">
+            {augments}
+          </div>
+          <div className="flex flex-wrap items-center justify-start gap-1">
+            {units}
+          </div>
         </div>
-        <div className="grid grid-cols-2 gap-1 w-3/12 h-fit">{allParticipants}</div>
+        <div className="grid grid-cols-2 gap-1 w-3/12 h-fit">
+          {allParticipants}
+        </div>
       </div>
       <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
