@@ -101,14 +101,15 @@ const MatchTile = ({
       const icon = augment.icon.replace(/\.tex$/, ".png");
 
       return (
-        <Image
-          key={`${augment.name}${index}`}
-          className={`rounded-full`}
-          src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
-          alt={augment.name}
-          height="27"
-          width="27"
-        />
+        <div key={`${augment.name}${index}`} className="bg-[#1d1d1d] rounded-full p-1">
+          <Image
+            className={``}
+            src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
+            alt={augment.name}
+            height="27"
+            width="27"
+          />
+        </div>
       );
     });
     return augments;
@@ -233,7 +234,7 @@ const MatchTile = ({
       (participant) => participant.puuid === summonerId
     );
     const participantTraits = participant.traits;
-    // console.log("participantTraits:", participantTraits);
+    console.log("participantTraits:", participantTraits);
     const traits = participantTraits.map((trait) => {
       const traitRawData = traitData.find(
         (data) => data.apiName === trait.name
@@ -242,16 +243,30 @@ const MatchTile = ({
         .toLowerCase()
         .replace(/\.tex$/, ".png");
 
+      let traitColor = "";
+
+      if (trait.style === 1) {
+        traitColor = "traitTier1";
+      } else if (trait.style === 2) {
+        traitColor = "traitTier2";
+      } else if (trait.style === 3) {
+        traitColor = "traitTier3";
+      }
+
       if (trait.style > 0) {
         return (
-          <Image
+          <div
             key={trait.name}
-            className={``}
-            src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
-            alt={trait.name}
-            height="25"
-            width="25"
-          />
+            className={`${traitColor} h-fit w-fit p-1 rounded-full`}
+          >
+            <Image
+              className={`z-10 invert`}
+              src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
+              alt={trait.name}
+              height="18"
+              width="18"
+            />
+          </div>
         );
       }
     });
@@ -325,11 +340,11 @@ const MatchTile = ({
           {level !== null ? level : "Summoner not found in match details"}
         </p> */}
         </div>
-        <div className="flex gap-5 items-center justify-start w-9/12">
+        <div className="flex gap-3 items-center justify-start w-9/12">
           <div className="flex flex-row flex-wrap gap-1 items-center justify-center w-2/12">
             {traits}
           </div>
-          <div className="flex flex-col items-center justify-center gap-2">
+          <div className="flex flex-col items-center justify-center gap-1 w-1/12">
             {augments}
           </div>
           <div className="flex flex-wrap items-center justify-start gap-1">
