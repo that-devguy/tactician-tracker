@@ -101,7 +101,10 @@ const MatchTile = ({
       const icon = augment.icon.replace(/\.tex$/, ".png");
 
       return (
-        <div key={`${augment.name}${index}`} className="bg-[#1d1d1d] rounded-full p-1">
+        <div
+          key={`${augment.name}${index}`}
+          className="bg-[#1d1d1d] rounded-full p-1"
+        >
           <Image
             className={``}
             src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
@@ -152,7 +155,7 @@ const MatchTile = ({
       return (
         <div
           key={`${starLevel} ${champion.apiName}`}
-          className="flex-col items-center justify-center w-14"
+          className="flex-col items-center justify-center w-12"
         >
           <div className="flex justify-center">
             {starLevel === 1 && (
@@ -217,8 +220,8 @@ const MatchTile = ({
             className={`rounded-full mx-auto mb-2 ${costColor}`}
             src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={champion.name}
-            height="45"
-            width="45"
+            height="40"
+            width="40"
           />
           <p className="text-xs text-center truncate">{champion.name}</p>
         </div>
@@ -234,7 +237,37 @@ const MatchTile = ({
       (participant) => participant.puuid === summonerId
     );
     const participantTraits = participant.traits;
+
+    participantTraits.sort((a, b) => b.style - a.style);
+
+    // Sorts traits with the same tier_current by num_units in descending order
+    let i = 0;
+    while (i < participantTraits.length - 1) {
+      if (
+        participantTraits[i].style ===
+        participantTraits[i + 1].style
+      ) {
+        let j = i + 1;
+        while (
+          j < participantTraits.length &&
+          participantTraits[j].style ===
+            participantTraits[i].style
+        ) {
+          j++;
+        }
+        const sameTierTraits = participantTraits.slice(i, j);
+        sameTierTraits.sort((a, b) => b.num_units - a.num_units);
+        for (let k = i; k < j; k++) {
+          participantTraits[k] = sameTierTraits[k - i];
+        }
+        i = j;
+      } else {
+        i++;
+      }
+    }
+
     console.log("participantTraits:", participantTraits);
+
     const traits = participantTraits.map((trait) => {
       const traitRawData = traitData.find(
         (data) => data.apiName === trait.name
@@ -251,6 +284,8 @@ const MatchTile = ({
         traitColor = "traitTier2";
       } else if (trait.style === 3) {
         traitColor = "traitTier3";
+      } else {
+        traitColor = "traitTier4";
       }
 
       if (trait.style > 0) {
@@ -263,8 +298,8 @@ const MatchTile = ({
               className={`z-10 invert`}
               src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
               alt={trait.name}
-              height="18"
-              width="18"
+              height="16"
+              width="16"
             />
           </div>
         );
