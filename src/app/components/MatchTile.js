@@ -52,7 +52,7 @@ const MatchTile = ({
             <Link
               className={`text-xs text-white/50 hover:text-white hover:underline truncate ${
                 summonerId === participant.puuid
-                  ? "font-semibold text-white/75"
+                  ? "font-semibold text-white/60"
                   : ""
               }`}
               href={`/profile/${name}`}
@@ -233,16 +233,17 @@ const MatchTile = ({
           />
           <div className="item-icons flex justify-center -mt-4 mb-1 h-[15px]">
             {itemData.map(({ name, icon }, index) => (
-              <Image
-                key={index}
-                className="border border-brand-main z-50"
-                src={`https://raw.communitydragon.org/latest/game/${icon
-                  .toLowerCase()
-                  .replace(/\.tex$/, ".png")}`}
-                alt={name}
-                height="15"
-                width="15"
-              />
+              <div key={index} className="z-50">
+                <Image
+                  className="border border-brand-secondary z-50"
+                  src={`https://raw.communitydragon.org/latest/game/${icon
+                    .toLowerCase()
+                    .replace(/\.tex$/, ".png")}`}
+                  alt={name}
+                  height="15"
+                  width="15"
+                />
+              </div>
             ))}
           </div>
           <p className="text-xs text-center truncate">{champion.name}</p>
