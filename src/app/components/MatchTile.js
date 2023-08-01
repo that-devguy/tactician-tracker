@@ -150,7 +150,15 @@ const MatchTile = ({
       const unitInUnitsArray = unitsArray.find(
         (unit) => unit.character_id === champion.apiName
       );
+
       const starLevel = unitInUnitsArray ? unitInUnitsArray.tier : 0;
+      const itemNames = unitInUnitsArray ? unitInUnitsArray.itemNames : [];
+
+      const itemData = itemNames.map((itemName) =>
+        augmentData.find((item) => item.apiName === itemName)
+      );
+
+      console.log(itemData);
 
       return (
         <div
@@ -223,6 +231,20 @@ const MatchTile = ({
             height="40"
             width="40"
           />
+          <div className="item-icons flex justify-center -mt-4 mb-1 h-[15px]">
+            {itemData.map(({ name, icon }, index) => (
+              <Image
+                key={index}
+                className="border border-brand-main z-50"
+                src={`https://raw.communitydragon.org/latest/game/${icon
+                  .toLowerCase()
+                  .replace(/\.tex$/, ".png")}`}
+                alt={name}
+                height="15"
+                width="15"
+              />
+            ))}
+          </div>
           <p className="text-xs text-center truncate">{champion.name}</p>
         </div>
       );
@@ -243,15 +265,11 @@ const MatchTile = ({
     // Sorts traits with the same tier_current by num_units in descending order
     let i = 0;
     while (i < participantTraits.length - 1) {
-      if (
-        participantTraits[i].style ===
-        participantTraits[i + 1].style
-      ) {
+      if (participantTraits[i].style === participantTraits[i + 1].style) {
         let j = i + 1;
         while (
           j < participantTraits.length &&
-          participantTraits[j].style ===
-            participantTraits[i].style
+          participantTraits[j].style === participantTraits[i].style
         ) {
           j++;
         }
@@ -265,8 +283,6 @@ const MatchTile = ({
         i++;
       }
     }
-
-    console.log("participantTraits:", participantTraits);
 
     const traits = participantTraits.map((trait) => {
       const traitRawData = traitData.find(
