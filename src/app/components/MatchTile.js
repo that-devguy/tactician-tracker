@@ -109,7 +109,7 @@ const MatchTile = ({
 
       return (
         <>
-          <TooltipProvider delayDuration={200}>
+          <TooltipProvider delayDuration={100} disableHoverableContent={true}>
             <Tooltip>
               <TooltipTrigger className="cursor-default hover:cursor-default">
                 <div
@@ -126,7 +126,7 @@ const MatchTile = ({
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <div className="w-48 my-1">
+                <div className="w-48 my-1 select-none">
                   <p className="text-brand-secondary mb-1">{augment.name}</p>
                   <p>{augment.desc}</p>
                 </div>
@@ -252,14 +252,14 @@ const MatchTile = ({
             height="40"
             width="40"
           />
-          <div className="item-icons flex justify-center -mt-4 mb-1 h-[15px]">
+          <div className="item-icons flex justify-center -mt-4 mb-2 h-[15px]">
             {itemData.map(({ name, icon }, index) => (
               <div key={index} className="z-30">
-                <TooltipProvider delayDuration={200}>
+                <TooltipProvider delayDuration={200} disableHoverableContent={true}>
                   <Tooltip>
                     <TooltipTrigger className="cursor-default hover:cursor-default">
                       <Image
-                        className="border border-brand-secondary"
+                        className="border border-white"
                         src={`https://raw.communitydragon.org/latest/game/${icon
                           .toLowerCase()
                           .replace(/\.tex$/, ".png")}`}
@@ -336,7 +336,7 @@ const MatchTile = ({
       if (trait.style > 0) {
         return (
           <>
-            <TooltipProvider delayDuration={200}>
+            <TooltipProvider delayDuration={200} disableHoverableContent={true}>
               <Tooltip>
                 <TooltipTrigger className="cursor-default hover:cursor-default">
                   <div
@@ -347,8 +347,8 @@ const MatchTile = ({
                       className={`z-10 invert`}
                       src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
                       alt={trait.name}
-                      height="16"
-                      width="16"
+                      height="15"
+                      width="15"
                     />
                   </div>
                 </TooltipTrigger>
@@ -417,12 +417,12 @@ const MatchTile = ({
   const traits = getParticipantTraits(summonerId);
 
   return (
-    <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md">
+    <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md select-none">
       <div className="flex justify-between items-center my-5 gap-3 bg-brand-bg2 rounded-md">
         {/* <p>{match_id}</p> */}
         <div className="flex flex-col justify-center w-1/12">
           <div className="match-placement justify-center px-2">
-            <p className="text-center font-semibold text-3xl">{placement}</p>
+            <p className="text-center font-semibold text-3xl ">{placement}</p>
             <p className="text-center text-xs">Place</p>
           </div>
 
