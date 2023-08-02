@@ -1,5 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/app/components/ui/tooltip";
+
 import getSummonerById from "@/app/libs/getSummonerById";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
@@ -233,16 +240,24 @@ const MatchTile = ({
           />
           <div className="item-icons flex justify-center -mt-4 mb-1 h-[15px]">
             {itemData.map(({ name, icon }, index) => (
-              <Image
-                key={index}
-                className="border border-brand-secondary z-50"
-                src={`https://raw.communitydragon.org/latest/game/${icon
-                  .toLowerCase()
-                  .replace(/\.tex$/, ".png")}`}
-                alt={name}
-                height="15"
-                width="15"
-              />
+              <div key={index} className="z-30">
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Image
+                        className="border border-brand-secondary"
+                        src={`https://raw.communitydragon.org/latest/game/${icon
+                          .toLowerCase()
+                          .replace(/\.tex$/, ".png")}`}
+                        alt={name}
+                        height="15"
+                        width="15"
+                      />
+                    </TooltipTrigger>
+                    <TooltipContent>{name}</TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </div>
             ))}
           </div>
           <p className="text-xs text-center truncate">{champion.name}</p>
