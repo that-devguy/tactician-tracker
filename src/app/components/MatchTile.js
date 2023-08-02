@@ -158,7 +158,7 @@ const MatchTile = ({
         augmentData.find((item) => item.apiName === itemName)
       );
 
-      console.log(itemData);
+      // console.log(itemData);
 
       return (
         <div
@@ -233,17 +233,16 @@ const MatchTile = ({
           />
           <div className="item-icons flex justify-center -mt-4 mb-1 h-[15px]">
             {itemData.map(({ name, icon }, index) => (
-              <div key={index} className="z-50">
-                <Image
-                  className="border border-brand-secondary z-50"
-                  src={`https://raw.communitydragon.org/latest/game/${icon
-                    .toLowerCase()
-                    .replace(/\.tex$/, ".png")}`}
-                  alt={name}
-                  height="15"
-                  width="15"
-                />
-              </div>
+              <Image
+                key={index}
+                className="border border-brand-secondary z-50"
+                src={`https://raw.communitydragon.org/latest/game/${icon
+                  .toLowerCase()
+                  .replace(/\.tex$/, ".png")}`}
+                alt={name}
+                height="15"
+                width="15"
+              />
             ))}
           </div>
           <p className="text-xs text-center truncate">{champion.name}</p>
