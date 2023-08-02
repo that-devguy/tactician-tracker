@@ -57,10 +57,10 @@ const MatchTile = ({
               height={18}
             />
             <Link
-              className={`text-xs text-white/50 hover:text-white hover:underline truncate ${
+              className={`text-xs hover:text-white hover:underline truncate ${
                 summonerId === participant.puuid
-                  ? "font-semibold text-white/60"
-                  : ""
+                  ? "text-white hover:no-underline pointer-events-none"
+                  : "text-white/50"
               }`}
               href={`/profile/${name}`}
             >
