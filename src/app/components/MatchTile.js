@@ -108,18 +108,32 @@ const MatchTile = ({
       const icon = augment.icon.replace(/\.tex$/, ".png");
 
       return (
-        <div
-          key={`${augment.name}${index}`}
-          className="bg-[#1d1d1d] rounded-full p-1"
-        >
-          <Image
-            className={``}
-            src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
-            alt={augment.name}
-            height="27"
-            width="27"
-          />
-        </div>
+        <>
+          <TooltipProvider delayDuration={200}>
+            <Tooltip>
+              <TooltipTrigger className="cursor-default hover:cursor-default">
+                <div
+                  key={`${augment.name}${index}`}
+                  className="bg-[#1d1d1d] rounded-full p-1"
+                >
+                  <Image
+                    className={``}
+                    src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
+                    alt={augment.name}
+                    height="27"
+                    width="27"
+                  />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <div className="w-48 my-1">
+                  <p className="text-brand-secondary mb-1">{augment.name}</p>
+                  <p>{augment.desc}</p>
+                </div>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </>
       );
     });
     return augments;
@@ -241,9 +255,9 @@ const MatchTile = ({
           <div className="item-icons flex justify-center -mt-4 mb-1 h-[15px]">
             {itemData.map(({ name, icon }, index) => (
               <div key={index} className="z-30">
-                <TooltipProvider>
+                <TooltipProvider delayDuration={200}>
                   <Tooltip>
-                    <TooltipTrigger>
+                    <TooltipTrigger className="cursor-default hover:cursor-default">
                       <Image
                         className="border border-brand-secondary"
                         src={`https://raw.communitydragon.org/latest/game/${icon
@@ -321,18 +335,29 @@ const MatchTile = ({
 
       if (trait.style > 0) {
         return (
-          <div
-            key={trait.name}
-            className={`${traitColor} h-fit w-fit p-1 rounded-full`}
-          >
-            <Image
-              className={`z-10 invert`}
-              src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
-              alt={trait.name}
-              height="16"
-              width="16"
-            />
-          </div>
+          <>
+            <TooltipProvider delayDuration={200}>
+              <Tooltip>
+                <TooltipTrigger className="cursor-default hover:cursor-default">
+                  <div
+                    key={trait.name}
+                    className={`${traitColor} h-fit w-fit p-1 rounded-full`}
+                  >
+                    <Image
+                      className={`z-10 invert`}
+                      src={`https://raw.communitydragon.org/latest/game/${traitIcon}`}
+                      alt={trait.name}
+                      height="16"
+                      width="16"
+                    />
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent>
+                  {trait.num_units} {traitRawData.name}
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </>
         );
       }
     });
