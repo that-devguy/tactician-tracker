@@ -82,15 +82,33 @@ const MatchTile = ({
       (participant) => participant.puuid === summonerId
     );
 
+    let placementColor = "";
+
     if (participant.placement === 1) {
-      return `${participant.placement}st`;
+      placementColor = "first-place";
     } else if (participant.placement === 2) {
-      return `${participant.placement}nd`;
+      placementColor = "second-place";
     } else if (participant.placement === 3) {
-      return `${participant.placement}rd`;
-    } else {
-      return `${participant.placement}th`;
+      placementColor = "third-place";
+    } else if (participant.placement === 4) {
+      placementColor = "fourth-place";
+    } else if (participant.placement >= 5) {
+      placementColor = "bottom-place";
     }
+
+    let placementText = "";
+
+    if (participant.placement === 1) {
+      placementText = `${participant.placement}st`;
+    } else if (participant.placement === 2) {
+      placementText = `${participant.placement}nd`;
+    } else if (participant.placement === 3) {
+      placementText = `${participant.placement}rd`;
+    } else {
+      placementText = `${participant.placement}th`;
+    }
+
+    return { placementColor: placementColor, placementText: placementText };
   };
 
   // Extracting participant augments
@@ -255,7 +273,10 @@ const MatchTile = ({
           <div className="item-icons flex justify-center -mt-4 mb-2 h-[15px]">
             {itemData.map(({ name, icon }, index) => (
               <div key={index} className="z-30">
-                <TooltipProvider delayDuration={200} disableHoverableContent={true}>
+                <TooltipProvider
+                  delayDuration={200}
+                  disableHoverableContent={true}
+                >
                   <Tooltip>
                     <TooltipTrigger className="cursor-default hover:cursor-default">
                       <Image
@@ -422,7 +443,7 @@ const MatchTile = ({
         {/* <p>{match_id}</p> */}
         <div className="flex flex-col justify-center w-1/12">
           <div className="match-placement justify-center px-2">
-            <p className="text-center font-semibold text-3xl ">{placement}</p>
+            <p className={`text-center font-black text-3xl text-white/50 ${placement.placementColor}`}>{placement.placementText}</p>
             <p className="text-center text-xs">Place</p>
           </div>
 

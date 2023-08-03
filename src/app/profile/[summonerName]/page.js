@@ -39,11 +39,11 @@ export default async function profile({ params: { summonerName } }) {
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
             <h1 className="font-bold text-4xl">{summonerData.name}</h1>
-            <p className="font-bold text-md bg-brand-bg2 px-3 py-1 rounded-md">
+            <p className="font-bold text-md bg-brand-bg2 px-3 py-1 rounded-md select-none">
               NA
             </p>
           </div>
-          <p className="w-fit font-black text-xs bg-brand-secondary text-brand-bg mx-1 px-3 py-1 rounded-md">
+          <p className="w-fit font-black text-xs bg-brand-secondary text-brand-bg mx-1 px-3 py-1 rounded-md select-none">
             Level {summonerData.summonerLevel}
           </p>
         </div>
