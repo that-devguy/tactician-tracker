@@ -1,12 +1,12 @@
 const matchHistoryCache = {};
 
-export default async function getMatchHistory(summonerId) {
-  if (matchHistoryCache[summonerId]) {
-    return matchHistoryCache[summonerId];
+export default async function getMatchHistory(puuid) {
+  if (matchHistoryCache[puuid]) {
+    return matchHistoryCache[puuid];
   }
   const riotAPI = process.env.API_KEY;
   const matchHistoryResponse = await fetch(
-    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${summonerId}/ids?start=0&count=2&api_key=${riotAPI}`
+    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=2&api_key=${riotAPI}`
   );
 
   if (!matchHistoryResponse.ok) {

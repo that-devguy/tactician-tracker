@@ -13,7 +13,7 @@ import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
 const MatchTile = ({
   matchDetails,
-  summonerId,
+  puuid,
   championData,
   augmentData,
   traitData,
@@ -32,15 +32,15 @@ const MatchTile = ({
   } = matchDetails;
 
   // Extracting participant levels
-  const getParticipantLevel = (summonerId) => {
+  const getParticipantLevel = (puuid) => {
     const participant = participants.find(
-      (participant) => participant.puuid === summonerId
+      (participant) => participant.puuid === puuid
     );
     return participant ? participant.level : null;
   };
 
   // Extracting participant names with icons
-  const renderParticipantData = async (summonerId) => {
+  const renderParticipantData = async (puuid) => {
     try {
       const participantsArray = await Promise.all(
         participants.map((participant) => getSummonerById(participant.puuid))
@@ -58,7 +58,7 @@ const MatchTile = ({
             />
             <Link
               className={`text-xs hover:text-white hover:underline truncate ${
-                summonerId === participant.puuid
+                puuid === participant.puuid
                   ? "text-white hover:no-underline pointer-events-none"
                   : "text-white/50"
               }`}
@@ -77,9 +77,9 @@ const MatchTile = ({
   };
 
   // Extracting participant placements
-  const getParticipantPlacement = (summonerId) => {
+  const getParticipantPlacement = (puuid) => {
     const participant = participants.find(
-      (participant) => participant.puuid === summonerId
+      (participant) => participant.puuid === puuid
     );
 
     let placementColor = "";
@@ -112,9 +112,9 @@ const MatchTile = ({
   };
 
   // Extracting participant augments
-  const getParticipantAugments = async (summonerId) => {
+  const getParticipantAugments = async (puuid) => {
     const participant = participants.find(
-      (participant) => participant.puuid === summonerId
+      (participant) => participant.puuid === puuid
     );
     const augmentsArray = participant ? participant.augments : [];
 
@@ -158,9 +158,9 @@ const MatchTile = ({
   };
 
   // Extracting participants units
-  const getParticipantUnits = async (summonerId) => {
+  const getParticipantUnits = async (puuid) => {
     const participant = participants.find(
-      (participant) => participant.puuid === summonerId
+      (participant) => participant.puuid === puuid
     );
     const unitsArray = participant ? participant.units : [];
     const filteredUnitData = championData.filter((champion) =>
@@ -304,9 +304,9 @@ const MatchTile = ({
   };
 
   // Extracting participant traits
-  const getParticipantTraits = (summonerId) => {
+  const getParticipantTraits = (puuid) => {
     const participant = participants.find(
-      (participant) => participant.puuid === summonerId
+      (participant) => participant.puuid === puuid
     );
     const participantTraits = participant.traits;
 
@@ -426,16 +426,16 @@ const MatchTile = ({
     return patchNum;
   };
 
-  const level = getParticipantLevel(summonerId);
-  const placement = getParticipantPlacement(summonerId);
+  const level = getParticipantLevel(puuid);
+  const placement = getParticipantPlacement(puuid);
   const playTimeDate = getGameTimeDiff();
   const gameLength = getGameLengthInMins();
   const queueType = getQueueType();
   const patch = getPatchNum();
-  const augments = getParticipantAugments(summonerId);
-  const units = getParticipantUnits(summonerId);
-  const allParticipants = renderParticipantData(summonerId);
-  const traits = getParticipantTraits(summonerId);
+  const augments = getParticipantAugments(puuid);
+  const units = getParticipantUnits(puuid);
+  const allParticipants = renderParticipantData(puuid);
+  const traits = getParticipantTraits(puuid);
 
   return (
     <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md select-none">
