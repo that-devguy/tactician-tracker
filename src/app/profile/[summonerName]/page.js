@@ -54,7 +54,7 @@ export default async function profile({ params: { summonerName } }) {
       </div>
       <div>
         <div>
-          <p>{leagueData.tier} {leagueData.rank}</p>
+          <p>{leagueData[0].tier} {leagueData[0].rank}</p>
         </div>
       </div>
       {matchDetailsArray.map((matchDetails) => (
