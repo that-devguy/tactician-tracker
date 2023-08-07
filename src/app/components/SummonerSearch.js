@@ -25,13 +25,13 @@ export default function SummonerSearch() {
         <input
           type="text"
           placeholder="Search Summoner"
-          className="text-white bg-brand-bg2 caret-white text-sm py-1 px-3 rounded-l-md h-8 outline-none ring-none"
+          className="text-white placeholder-white/50 bg-brand-bg2 caret-white text-sm py-1 px-3 rounded-l-md h-8 outline-none ring-none"
           onChange={(e) => setSearchText(e.target.value)}
           onKeyDown={handleKeyPress}
         ></input>
         <button type="submit" className="py-1 px-3 rounded-r-md h-8">
           <FontAwesomeIcon
-            className="w-3 text-neutral-400"
+            className="w-3 text-white/50"
             icon={faMagnifyingGlass}
           />
         </button>

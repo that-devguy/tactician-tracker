@@ -7,6 +7,7 @@ import getAugmentData from "@/app/libs/getAugmentData";
 import getTraitsData from "@/app/libs/getTraitsData";
 import getSummonerLeagueData from "@/app/libs/getSummonerLeagueData";
 import MatchTile from "@/app/components/MatchTile";
+import RankDataTile from "@/app/components/RankDataTile";
 
 export default async function profile({ params: { summonerName } }) {
   const summonerData = await getSummoner(summonerName);
@@ -14,7 +15,6 @@ export default async function profile({ params: { summonerName } }) {
   const summonerId = summonerData.id;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
-  console.log(leagueData);
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
@@ -53,8 +53,8 @@ export default async function profile({ params: { summonerName } }) {
         </div>
       </div>
       <div>
-        <div>
-          <p>{leagueData[0].tier} {leagueData[0].rank}</p>
+        <div className="w-1/3">
+          <RankDataTile leagueData={leagueData} />
         </div>
       </div>
       {matchDetailsArray.map((matchDetails) => (
