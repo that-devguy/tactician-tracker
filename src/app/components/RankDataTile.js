@@ -26,14 +26,15 @@ function getWinLoss(wins, losses) {
 
 const RankDataTile = ({ leagueData }) => {
   console.log(leagueData);
-  const { tier, rank, leaguePoints, wins, losses, hotStreak } = leagueData[0] || {};
+  const { tier, rank, leaguePoints, wins, losses, hotStreak } =
+    leagueData[0] || {};
 
   const capTier = tier && tier.charAt(0) + tier.slice(1).toLowerCase();
 
   const rankNum = getRankNum(rank);
 
   return (
-    <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg rounded-md select-none">
+    <div className="flex flex-col mb-2 py-3 px-2 bg-brand-bg rounded-md select-none">
       <div className="flex items-center gap-3 rounded-md">
         <Image
           src={`/tierEmblem-${tier.toLowerCase()}.png`}
@@ -63,7 +64,10 @@ const RankDataTile = ({ leagueData }) => {
                 {getWinLoss(wins, losses)}%
               </p>
             </div>
-            <FontAwesomeIcon icon={faFire} className={`text-brand-main ${!hotStreak ? `invisible` : ``}`}/>
+            <FontAwesomeIcon
+              icon={faFire}
+              className={`text-brand-main ${!hotStreak ? `invisible` : ``}`}
+            />
           </div>
         </div>
       </div>
