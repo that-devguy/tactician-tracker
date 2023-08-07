@@ -21,11 +21,11 @@ export default function SummonerSearch() {
 
   return (
     <form onSubmit={handleSearch}>
-      <div className="search-container bg-neutral-100 flex items-center rounded-md h-8">
+      <div className="search-container bg-brand-bg2 flex items-center rounded-md h-8">
         <input
           type="text"
           placeholder="Search Summoner"
-          className="text-black bg-neutral-100 text-sm py-1 px-3 rounded-l-md h-8 outline-none ring-none"
+          className="text-white bg-brand-bg2 caret-white text-sm py-1 px-3 rounded-l-md h-8 outline-none ring-none"
           onChange={(e) => setSearchText(e.target.value)}
           onKeyDown={handleKeyPress}
         ></input>
