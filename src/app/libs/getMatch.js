@@ -6,7 +6,12 @@ export default async function getMatch(matchId) {
   }
   const riotAPI = process.env.API_KEY;
   const matchResponse = await fetch(
-    `https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}?api_key=${riotAPI}`
+    `https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}?api_key=${riotAPI}`,
+    {
+      headers: {
+        'Cache-Control': 'max-age=14400', // fetches fresh data after 4 hours
+      },
+    }
   );
 
   if (!matchResponse.ok) {

@@ -6,7 +6,12 @@ export default async function getSummoner(summonerName) {
   }
   const riotAPI = process.env.API_KEY;
   const response = await fetch(
-    `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/${summonerName}?api_key=${riotAPI}`
+    `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/${summonerName}?api_key=${riotAPI}`,
+    {
+      headers: {
+        'Cache-Control': 'max-age=14400', // fetches fresh data after 4 hours
+      },
+    }
   );
 
   if (!response.ok) {

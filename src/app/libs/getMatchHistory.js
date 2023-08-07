@@ -4,13 +4,19 @@ export default async function getMatchHistory(puuid) {
   if (matchHistoryCache[puuid]) {
     return matchHistoryCache[puuid];
   }
+
   const riotAPI = process.env.API_KEY;
   const matchHistoryResponse = await fetch(
-    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=2&api_key=${riotAPI}`
+    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=2&api_key=${riotAPI}`,
+    {
+      headers: {
+        'Cache-Control': 'max-age=14400', // fetches fresh data after 4 hours
+      },
+    }
   );
 
   if (!matchHistoryResponse.ok) {
-    throw new Error("Failed to find match history");
+    throw new Error('Failed to find match history');
   }
 
   const matchIds = await matchHistoryResponse.json();
@@ -21,5 +27,6 @@ export default async function getMatchHistory(puuid) {
     };
   });
 
+  matchHistoryCache[puuid] = mappedMatchHistory;
   return mappedMatchHistory;
 }
