@@ -36,13 +36,17 @@ const RankDataTile = ({ leagueData }) => {
   return (
     <div className="flex flex-col mb-2 py-3 px-2 bg-brand-bg rounded-md select-none">
       <div className="flex items-center gap-3 rounded-md">
-        <Image
-          src={`/tierEmblem-${tier.toLowerCase()}.png`}
-          alt="ranked-emblem"
-          height="150"
-          width="150"
-        />
-        <div className="w-full mr-6">
+        <div className="w-5/12 h-fit">
+          <Image
+            className="mx-auto"
+            src={`/tierEmblem-${tier.toLowerCase()}.png`}
+            alt={`${capTier} tier emblem`}
+            height={131}
+            width={150}
+            layout="fixed"
+          />
+        </div>
+        <div className="w-7/12 mr-6">
           <p className="text-xs text-white/50">Ranked</p>
           <div className="flex justify-between items-center">
             <p className="text-lg font-bold">
