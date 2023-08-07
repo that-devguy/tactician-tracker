@@ -10,7 +10,7 @@ export default async function getMatchHistory(puuid) {
     `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=2&api_key=${riotAPI}`,
     {
       headers: {
-        'Cache-Control': 'max-age=14400', // fetches fresh data after 4 hours
+        'Cache-Control': 'max-age=1800',
       },
     }
   );

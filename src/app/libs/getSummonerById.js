@@ -10,7 +10,7 @@ export default async function getSummonerById(puuid) {
       `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-puuid/${puuid}?api_key=${riotAPI}`,
       {
         headers: {
-          'Cache-Control': 'max-age=14400', // fetches fresh data after 4 hours
+          'Cache-Control': 'max-age=1800',
         },
       }
     );

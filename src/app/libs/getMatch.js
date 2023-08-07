@@ -9,7 +9,7 @@ export default async function getMatch(matchId) {
     `https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}?api_key=${riotAPI}`,
     {
       headers: {
-        'Cache-Control': 'max-age=14400', // fetches fresh data after 4 hours
+        'Cache-Control': 'max-age=1800',
       },
     }
   );
