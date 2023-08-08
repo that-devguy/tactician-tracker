@@ -8,6 +8,7 @@ import getTraitsData from "@/app/libs/getTraitsData";
 import getSummonerLeagueData from "@/app/libs/getSummonerLeagueData";
 import MatchTile from "@/app/components/MatchTile";
 import RankDataTile from "@/app/components/RankDataTile";
+import MatchPlacementsTile from "@/app/components/MatchPlacementsTile";
 
 export default async function profile({ params: { summonerName } }) {
   const summonerData = await getSummoner(summonerName);
@@ -27,6 +28,12 @@ export default async function profile({ params: { summonerName } }) {
   const championData = await getUnitData(tft_set_number);
   const augmentData = await getAugmentData();
   const traitData = await getTraitsData(tft_set_number);
+  const placements = matchDetailsArray.map(
+    (matchDetails) =>
+      matchDetails.info.participants.find(
+        (participant) => participant.puuid === puuid
+      ).placement
+  );
 
   return (
     <section className="max-w-5xl mx-auto">
@@ -53,11 +60,12 @@ export default async function profile({ params: { summonerName } }) {
         </div>
       </div>
       <div>
-        <div className="w-5/12">
+        <div className="w-5/12 px-2 py-3">
           <RankDataTile leagueData={leagueData} />
+          <MatchPlacementsTile placements={placements} />
         </div>
       </div>
-      {matchDetailsArray.map((matchDetails) => (
+      {matchDetailsArray.slice(0, 2).map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}

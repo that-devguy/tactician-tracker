@@ -25,7 +25,7 @@ function getWinLoss(wins, losses) {
 }
 
 const RankDataTile = ({ leagueData }) => {
-  console.log(leagueData);
+  // console.log(leagueData);
   const { tier, rank, leaguePoints, wins, losses, hotStreak } =
     leagueData[0] || {};
 
@@ -34,7 +34,7 @@ const RankDataTile = ({ leagueData }) => {
   const rankNum = getRankNum(rank);
 
   return (
-    <div className="flex flex-col mb-2 py-3 px-2 bg-brand-bg rounded-md select-none">
+    <div className="mb-3 bg-brand-bg rounded-md select-none">
       <div className="flex items-center gap-3 rounded-md">
         <div className="w-5/12 h-fit">
           <Image

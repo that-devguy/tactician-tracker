@@ -7,7 +7,7 @@ export default async function getMatchHistory(puuid) {
 
   const riotAPI = process.env.API_KEY;
   const matchHistoryResponse = await fetch(
-    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=2&api_key=${riotAPI}`,
+    `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${riotAPI}`,
     {
       headers: {
         'Cache-Control': 'max-age=1800',
