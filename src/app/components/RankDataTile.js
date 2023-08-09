@@ -70,7 +70,7 @@ const RankDataTile = ({ leagueData }) => {
             </div>
             <FontAwesomeIcon
               icon={faFire}
-              className={`text-brand-main ${!hotStreak ? `invisible` : ``}`}
+              className={`text-brand-main mr-1 ${!hotStreak ? `invisible` : ``}`}
             />
           </div>
         </div>
