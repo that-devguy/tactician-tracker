@@ -60,7 +60,7 @@ export default async function profile({ params: { summonerName } }) {
         </div>
       </div>
       <div>
-        <div className="w-5/12 px-2 py-3">
+        <div className="w-5/12 px-2 py-3 mb-2">
           <RankDataTile leagueData={leagueData} />
           <MatchPlacementsTile placements={placements} />
         </div>
