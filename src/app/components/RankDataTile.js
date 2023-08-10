@@ -34,9 +34,9 @@ const RankDataTile = ({ leagueData }) => {
   const rankNum = getRankNum(rank);
 
   return (
-    <div className="mb-3 bg-brand-bg rounded-md select-none">
+    <div className="mb-3 select-none rounded-md bg-brand-bg">
       <div className="flex items-center gap-3 rounded-md">
-        <div className="w-5/12 h-fit">
+        <div className="h-fit w-5/12">
           <Image
             className="mx-auto"
             src={`/tierEmblem-${tier.toLowerCase()}.png`}
@@ -46,21 +46,21 @@ const RankDataTile = ({ leagueData }) => {
             layout="fixed"
           />
         </div>
-        <div className="w-7/12 mr-6">
+        <div className="mr-6 w-7/12">
           <p className="text-xs text-white/50">Ranked</p>
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <p className="text-lg font-bold">
               {capTier} {rankNum}
             </p>
             <p className="font-light">{leaguePoints} LP</p>
           </div>
           <Progress value={leaguePoints} className="my-1" />
-          <div className="flex items-center justify-between text-xs text-white/50 py-1">
+          <div className="flex items-center justify-between py-1 text-xs text-white/50">
             <div className="flex items-center gap-2">
               <p>{wins}W</p>
               <p>{losses}L</p>
               <FontAwesomeIcon
-                className="w-[0.3px] h-[0.3px]"
+                className="h-[0.3px] w-[0.3px]"
                 icon={faCircle}
               />
               <p className="">Top4</p>
@@ -70,7 +70,9 @@ const RankDataTile = ({ leagueData }) => {
             </div>
             <FontAwesomeIcon
               icon={faFire}
-              className={`text-brand-main mr-1 ${!hotStreak ? `invisible` : ``}`}
+              className={`mr-1 text-brand-main ${
+                !hotStreak ? `invisible` : ``
+              }`}
             />
           </div>
         </div>

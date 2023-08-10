@@ -3,9 +3,11 @@ import SummonerSearch from "@/app/components/SummonerSearch";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between py-5 px-10 bg-brand-bg border-b-[0.5px] border-brand-bg2">
+    <nav className="flex items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-10 py-5">
       <div className="navLogo-container flex items-center gap-10">
-        <Link href="/" className="font-bold text-lg">Tactician Tracker</Link>
+        <Link href="/" className="text-lg font-bold">
+          Tactician Tracker
+        </Link>
         <SummonerSearch />
       </div>
 

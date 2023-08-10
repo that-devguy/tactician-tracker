@@ -48,7 +48,7 @@ const MatchTile = ({
       const participantData = participantsArray.map((participant) => {
         const { name, profileIconId } = participant;
         return (
-          <div key={name} className="flex items-center gap-1 h-fit mb-1">
+          <div key={name} className="mb-1 flex h-fit items-center gap-1">
             <Image
               className="rounded-full"
               src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${profileIconId}.jpg`}
@@ -57,9 +57,9 @@ const MatchTile = ({
               height={18}
             />
             <Link
-              className={`text-xs hover:text-white hover:underline truncate ${
+              className={`truncate text-xs hover:text-white hover:underline ${
                 puuid === participant.puuid
-                  ? "text-white hover:no-underline pointer-events-none"
+                  ? "pointer-events-none text-white hover:no-underline"
                   : "text-white/50"
               }`}
               href={`/profile/${name}`}
@@ -132,7 +132,7 @@ const MatchTile = ({
               <TooltipTrigger className="cursor-default hover:cursor-default">
                 <div
                   key={`${augment.name}${index}`}
-                  className="bg-[#1d1d1d] rounded-full p-1"
+                  className="rounded-full bg-[#1d1d1d] p-1"
                 >
                   <Image
                     className={``}
@@ -144,8 +144,8 @@ const MatchTile = ({
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <div className="w-48 my-1 select-none">
-                  <p className="text-brand-secondary mb-1">{augment.name}</p>
+                <div className="my-1 w-48 select-none">
+                  <p className="mb-1 text-brand-secondary">{augment.name}</p>
                   <p>{augment.desc}</p>
                 </div>
               </TooltipContent>
@@ -202,13 +202,13 @@ const MatchTile = ({
       return (
         <div
           key={`${starLevel} ${champion.apiName}`}
-          className="flex-col items-center justify-center w-12"
+          className="w-12 flex-col items-center justify-center"
         >
           <div className="flex justify-center">
             {starLevel === 1 && (
               <>
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 invisible"
+                  className="invisible mb-1 w-2.5"
                   icon={faStar}
                 />
               </>
@@ -216,11 +216,11 @@ const MatchTile = ({
             {starLevel === 2 && (
               <>
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-zinc-400"
+                  className="mb-1 w-2.5 text-zinc-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-zinc-400"
+                  className="mb-1 w-2.5 text-zinc-400"
                   icon={faStar}
                 />
               </>
@@ -228,15 +228,15 @@ const MatchTile = ({
             {starLevel === 3 && (
               <>
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-amber-400"
+                  className="mb-1 w-2.5 text-amber-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-amber-400"
+                  className="mb-1 w-2.5 text-amber-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-amber-400"
+                  className="mb-1 w-2.5 text-amber-400"
                   icon={faStar}
                 />
               </>
@@ -244,19 +244,19 @@ const MatchTile = ({
             {starLevel >= 4 && (
               <>
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-emerald-400"
+                  className="mb-1 w-2.5 text-emerald-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-emerald-400"
+                  className="mb-1 w-2.5 text-emerald-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-emerald-400"
+                  className="mb-1 w-2.5 text-emerald-400"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="w-2.5 mb-1 text-emerald-400"
+                  className="mb-1 w-2.5 text-emerald-400"
                   icon={faStar}
                 />
               </>
@@ -264,13 +264,13 @@ const MatchTile = ({
           </div>
 
           <Image
-            className={`rounded-full mx-auto mb-2 ${costColor}`}
+            className={`mx-auto mb-2 rounded-full ${costColor}`}
             src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={champion.name}
             height="40"
             width="40"
           />
-          <div className="item-icons flex justify-center -mt-4 mb-2 h-[15px]">
+          <div className="item-icons -mt-4 mb-2 flex h-[15px] justify-center">
             {itemData.map(({ name, icon }, index) => (
               <div key={index} className="z-30">
                 <TooltipProvider
@@ -295,7 +295,7 @@ const MatchTile = ({
               </div>
             ))}
           </div>
-          <p className="text-xs text-center truncate">{champion.name}</p>
+          <p className="truncate text-center text-xs">{champion.name}</p>
         </div>
       );
     });
@@ -362,7 +362,7 @@ const MatchTile = ({
                 <TooltipTrigger className="cursor-default hover:cursor-default">
                   <div
                     key={trait.name}
-                    className={`${traitColor} h-fit w-fit p-1 rounded-full`}
+                    className={`${traitColor} h-fit w-fit rounded-full p-1`}
                   >
                     <Image
                       className={`z-10 invert`}
@@ -438,12 +438,16 @@ const MatchTile = ({
   const traits = getParticipantTraits(puuid);
 
   return (
-    <div className="flex flex-col mb-2 py-3 px-5 bg-brand-bg2 rounded-md select-none">
-      <div className="flex justify-between items-center my-5 gap-3 bg-brand-bg2 rounded-md">
+    <div className="mb-2 flex select-none flex-col rounded-md bg-brand-bg2 px-5 py-3">
+      <div className="my-5 flex items-center justify-between gap-3 rounded-md bg-brand-bg2">
         {/* <p>{match_id}</p> */}
-        <div className="flex flex-col justify-center w-1/12">
+        <div className="flex w-1/12 flex-col justify-center">
           <div className="match-placement justify-center px-2">
-            <p className={`text-center font-black text-3xl text-white/50 ${placement.placementColor}`}>{placement.placementText}</p>
+            <p
+              className={`text-center text-3xl font-black text-white/50 ${placement.placementColor}`}
+            >
+              {placement.placementText}
+            </p>
             <p className="text-center text-xs">Place</p>
           </div>
 
@@ -452,28 +456,28 @@ const MatchTile = ({
           {level !== null ? level : "Summoner not found in match details"}
         </p> */}
         </div>
-        <div className="flex gap-3 items-center justify-start w-9/12">
-          <div className="flex flex-row flex-wrap gap-1 items-center justify-center w-2/12">
+        <div className="flex w-9/12 items-center justify-start gap-3">
+          <div className="flex w-2/12 flex-row flex-wrap items-center justify-center gap-1">
             {traits}
           </div>
-          <div className="flex flex-col items-center justify-center gap-1 w-1/12">
+          <div className="flex w-1/12 flex-col items-center justify-center gap-1">
             {augments}
           </div>
           <div className="flex flex-wrap items-center justify-start gap-1">
             {units}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-1 w-3/12 h-fit">
+        <div className="grid h-fit w-3/12 grid-cols-2 gap-1">
           {allParticipants}
         </div>
       </div>
-      <div className="flex items-center gap-3 ml-1 text-xs text-white/50">
+      <div className="ml-1 flex items-center gap-3 text-xs text-white/50">
         <p className="font-bold text-white">{queueType}</p>
-        <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
         <p>{playTimeDate}</p>
-        <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
         <p>{gameLength}</p>
-        <FontAwesomeIcon className="w-[0.3px] h-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
         <p>{patch}</p>
       </div>
     </div>

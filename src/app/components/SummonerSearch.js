@@ -21,15 +21,15 @@ export default function SummonerSearch() {
 
   return (
     <form onSubmit={handleSearch}>
-      <div className="search-container bg-brand-bg2 flex items-center rounded-md h-8">
+      <div className="search-container flex h-8 items-center rounded-md bg-brand-bg2">
         <input
           type="text"
           placeholder="Search Summoner"
-          className="text-white placeholder-white/50 bg-brand-bg2 caret-white text-sm py-1 px-3 rounded-l-md h-8 outline-none ring-none"
+          className="ring-none h-8 rounded-l-md bg-brand-bg2 px-3 py-1 text-sm text-white placeholder-white/50 caret-white outline-none"
           onChange={(e) => setSearchText(e.target.value)}
           onKeyDown={handleKeyPress}
         ></input>
-        <button type="submit" className="py-1 px-3 rounded-r-md h-8">
+        <button type="submit" className="h-8 rounded-r-md px-3 py-1">
           <FontAwesomeIcon
             className="w-3 text-white/50"
             icon={faMagnifyingGlass}

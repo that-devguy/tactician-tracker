@@ -36,11 +36,11 @@ export default async function profile({ params: { summonerName } }) {
   );
 
   return (
-    <section className="max-w-5xl mx-auto">
+    <section className="mx-auto max-w-5xl text-lg">
       <div className="profile-headerCard flex items-center gap-5 p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
-            className="rounded-full ring-4 ring-brand-main border-4 border-transparent"
+            className="rounded-full border-4 border-transparent ring-4 ring-brand-main"
             src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${summonerData.profileIconId}.jpg`}
             alt={summonerData.name}
             height="100"
@@ -49,18 +49,18 @@ export default async function profile({ params: { summonerName } }) {
         </div>
         <div className="flex flex-col gap-1">
           <div className="flex items-center gap-3">
-            <h1 className="font-bold text-4xl">{summonerData.name}</h1>
-            <p className="font-bold text-md bg-brand-bg2 px-3 py-1 rounded-md select-none">
+            <h1 className="text-4xl font-bold">{summonerData.name}</h1>
+            <p className="text-md select-none rounded-md bg-brand-bg2 px-3 py-1 font-bold">
               NA
             </p>
           </div>
-          <p className="w-fit font-black text-xs bg-brand-secondary text-brand-bg mx-1 px-3 py-1 rounded-md select-none">
+          <p className="mx-1 w-fit select-none rounded-md bg-brand-secondary px-3 py-1 text-xs font-black text-brand-bg">
             Level {summonerData.summonerLevel}
           </p>
         </div>
       </div>
       <div>
-        <div className="w-5/12 px-2 py-3 mb-2">
+        <div className="mb-2 w-5/12 px-2 py-3">
           <RankDataTile leagueData={leagueData} />
           <MatchPlacementsTile placements={placements} />
         </div>

@@ -10,13 +10,13 @@ export default async function getMatchHistory(puuid) {
     `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${riotAPI}`,
     {
       headers: {
-        'Cache-Control': 'max-age=1800',
+        "Cache-Control": "max-age=1800, must-revalidate",
       },
     }
   );
 
   if (!matchHistoryResponse.ok) {
-    throw new Error('Failed to find match history');
+    throw new Error("Failed to find match history");
   }
 
   const matchIds = await matchHistoryResponse.json();

@@ -9,7 +9,7 @@ export default async function getSummonerLeagueData(summonerId) {
     `https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/${summonerId}?api_key=${riotAPI}`,
     {
       headers: {
-        'Cache-Control': 'max-age=1800',
+        "Cache-Control": "max-age=1800, must-revalidate",
       },
     }
   );
