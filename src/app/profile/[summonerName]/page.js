@@ -60,12 +60,12 @@ export default async function profile({ params: { summonerName } }) {
         </div>
       </div>
       <div>
-        <div className="mb-2 w-5/12 px-2 py-3">
+        <div className="mb-6 w-5/12 px-2 py-3">
           <RankDataTile leagueData={leagueData} />
           <MatchPlacementsTile placements={placements} />
         </div>
       </div>
-      {matchDetailsArray.slice(0, 2).map((matchDetails) => (
+      {matchDetailsArray.slice(0, 5).map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}

@@ -5,8 +5,11 @@ export default function Navbar() {
   return (
     <nav className="flex items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-10 py-5">
       <div className="navLogo-container flex items-center gap-10">
-        <Link href="/" className="text-lg font-bold">
+        <Link href="/" className="flex gap-2 text-lg font-bold">
           Tactician Tracker
+          <span className="flex h-5 items-center justify-center rounded-md bg-brand-secondary px-2 text-xs font-black text-brand-bg">
+            BETA
+          </span>
         </Link>
         <SummonerSearch />
       </div>

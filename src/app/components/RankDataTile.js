@@ -25,7 +25,7 @@ function getWinLoss(wins, losses) {
 }
 
 const RankDataTile = ({ leagueData }) => {
-  // console.log(leagueData);
+  console.log(leagueData);
   const { tier, rank, leaguePoints, wins, losses, hotStreak } =
     leagueData[0] || {};
 
