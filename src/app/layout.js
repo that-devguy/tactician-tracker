@@ -9,6 +9,7 @@ config.autoAddCss = false; /* eslint-disable import/first */
 
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`bg-brand-bg text-white ${inter.className}`}>
-        <Navbar />
-        <main className="px-10 py-5">{children}</main>
+        <div className="flex min-h-screen flex-col">
+          <Navbar />
+          <main className="flex-grow px-10 py-5 mb-6">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
