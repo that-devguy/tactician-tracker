@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <body className={`bg-brand-bg text-white ${inter.className}`}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="flex-grow px-10 py-5 mb-6">{children}</main>
+          <main className="flex-grow px-10 py-5 mb-12">{children}</main>
           <Footer />
         </div>
       </body>

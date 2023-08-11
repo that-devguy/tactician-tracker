@@ -86,7 +86,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <div className="flex flex-col gap-3 py-5 text-sm text-white/50">
+      <div className="flex flex-col gap-3 py-5 text-sm font-light text-white/50">
         <p className="">
           Tactician Tracker isn&apos;t endorsed by Riot Games and doesn&apos;t
           reflect the views or opinions of Riot Games or anyone officially
