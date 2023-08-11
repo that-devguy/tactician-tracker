@@ -1,18 +1,8 @@
-const matchHistoryCache = {};
-
 export default async function getMatchHistory(puuid) {
-  if (matchHistoryCache[puuid]) {
-    return matchHistoryCache[puuid];
-  }
-
   const riotAPI = process.env.API_KEY;
   const matchHistoryResponse = await fetch(
     `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${riotAPI}`,
-    {
-      headers: {
-        "Cache-Control": "max-age=1800, must-revalidate",
-      },
-    }
+    { next: { revalidate: 3600 } }
   );
 
   if (!matchHistoryResponse.ok) {
@@ -27,6 +17,5 @@ export default async function getMatchHistory(puuid) {
     };
   });
 
-  matchHistoryCache[puuid] = mappedMatchHistory;
   return mappedMatchHistory;
 }
