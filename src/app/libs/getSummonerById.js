@@ -2,7 +2,7 @@ export default async function getSummonerById(puuid) {
   const riotAPI = process.env.API_KEY;
   const response = await fetch(
     `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-puuid/${puuid}?api_key=${riotAPI}`,
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 1800 } }
   );
 
   if (!response.ok) {
