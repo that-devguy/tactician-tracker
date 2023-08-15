@@ -9,8 +9,13 @@ export default function Error({ error, reset }) {
     console.error(error);
   }, [error]);
 
+  // Return the user to the home page
+  function GoToHomePage() {
+    window.location = "/";
+  }
+
   return (
-    <div className="flex flex-col justify-center mt-10">
+    <div className="mt-10 flex flex-col justify-center">
       <div className="flex items-center justify-center text-9xl font-black">
         <p className="relative left-16">O</p>
         <Image
@@ -26,14 +31,12 @@ export default function Error({ error, reset }) {
       <div className="flex flex-col justify-center gap-3">
         <h2 className="text-center text-xl font-bold">Something went wrong!</h2>
         <p className="mx-auto max-w-md text-center text-sm">
-          Make sure the summoner you&apos;re trying to search exists and
-          that there are no spelling mistakes.
+          Make sure the summoner you&apos;re trying to search exists and that
+          there are no spelling mistakes.
         </p>
         <button
-          onClick={
-            // Attempt to recover by trying to re-render the segment
-            () => reset()
-          }
+          className="mx-auto w-fit rounded-lg bg-brand-main px-6 py-1 font-bold text-brand-bg"
+          onClick={() => reset(GoToHomePage())}
         >
           Try again
         </button>
