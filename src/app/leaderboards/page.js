@@ -1,6 +1,6 @@
 export default function Leaderboards() {
   return (
-    <section>
+    <section className="px-10">
       <div>Leaderboards</div>
     </section>
   );

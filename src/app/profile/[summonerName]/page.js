@@ -36,7 +36,7 @@ export default async function profile({ params: { summonerName } }) {
   );
 
   return (
-    <section className="mx-auto max-w-5xl text-lg">
+    <section className="mx-auto max-w-5xl px-10 text-lg">
       <div className="profile-headerCard flex items-center gap-5 p-4">
         <div className="flex flex-col justify-center py-2">
           <Image

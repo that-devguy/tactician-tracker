@@ -1,7 +1,7 @@
 export default function Loading() {
   return (
-    <div className="flex justify-center my-32">
-      <div class="lds-spinner">
+    <div className="my-32 flex justify-center px-10">
+      <div class="lds-default">
         <div></div>
         <div></div>
         <div></div>

@@ -15,7 +15,7 @@ export default function Error({ error, reset }) {
   }
 
   return (
-    <div className="mt-10 flex flex-col justify-center">
+    <div className="mt-10 flex flex-col justify-center px-10">
       <div className="flex items-center justify-center text-9xl font-black">
         <p className="relative left-16">O</p>
         <Image

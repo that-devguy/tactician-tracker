@@ -1,7 +1,7 @@
 export default function Items() {
   return (
-    <main>
+    <section className="px-10">
       <div>Items</div>
-    </main>
+    </section>
   );
 }
