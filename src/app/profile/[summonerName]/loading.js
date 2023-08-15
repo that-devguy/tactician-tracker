@@ -1,3 +1,20 @@
 export default function Loading() {
-  return <p>Loading...</p>;
+  return (
+    <div className="flex justify-center my-32">
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
 }
