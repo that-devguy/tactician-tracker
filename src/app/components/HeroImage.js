@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function heroImage() {
   return (
-    <div className="relative max-h-[28rem] select-none bg-gradient-to-t from-brand-main to-[#F8A634]">
+    <div className="relative max-h-[28rem] select-none bg-gradient-to-t from-[#ff571d] to-[#F8A634]">
       <Image
         src="/layer-3.png"
         height="1298"

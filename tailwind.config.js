@@ -21,7 +21,7 @@ module.exports = {
           bg: "#101115",
           bg2: "#222327",
           bg3: "#323338",
-          main: "#ff571d",
+          main: "#FA6D26",
           secondary: "#c0ff32",
           accent: "#3e1f7d",
         },
