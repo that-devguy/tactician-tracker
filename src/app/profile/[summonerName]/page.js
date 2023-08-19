@@ -10,7 +10,7 @@ import MatchTile from "@/app/components/MatchTile";
 import RankDataTile from "@/app/components/RankDataTile";
 import MatchPlacementsTile from "@/app/components/MatchPlacementsTile";
 
-export default async function profile({ params: { summonerName } }) {
+export default async function Profile({ params: { summonerName } }) {
   const summonerData = await getSummoner(summonerName);
   const puuid = summonerData.puuid;
   const summonerId = summonerData.id;
