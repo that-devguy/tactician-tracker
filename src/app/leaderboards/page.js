@@ -1,8 +1,12 @@
-import getChallengerLeague from "@/app/libs/getChallengerLeague";
+import getLeaderboardData from "@/app/libs/getLeaderboardData";
 
 export default async function Leaderboards() {
-  const challengerLeague = await getChallengerLeague();
-  const leaderboards = challengerLeague.entries;
+  const leaderboardData = await getLeaderboardData();
+  const leaderboards = leaderboardData.entries;
+
+  // Sort leaderboard results in descending order by LP
+  leaderboards.sort((a, b) => b.leaguePoints - a.leaguePoints);
+
   console.log(leaderboards);
   return (
     <section className="px-10">

@@ -1,4 +1,4 @@
-export default async function getChallengerLeague() {
+export default async function getLeaderboardData() {
   const riotAPI = process.env.API_KEY;
   const response = await fetch(
     `https://na1.api.riotgames.com/tft/league/v1/challenger?api_key=${riotAPI}`,
