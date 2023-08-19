@@ -1,5 +1,6 @@
 import Image from "next/image";
 import SummonerSearch from "@/app/components/SummonerSearch";
+import HeroImage from "@/app/components/HeroImage";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <div className="mx-auto flex w-1/2 justify-center">
           <SummonerSearch />
         </div>
+        <HeroImage />
       </div>
     </section>
   );

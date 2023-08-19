@@ -36,7 +36,7 @@ export default async function Profile({ params: { summonerName } }) {
   );
 
   return (
-    <section className="mx-auto max-w-5xl px-10 text-lg">
+    <section className="mx-auto max-w-6xl px-10 text-lg">
       <div className="profile-headerCard flex items-center gap-5 p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
@@ -65,7 +65,7 @@ export default async function Profile({ params: { summonerName } }) {
           <MatchPlacementsTile placements={placements} />
         </div>
       </div>
-      {matchDetailsArray.slice(0, 5).map((matchDetails) => (
+      {matchDetailsArray.slice(0, 1).map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}
