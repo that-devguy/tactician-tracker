@@ -1,4 +1,6 @@
 # Tactician Tracker
 
+![image](https://github.com/that-devguy/tft-webapp/assets/113719464/dc41daab-17ed-42e4-a4e2-7dfb8abb2b6e)
 
-![TFT_phase_6](https://github.com/that-devguy/tft-webapp/assets/113719464/d8f39ec5-1b11-4586-8534-32e709d248ea)
+![image](https://github.com/that-devguy/tft-webapp/assets/113719464/9493581f-192e-44d6-aaec-e43266ef7d7b)
+
