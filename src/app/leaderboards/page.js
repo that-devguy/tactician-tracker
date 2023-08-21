@@ -8,7 +8,7 @@ export default async function Leaderboards() {
         <div className="p-4">
           <h3 className="text-3xl font-black">LEADERBOARDS</h3>
           <p className="text-sm text-white">
-            Discover the top players; browse their match history, stats, and
+            Discover the top Callenger players; browse their match history, stats, and
             more.
           </p>
         </div>

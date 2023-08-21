@@ -1,5 +1,6 @@
 import getLeaderboardData from "@/app/libs/getLeaderboardData";
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
@@ -18,6 +19,7 @@ export default async function Top10LeaderboardTable() {
         <p className="w-3/12">Name</p>
         <p className="w-2/12">Tier</p>
         <p className="w-1/12">LP</p>
+        <p className="w-1/12">Top4</p>
         <p className="w-1/12">Games</p>
       </div>
       {leaderboards.slice(0, 10).map((leaderboard, index) => {
@@ -32,6 +34,11 @@ export default async function Top10LeaderboardTable() {
         } else if (index + 1 === 4) {
           rank = "fourth-placeTile";
         }
+
+        let gamesPlayed = leaderboard.wins + leaderboard.losses;
+        let top4Percent = (leaderboard.wins / gamesPlayed) * 100;
+        let winRate = Math.round(top4Percent);
+
         return (
           <div
             key={leaderboard.summonerId}
@@ -61,9 +68,24 @@ export default async function Top10LeaderboardTable() {
                 className="ml-1 text-xs text-white/50"
               />
             </Link>
-            <p className="w-2/12">Challenger</p>
+            <p className="flex w-2/12 gap-1">
+              <Image
+                src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/challenger.png"
+                height="22"
+                width="22"
+                alt="Mini Challenger Emblem"
+                className="select-none"
+              />
+              Challenger
+            </p>
             <p className="w-1/12 text-white/50">{leaderboard.leaguePoints}</p>
-            <p className="w-1/12 text-white/50">Games</p>
+            <p className="w-1/12 text-white/50">
+              {leaderboard.wins}{" "}
+              <span className="font-light text-brand-secondary">
+                ({winRate}%)
+              </span>
+            </p>
+            <p className="w-1/12 text-white/50">{gamesPlayed}</p>
           </div>
         );
       })}
