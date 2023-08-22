@@ -2,6 +2,8 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import SummonerSearch from "@/app/components/SummonerSearch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
@@ -88,10 +90,13 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="fixed top-0 z-50 flex flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-4 py-5 md:px-10"
+      className="fixed top-0 z-50 flex w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-4 py-5 md:px-10"
     >
       <div className="navLogo-container flex items-center gap-10">
-        <Link href="/" className="flex gap-2 text-sm font-bold md:text-lg">
+        <Link
+          href="/"
+          className="flex gap-2 px-2 text-sm font-bold md:px-2 md:text-lg"
+        >
           Tactician Tracker
           <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] text-xs font-black text-brand-bg md:h-5 md:rounded-md">
             BETA
@@ -102,7 +107,20 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className="navLinks-container flex gap-5">
+      <div
+        onClick={handleNav}
+        className={nav ? "hidden" : "z-50 flex p-2 sm:hidden"}
+      >
+        <FontAwesomeIcon className="w-5" icon={faBars} />
+      </div>
+      <div
+        onClick={handleNav}
+        className={nav ? "z-50 flex p-2 sm:hidden" : "hidden"}
+      >
+        <FontAwesomeIcon className="w-5" icon={faXmark} />
+      </div>
+
+      <div className="navLinks-container hidden gap-5 md:flex">
         <Link href="/">Home</Link>
         <Link href="/leaderboards">Leaderboards</Link>
         <Link href="/champions">Champions</Link>
