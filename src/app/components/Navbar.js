@@ -1,17 +1,105 @@
+"use client";
 import Link from "next/link";
+import { useState, useEffect, useRef } from "react";
 import SummonerSearch from "@/app/components/SummonerSearch";
 
 export default function Navbar() {
+  const [nav, setNav] = useState(false);
+  const [scrollBackground, setScrollBackground] = useState(false);
+  const menuRef = useRef(null);
+  const navbarRef = useRef(null);
+
+  // Function for toggling navbar
+  const handleNav = () => {
+    setNav(!nav);
+  };
+
+  // Function to close navbar
+  const closeMenu = () => {
+    setNav(false);
+  };
+
+  // Function to scroll to top
+  const scrollToTop = () => {
+    if (typeof window !== "undefined") {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Function for closing mobile dropdown menu when window is resized
+    const handleResize = () => {
+      if (window.innerWidth >= 640) {
+        setNav(false);
+      }
+    };
+
+    // Function for closing mobile dropdown menu when clicking outside
+    const handleClickOutside = (event) => {
+      if (
+        !menuRef.current ||
+        !navbarRef.current ||
+        menuRef.current.contains(event.target) ||
+        navbarRef.current.contains(event.target)
+      ) {
+        return;
+      }
+      setNav(false);
+    };
+
+    // Function for updating scrollBackground
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrollBackground(true);
+        setNav(false);
+      } else {
+        setScrollBackground(false);
+      }
+    };
+
+    // Event listeners for menu functions
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("click", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const redirectToPath = (path) => {
+    if (typeof window !== "undefined") {
+      window.location.href = path;
+    }
+  };
+
+  const urlCheck = (url) => {
+    if (typeof window !== "undefined" && window.location.pathname === url) {
+      return true;
+    }
+    return false;
+  };
+
   return (
-    <nav className="flex items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-10 py-5">
+    <nav
+      ref={navbarRef}
+      className="fixed top-0 z-50 flex flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-4 py-5 md:px-10"
+    >
       <div className="navLogo-container flex items-center gap-10">
-        <Link href="/" className="flex gap-2 text-lg font-bold">
+        <Link href="/" className="flex gap-2 text-sm font-bold md:text-lg">
           Tactician Tracker
-          <span className="flex h-5 items-center justify-center rounded-md bg-brand-secondary px-2 text-xs font-black text-brand-bg">
+          <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] text-xs font-black text-brand-bg md:h-5 md:rounded-md">
             BETA
           </span>
         </Link>
-        <SummonerSearch />
+        <div className="hidden">
+          <SummonerSearch />
+        </div>
       </div>
 
       <div className="navLinks-container flex gap-5">

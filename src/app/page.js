@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <section className="px-10">
       <div className="mt-24 flex flex-col items-center gap-2 text-center">
-        <h1 className="z-50 text-6xl font-black">TACTICIAN TRACKER</h1>
-        <h2 className="z-50 text-lg">
+        <h1 className="z-30 text-6xl font-black">TACTICIAN TRACKER</h1>
+        <h2 className="z-30 text-lg">
           Find Detailed Teamfight Tactics Stats, Leaderboards, and More.
         </h2>
-        <div className="z-50 mx-auto flex w-1/2 justify-center">
+        <div className="z-40 mx-auto flex w-1/2 justify-center">
           <SummonerSearch />
         </div>
       </div>

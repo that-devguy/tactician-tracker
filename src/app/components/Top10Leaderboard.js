@@ -11,7 +11,6 @@ export default async function Top10LeaderboardTable() {
   // Sort leaderboard results in descending order by LP
   leaderboards.sort((a, b) => b.leaguePoints - a.leaguePoints);
 
-  console.log(leaderboards);
   return (
     <div className="mx-auto max-w-6xl">
       <div className="headers flex justify-between px-4 py-2 text-sm font-light text-white/50">
