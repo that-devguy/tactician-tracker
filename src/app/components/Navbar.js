@@ -90,7 +90,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="fixed top-0 z-50 flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-10"
+      className="fixed top-0 z-50 flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-6 lg:px-10"
     >
       <div className="navLogo-container flex items-center gap-10">
         <Link
@@ -102,25 +102,25 @@ export default function Navbar() {
             BETA
           </span>
         </Link>
-        <div className="hidden">
+        <div className="hidden lg:flex">
           <SummonerSearch />
         </div>
       </div>
 
       <div
         onClick={handleNav}
-        className={nav ? "hidden" : "z-50 flex p-2 sm:hidden"}
+        className={nav ? "hidden" : "z-50 flex p-2 lg:hidden"}
       >
         <FontAwesomeIcon className="w-5" icon={faBars} />
       </div>
       <div
         onClick={handleNav}
-        className={nav ? "z-50 flex p-2 sm:hidden" : "hidden"}
+        className={nav ? "z-50 flex p-2 lg:hidden" : "hidden"}
       >
         <FontAwesomeIcon className="w-5" icon={faXmark} />
       </div>
 
-      <div className="navLinks-container hidden gap-5 md:flex">
+      <div className="navLinks-container hidden gap-5 lg:flex">
         <Link href="/">Home</Link>
         <Link href="/leaderboards">Leaderboards</Link>
         <Link href="/champions">Champions</Link>

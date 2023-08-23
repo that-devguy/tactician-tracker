@@ -5,8 +5,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <section className="md:px-10">
-      <div className="relative mb-10 flex h-[18rem] flex-col items-center gap-2 text-center md:mt-24">
+    <section className="lg:px-10">
+      <div className="relative mb-10 flex h-[18rem] flex-col items-center gap-2 text-center md:h-[26rem] lg:mt-24">
         <div className="z-30 mt-10 flex flex-col gap-2">
           <h1 className="z-30 text-3xl font-black md:text-6xl">
             TACTICIAN TRACKER
@@ -23,8 +23,8 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="mx-auto mb-5 max-w-6xl px-2">
-        <div className="md:mb-5 flex max-h-28 justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
+      <div className="mx-auto mb-5 max-w-6xl px-2 md:px-6">
+        <div className="mb-2 flex max-h-28 justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634] md:mb-5">
           <div className="px-4 py-2 md:p-4">
             <h3 className="text-xl font-black md:text-3xl">TOP 10</h3>
             <p className="text-xs text-white md:text-sm">
