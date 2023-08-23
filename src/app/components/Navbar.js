@@ -90,7 +90,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="fixed top-0 z-50 flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-4 py-5 md:px-10"
+      className="fixed top-0 z-50 flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-10"
     >
       <div className="navLogo-container flex items-center gap-10">
         <Link
