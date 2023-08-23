@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <section className="md:px-10">
-      <div className="relative mb-5 flex h-[18rem] flex-col items-center gap-2 text-center md:mt-24">
+      <div className="relative mb-10 flex h-[18rem] flex-col items-center gap-2 text-center md:mt-24">
         <div className="z-30 mt-10 flex flex-col gap-2">
           <h1 className="z-30 text-3xl font-black md:text-6xl">
             TACTICIAN TRACKER

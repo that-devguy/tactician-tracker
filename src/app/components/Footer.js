@@ -7,24 +7,71 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col divide-y divide-brand-bg3 px-10 py-5">
+    <footer className="flex flex-col divide-y divide-brand-bg3 px-2 py-5 md:px-10">
       <div className="flex justify-between pb-5">
-        <div className="flex w-1/2 flex-col gap-5">
-          <Link href="/" className="flex w-fit gap-2 text-lg font-bold">
+        <div className="flex flex-col gap-2 md:w-1/2 md:gap-5">
+          <Link href="/" className="flex gap-2 text-lg font-bold md:px-2">
             Tactician Tracker
-            <span className="flex h-5 items-center justify-center rounded-md bg-brand-secondary px-2 text-xs font-black text-brand-bg">
+            <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
               BETA
             </span>
           </Link>
 
-          <p className="text-sm text-white/50">
+          <p className="pr-6 text-xs text-white/50 md:text-sm">
             This app is a playground for my coding journey, where I&apos;m
             constantly learning and improving my development skills. As of now,
             it&apos;s a work in progress, but stay tuned for exciting updates,
             new features, bug fixes, and more in future releases. Thank you for
             joining me on this journey of growth and innovation!
           </p>
-          <p className="text-sm">
+
+          {/* Mobile Footer Link Container */}
+          <div className="mobileFooter-links mb-3 flex gap-8 md:hidden">
+            <div className="flex flex-col gap-2 text-sm text-white/50">
+              <p className="text-base font-semibold text-white">Site Links</p>
+              <Link className="hover:text-brand-main" href="/">
+                Home
+              </Link>
+              <Link className="hover:text-brand-main" href="/leaderboards">
+                Leaderboards
+              </Link>
+              <Link className="hover:text-brand-main" href="/champions">
+                Champions
+              </Link>
+              <Link className="hover:text-brand-main" href="/items">
+                Items
+              </Link>
+            </div>
+
+            <div className="flex flex-col gap-2 text-sm text-white/50 md:hidden">
+              <p className="text-base font-semibold text-white">
+                Connect With Me
+              </p>
+              <Link
+                className="hover:text-brand-main"
+                href="https://www.linkedin.com/in/zachmutch/"
+                target="_blank"
+              >
+                LinkedIn
+              </Link>
+              <Link
+                className="hover:text-brand-main"
+                href="https://github.com/that-devguy"
+                target="_blank"
+              >
+                GitHub
+              </Link>
+              <Link
+                className="hover:text-brand-main"
+                href="https://www.thatdevguy.app/"
+                target="_blank"
+              >
+                Portfolio
+              </Link>
+            </div>
+          </div>
+
+          <p className="text-xs md:text-sm">
             Made with{" "}
             <FontAwesomeIcon
               className="text-sm text-brand-secondary"
@@ -34,7 +81,7 @@ export default function Footer() {
             <Link
               href="https://www.thatdevguy.app/"
               target="_blank"
-              className="hover:text-brand-main"
+              className="underline hover:text-brand-main md:no-underline"
             >
               that_devguy
               <FontAwesomeIcon
@@ -45,7 +92,8 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-2 text-sm text-white/50">
+        {/* Site Links */}
+        <div className="hidden flex-col gap-2 text-sm text-white/50 md:flex">
           <p className="text-base font-semibold text-white">Site Links</p>
           <Link className="hover:text-brand-main" href="/">
             Home
@@ -61,7 +109,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="flex flex-col gap-2 text-sm text-white/50">
+        <div className="hidden flex-col gap-2 text-sm text-white/50 md:flex">
           <p className="text-base font-semibold text-white">Connect With Me</p>
           <Link
             className="hover:text-brand-main"
@@ -86,8 +134,8 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <div className="flex flex-col gap-3 py-5 text-sm font-light text-white/50">
-        <p className="">
+      <div className="flex flex-col gap-3 py-5 text-xs font-light text-white/50 md:text-sm">
+        <p className="pr-6 md:pr-0">
           Tactician Tracker isn&apos;t endorsed by Riot Games and doesn&apos;t
           reflect the views or opinions of Riot Games or anyone officially
           involved in producing or managing Riot Games properties. Riot Games,
