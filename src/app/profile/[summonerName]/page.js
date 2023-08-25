@@ -36,8 +36,8 @@ export default async function Profile({ params: { summonerName } }) {
   );
 
   return (
-    <section className="mx-auto max-w-6xl px-10 text-lg">
-      <div className="profile-headerCard flex items-center gap-5 p-4">
+    <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
+      <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
             className="rounded-full border-4 border-transparent ring-4 ring-brand-main"
@@ -47,10 +47,12 @@ export default async function Profile({ params: { summonerName } }) {
             width="100"
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col items-center gap-1 md:items-start">
           <div className="flex items-center gap-3">
-            <h1 className="text-4xl font-bold">{summonerData.name}</h1>
-            <p className="text-md select-none rounded-md bg-brand-bg2 px-3 py-1 font-bold">
+            <h1 className="text-3xl font-bold md:text-4xl">
+              {summonerData.name}
+            </h1>
+            <p className="md:text-md hidden select-none rounded-md bg-brand-bg2 px-3 py-1 text-sm font-bold md:block">
               NA
             </p>
           </div>
@@ -60,7 +62,7 @@ export default async function Profile({ params: { summonerName } }) {
         </div>
       </div>
       <div>
-        <div className="mb-6 w-5/12 px-2 py-3">
+        <div className="md:m-w-none mx-auto mb-6 max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:w-5/12">
           <RankDataTile leagueData={leagueData} />
           <MatchPlacementsTile placements={placements} />
         </div>

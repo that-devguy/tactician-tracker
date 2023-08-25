@@ -35,10 +35,10 @@ const RankDataTile = ({ leagueData }) => {
 
   return (
     <div className="mb-3 select-none rounded-md bg-brand-bg">
-      <div className="flex items-center gap-3 rounded-md">
-        <div className="h-fit w-5/12">
+      <div className="flex items-center gap-3 rounded-md px-4 md:px-0">
+        <div className="hidden h-fit md:mr-3 md:flex">
           <Image
-            className="mx-auto"
+            className="lg:mx-auto"
             src={`/tierEmblem-${tier.toLowerCase()}.png`}
             alt={`${capTier} tier emblem`}
             height={131}
@@ -46,13 +46,20 @@ const RankDataTile = ({ leagueData }) => {
             layout="fixed"
           />
         </div>
-        <div className="mr-6 w-7/12">
+        <div className="w-full md:mr-6 md:w-7/12">
           <p className="text-xs text-white/50">Ranked</p>
           <div className="flex items-center justify-between">
-            <p className="text-lg font-bold">
+            <p className="flex text-base font-bold md:text-lg gap-2">
+              <Image
+                src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier.toLowerCase()}.png`}
+                height="22"
+                width="22"
+                alt="Mini Challenger Emblem"
+                className="select-none md:hidden"
+              />
               {capTier} {rankNum}
             </p>
-            <p className="font-light">{leaguePoints} LP</p>
+            <p className="text-base font-light md:text-base">{leaguePoints} LP</p>
           </div>
           <Progress value={leaguePoints} className="my-1" />
           <div className="flex items-center justify-between py-1 text-xs text-white/50">

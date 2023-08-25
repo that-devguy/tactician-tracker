@@ -19,11 +19,11 @@ const MatchPlacementsTile = ({ placements }) => {
       return (
         <div
           key={index}
-          className={`flex h-8 w-8 items-center justify-center rounded-md ${placementBox}`}
+          className={`flex h-7 w-7 items-center justify-center rounded-md md:h-8 md:w-8 ${placementBox}`}
         >
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-brand-bg2">
+          <div className="flex h-6 w-6 items-center justify-center rounded-md bg-brand-bg2 md:h-7 md:w-7">
             <p
-              className={`text-sm font-semibold ${
+              className={`text-xs font-semibold md:text-sm ${
                 placement === 1 ? `text-white` : `text-white/50`
               }`}
             >
