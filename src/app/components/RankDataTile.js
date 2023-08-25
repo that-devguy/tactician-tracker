@@ -46,10 +46,10 @@ const RankDataTile = ({ leagueData }) => {
             layout="fixed"
           />
         </div>
-        <div className="w-full md:mr-6 md:w-7/12">
+        <div className="flex w-full flex-col gap-1 md:mr-6 md:w-7/12">
           <p className="text-xs text-white/50">Ranked</p>
           <div className="flex items-center justify-between">
-            <p className="flex text-base font-bold md:text-lg gap-2">
+            <p className="flex gap-2 text-base font-bold md:text-lg">
               <Image
                 src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier.toLowerCase()}.png`}
                 height="22"
@@ -59,7 +59,9 @@ const RankDataTile = ({ leagueData }) => {
               />
               {capTier} {rankNum}
             </p>
-            <p className="text-base font-light md:text-base">{leaguePoints} LP</p>
+            <p className="text-base font-light md:text-base">
+              {leaguePoints} LP
+            </p>
           </div>
           <Progress value={leaguePoints} className="my-1" />
           <div className="flex items-center justify-between py-1 text-xs text-white/50">
