@@ -17,7 +17,7 @@ export default function Footer() {
             </span>
           </Link>
 
-          <p className="pr-6 text-xs text-white/50 md:text-sm">
+          <p className="mb-2 pr-6 text-sm text-white/50">
             This app is a playground for my coding journey, where I&apos;m
             constantly learning and improving my development skills. As of now,
             it&apos;s a work in progress, but stay tuned for exciting updates,

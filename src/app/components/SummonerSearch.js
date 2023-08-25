@@ -25,7 +25,7 @@ export default function SummonerSearch() {
         <input
           type="text"
           placeholder="Search Summoner"
-          className="ring-none md:h-8 w-[14rem] sm:w-[20rem] rounded-l-md bg-brand-bg2 px-3 py-1 text-sm text-white placeholder-white/50 caret-white outline-none"
+          className="ring-none md:h-8 w-[14rem] sm:w-[19rem] rounded-l-md bg-brand-bg2 px-3 py-1 text-sm text-white placeholder-white/50 caret-white outline-none"
           onChange={(e) => setSearchText(e.target.value)}
           onKeyDown={handleKeyPress}
         ></input>

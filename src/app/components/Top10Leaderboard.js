@@ -22,7 +22,7 @@ export default async function Top10LeaderboardTable() {
         <p className="w-2/12 md:w-1/12">Games</p>
       </div>
       {leaderboards.slice(0, 10).map((leaderboard, index) => {
-        let rank = "leaderboard-tile"; // Default border style
+        let rank = "leaderboard-tile"; // Default border style 
 
         if (index + 1 === 1) {
           rank = "first-placeTile";
