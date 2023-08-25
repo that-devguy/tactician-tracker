@@ -59,7 +59,7 @@ export default async function Top10LeaderboardTable() {
 
             <Link
               href={`/profile/${leaderboard.summonerName}`}
-              className="flex w-3/12 items-center truncate hover:underline"
+              className="w-3/12 items-center truncate hover:underline md:flex"
             >
               {leaderboard.summonerName}
               <div className="hidden md:flex">
