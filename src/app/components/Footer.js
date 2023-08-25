@@ -7,10 +7,10 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col divide-y divide-brand-bg3 px-2 py-5 md:px-10">
+    <footer className="flex flex-col divide-y divide-brand-bg3 px-4 py-5 md:px-10">
       <div className="flex justify-between pb-5">
         <div className="flex flex-col gap-2 md:w-1/2 md:gap-5">
-          <Link href="/" className="flex gap-2 text-lg font-bold md:px-2">
+          <Link href="/" className="flex gap-2 text-lg font-bold">
             Tactician Tracker
             <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
               BETA

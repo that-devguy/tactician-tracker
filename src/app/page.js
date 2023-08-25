@@ -1,32 +1,20 @@
-import SummonerSearch from "@/app/components/SummonerSearch";
-import HeroImage from "@/app/components/HeroImage";
-import Top10 from "@/app/components/Top10Leaderboard";
+import HeroBanner from "@/app/components/HeroBanner";
 import Image from "next/image";
+import Top10 from "@/app/components/Top10Leaderboard";
 
 export default function Home() {
   return (
-    <section className="lg:px-10">
-      <div className="relative mb-10 flex h-[18rem] flex-col items-center gap-2 text-center md:h-[26rem] lg:mt-24">
-        <div className="z-30 mt-10 flex flex-col gap-2">
-          <h1 className="z-30 text-3xl font-black md:text-6xl">
-            TACTICIAN TRACKER
-          </h1>
-          <h2 className="z-30 px-4 text-sm md:text-lg">
-            Find Detailed Teamfight Tactics Stats, Leaderboards, and More.
-          </h2>
-          <div className="z-[100] mx-auto flex w-1/2 justify-center">
-            <SummonerSearch />
-          </div>
-        </div>
-        <div className="absolute mx-auto max-w-6xl md:rounded-lg">
-          <HeroImage />
-        </div>
+    <section className="lg:px-6">
+      <div className="flex h-full max-w-7xl flex-col lg:mt-16 mx-auto">
+        <HeroBanner />
       </div>
 
-      <div className="mx-auto mb-5 max-w-6xl px-2 md:px-6">
+      <div className="mx-auto mb-5 flex max-w-7xl flex-col px-2 md:px-6 lg:px-0">
         <div className="mb-2 flex max-h-28 justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634] md:mb-5">
-          <div className="px-4 py-2 md:p-4">
-            <h3 className="text-xl font-black md:text-3xl">TOP 10</h3>
+          <div className="flex flex-col justify-center px-4 py-2 md:p-4">
+            <h3 className="text-xl font-black sm:text-2xl md:text-3xl">
+              TOP 10
+            </h3>
             <p className="text-xs text-white md:text-sm">
               Discover the top 10 NA Challenger players.
             </p>
@@ -39,7 +27,9 @@ export default function Home() {
             className="h-fill select-none overflow-hidden"
           />
         </div>
-        <Top10 />
+        <div>
+          <Top10 />
+        </div>
       </div>
     </section>
   );

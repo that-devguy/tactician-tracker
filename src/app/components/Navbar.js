@@ -90,13 +90,10 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="fixed top-0 z-50 flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-6 lg:px-10"
+      className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-6 lg:px-10"
     >
-      <div className="navLogo-container flex items-center gap-10">
-        <Link
-          href="/"
-          className="flex gap-2 px-2 text-sm font-bold md:px-2 md:text-lg"
-        >
+      <div className="navLogo-container flex items-center gap-5">
+        <Link href="/" className="flex gap-2 px-2 text-sm font-bold md:text-lg">
           Tactician Tracker
           <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
             BETA
