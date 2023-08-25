@@ -59,10 +59,10 @@ export default async function LeaderboardTable() {
 
             <Link
               href={`/profile/${leaderboard.summonerName}`}
-              className="w-3/12 truncate hover:underline"
+              className="w-3/12 truncate hover:underline flex items-center"
             >
               {leaderboard.summonerName}
-              <div className="hidden">
+              <div className="hidden md:flex">
                 <FontAwesomeIcon
                   icon={faLink}
                   className="ml-1 text-xs text-white/50"

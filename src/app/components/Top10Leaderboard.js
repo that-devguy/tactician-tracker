@@ -22,7 +22,7 @@ export default async function Top10LeaderboardTable() {
         <p className="w-2/12 md:w-1/12">Games</p>
       </div>
       {leaderboards.slice(0, 10).map((leaderboard, index) => {
-        let rank = "leaderboard-tile"; // Default border style 
+        let rank = "leaderboard-tile"; // Default border style
 
         if (index + 1 === 1) {
           rank = "first-placeTile";
@@ -59,10 +59,10 @@ export default async function Top10LeaderboardTable() {
 
             <Link
               href={`/profile/${leaderboard.summonerName}`}
-              className="w-3/12 truncate hover:underline"
+              className="flex w-3/12 items-center truncate hover:underline"
             >
               {leaderboard.summonerName}
-              <div className="hidden">
+              <div className="hidden md:flex">
                 <FontAwesomeIcon
                   icon={faLink}
                   className="ml-1 text-xs text-white/50"
