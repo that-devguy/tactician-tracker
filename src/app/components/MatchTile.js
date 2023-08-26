@@ -202,13 +202,13 @@ const MatchTile = ({
       return (
         <div
           key={`${starLevel} ${champion.apiName}`}
-          className="w-12 flex-col items-center justify-center"
+          className="w-11 flex-col items-center justify-center md:w-12"
         >
           <div className="flex justify-center">
             {starLevel === 1 && (
               <>
                 <FontAwesomeIcon
-                  className="invisible mb-1 w-2.5"
+                  className="invisible mb-1 w-2 md:w-2.5"
                   icon={faStar}
                 />
               </>
@@ -216,11 +216,11 @@ const MatchTile = ({
             {starLevel === 2 && (
               <>
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-zinc-400"
+                  className="mb-1 w-2 text-zinc-400 md:w-2.5"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-zinc-400"
+                  className="mb-1 w-2 text-zinc-400 md:w-2.5"
                   icon={faStar}
                 />
               </>
@@ -228,15 +228,15 @@ const MatchTile = ({
             {starLevel === 3 && (
               <>
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-amber-400"
+                  className="mb-1 w-2 text-amber-400 md:w-2.5"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-amber-400"
+                  className="mb-1 w-2 text-amber-400 md:w-2.5"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-amber-400"
+                  className="mb-1 w-2 text-amber-400 md:w-2.5"
                   icon={faStar}
                 />
               </>
@@ -244,19 +244,19 @@ const MatchTile = ({
             {starLevel >= 4 && (
               <>
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-emerald-400"
+                  className="mb-1 w-2 text-emerald-400 md:w-2.5"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-emerald-400"
+                  className="mb-1 w-2 text-emerald-400 md:w-2.5"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-emerald-400"
+                  className="mb-1 w-2 text-emerald-400 md:w-2.5"
                   icon={faStar}
                 />
                 <FontAwesomeIcon
-                  className="mb-1 w-2.5 text-emerald-400"
+                  className="mb-1 w-2 text-emerald-400 md:w-2.5"
                   icon={faStar}
                 />
               </>
@@ -295,7 +295,9 @@ const MatchTile = ({
               </div>
             ))}
           </div>
-          <p className="truncate text-center text-xs">{champion.name}</p>
+          <p className="hidden truncate text-center text-xs md:block">
+            {champion.name}
+          </p>
         </div>
       );
     });
@@ -438,11 +440,54 @@ const MatchTile = ({
   const traits = getParticipantTraits(puuid);
 
   return (
-    <div className="mb-2 flex select-none flex-col rounded-md bg-brand-bg2 px-5 py-3">
-      <div className="my-5 flex items-center justify-between gap-3 rounded-md bg-brand-bg2">
-        {/* <p>{match_id}</p> */}
+    <div className="mx-auto mb-2 flex max-w-lg select-none flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
+      {/* mobile styles */}
+      <div className="mb-2 flex items-center gap-3 text-xs text-white/50 md:hidden">
+        <p
+          className={`text-center text-lg font-black text-white/50 ${placement.placementColor}`}
+        >
+          {placement.placementText}
+        </p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p className="font-bold text-white">{queueType}</p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p>{playTimeDate}</p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p>{gameLength}</p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p>{patch}</p>
+      </div>
+      <div className="flex flex-col items-center gap-2 rounded-md bg-brand-bg2 md:hidden">
+        <div>
+          <div className="flex w-full items-center justify-start">
+            <div className="flex flex-wrap items-center justify-start gap-2">
+              {units}
+            </div>
+          </div>
+        </div>
+        <div className="traitsAugments-container flex w-full flex-row items-center justify-between">
+          <div className="flex flex-wrap items-center justify-center gap-1">
+            {traits}
+          </div>
+          <div className="flex items-center justify-center gap-1">
+            {augments}
+          </div>
+        </div>
+      </div>
+
+      {/* default styles */}
+      <div className="hidden items-center gap-3 text-xs text-white/50 md:flex">
+        <p className="font-bold text-white">{queueType}</p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p>{playTimeDate}</p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p>{gameLength}</p>
+        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <p>{patch}</p>
+      </div>
+      <div className="my-3 hidden items-center justify-between gap-3 rounded-md bg-brand-bg2 md:flex">
         <div className="flex w-1/12 flex-col justify-center">
-          <div className="match-placement justify-center px-2">
+          <div className="match-placement justify-center">
             <p
               className={`text-center text-3xl font-black text-white/50 ${placement.placementColor}`}
             >
@@ -450,11 +495,6 @@ const MatchTile = ({
             </p>
             <p className="text-center text-xs">Place</p>
           </div>
-
-          {/* <p>
-          Level:{" "}
-          {level !== null ? level : "Summoner not found in match details"}
-        </p> */}
         </div>
         <div className="flex w-9/12 items-center justify-start gap-3">
           <div className="flex w-2/12 flex-row flex-wrap items-center justify-center gap-1">
@@ -470,15 +510,6 @@ const MatchTile = ({
         <div className="grid h-fit w-3/12 grid-cols-2 gap-1">
           {allParticipants}
         </div>
-      </div>
-      <div className="ml-1 flex items-center gap-3 text-xs text-white/50">
-        <p className="font-bold text-white">{queueType}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
-        <p>{playTimeDate}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
-        <p>{gameLength}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
-        <p>{patch}</p>
       </div>
     </div>
   );
