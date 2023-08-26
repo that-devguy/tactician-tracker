@@ -93,7 +93,7 @@ export default function Navbar() {
       className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-6 lg:px-10"
     >
       <div className="navLogo-container flex items-center gap-5">
-        <Link href="/" className="flex gap-2 px-2 font-bold text-lg">
+        <Link href="/" className="flex gap-2 px-2 text-lg font-bold">
           Tactician Tracker
           <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
             BETA
@@ -104,24 +104,42 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Default navbar */}
       <div
         onClick={handleNav}
-        className={nav ? "hidden" : "z-50 flex p-2 lg:hidden"}
+        className={nav ? "hidden" : "z-50 flex p-2 md:hidden"}
       >
-        <FontAwesomeIcon className="w-5" icon={faBars} />
+        <FontAwesomeIcon className="w-6 h-6" icon={faBars} />
       </div>
       <div
         onClick={handleNav}
-        className={nav ? "z-50 flex p-2 lg:hidden" : "hidden"}
+        className={nav ? "z-50 flex p-2 md:hidden" : "hidden"}
       >
-        <FontAwesomeIcon className="w-5" icon={faXmark} />
+        <FontAwesomeIcon className="w-6 h-6" icon={faXmark} />
       </div>
 
-      <div className="navLinks-container hidden gap-5 lg:flex">
+      <div className="navLinks-container hidden gap-5 md:flex">
         <Link href="/">Home</Link>
         <Link href="/leaderboards">Leaderboards</Link>
         <Link href="/champions">Champions</Link>
         <Link href="/items">Items</Link>
+      </div>
+
+      {/* Mobile Navbar */}
+      <div
+        ref={menuRef}
+        className={
+          nav
+            ? "absolute bg-brand-bg text-xl top-16 right-0 bottom-0 flex flex-grow flex-col gap-6 justify-start items-left w-1/2 h-screen ease-in duration-300 pt-24 pl-3 sm:hidden"
+            : "absolute bg-brand-bg text-xl top-16 right-[-100%] bottom-0 flex flex-grow flex-col gap-6 justify-start items-left w-1/2 h-screen ease-in duration-300 pt-24 pl-3 sm:hidden"
+        }
+      >
+        <div className="flex flex-col mt-8">
+          <Link href="/">Home</Link>
+          <Link href="/leaderboards">Leaderboards</Link>
+          <Link href="/champions">Champions</Link>
+          <Link href="/items">Items</Link>
+        </div>
       </div>
     </nav>
   );
