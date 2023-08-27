@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default async function Leaderboards() {
   return (
-    <section className="px-2 pt-8 lg:px-6">
-      <div className="md:mb- mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
+    <section className="px-2 pt-8 md:px-6 lg:px-6">
+      <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
         <div className="flex flex-col justify-center px-4 py-2 md:p-4">
           <h3 className="text-xl font-black sm:text-2xl md:text-3xl">
             LEADERBOARDS

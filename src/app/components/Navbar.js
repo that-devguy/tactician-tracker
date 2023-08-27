@@ -3,7 +3,13 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import SummonerSearch from "@/app/components/SummonerSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faXmark,
+  faHouse,
+  faRankingStar,
+  faLayerGroup,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
@@ -109,20 +115,21 @@ export default function Navbar() {
         onClick={handleNav}
         className={nav ? "hidden" : "z-50 flex p-2 md:hidden"}
       >
-        <FontAwesomeIcon className="w-6 h-6" icon={faBars} />
+        <FontAwesomeIcon className="h-6 w-6" icon={faBars} />
       </div>
       <div
         onClick={handleNav}
         className={nav ? "z-50 flex p-2 md:hidden" : "hidden"}
       >
-        <FontAwesomeIcon className="w-6 h-6" icon={faXmark} />
+        <FontAwesomeIcon className="h-6 w-6" icon={faXmark} />
       </div>
 
       <div className="navLinks-container hidden gap-5 md:flex">
         <Link href="/">Home</Link>
         <Link href="/leaderboards">Leaderboards</Link>
-        <Link href="/champions">Champions</Link>
-        <Link href="/items">Items</Link>
+        <p className="text-white/30 select-none">
+          Database
+        </p>
       </div>
 
       {/* Mobile Navbar */}
@@ -130,15 +137,31 @@ export default function Navbar() {
         ref={menuRef}
         className={
           nav
-            ? "absolute bg-brand-bg text-xl top-16 right-0 bottom-0 flex flex-grow flex-col gap-6 justify-start items-left w-1/2 h-screen ease-in duration-300 pt-24 pl-3 sm:hidden"
-            : "absolute bg-brand-bg text-xl top-16 right-[-100%] bottom-0 flex flex-grow flex-col gap-6 justify-start items-left w-1/2 h-screen ease-in duration-300 pt-24 pl-3 sm:hidden"
+            ? "items-left absolute bottom-0 right-0 top-16 flex h-screen w-5/6 min-w-fit flex-grow flex-col justify-start gap-6 border-l border-brand-bg2 bg-brand-bg text-xl duration-300 ease-in md:hidden"
+            : "items-left absolute bottom-0 right-[-100%] top-16 flex h-screen w-5/6 min-w-fit flex-grow flex-col justify-start gap-6 bg-brand-bg text-xl duration-300 ease-in md:hidden"
         }
       >
-        <div className="flex flex-col mt-8">
-          <Link href="/">Home</Link>
-          <Link href="/leaderboards">Leaderboards</Link>
-          <Link href="/champions">Champions</Link>
-          <Link href="/items">Items</Link>
+        <div className="flex flex-col gap-4 p-5">
+          <div className="flex lg:flex">
+            <SummonerSearch />
+          </div>
+          <Link href="/" className="flex items-center gap-4">
+            <FontAwesomeIcon className="h-5 w-5" icon={faHouse} />
+            Home
+          </Link>
+          <Link href="/leaderboards" className="flex items-center gap-4">
+            <FontAwesomeIcon className="h-5 w-5" icon={faRankingStar} />
+            Leaderboards
+          </Link>
+          <p className="flex items-center gap-4 text-white/30">
+            <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
+            <p className="flex gap-2">
+              Database
+              <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
+                COMING SOON
+              </span>
+            </p>
+          </p>
         </div>
       </div>
     </nav>
