@@ -35,11 +35,21 @@ export default function Footer() {
               <Link className="hover:text-brand-main" href="/leaderboards">
                 Leaderboards
               </Link>
-              <Link className="hover:text-brand-main" href="/champions">
-                Champions
+              <Link
+                className="flex gap-1 hover:text-brand-main"
+                href="/champions"
+              >
+                Champs
+                <span className="flex h-4 items-center justify-center text-[.3rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
+                  COMING SOON
+                </span>
               </Link>
-              <Link className="hover:text-brand-main" href="/items">
+
+              <Link className="flex gap-1 hover:text-brand-main" href="/items">
                 Items
+                <span className="flex h-4 items-center justify-center text-[.3rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
+                  COMING SOON
+                </span>
               </Link>
             </div>
 
@@ -101,11 +111,17 @@ export default function Footer() {
           <Link className="hover:text-brand-main" href="/leaderboards">
             Leaderboards
           </Link>
-          <Link className="hover:text-brand-main" href="/champions">
+          <Link className="flex gap-1 hover:text-brand-main" href="/champions">
             Champions
+            <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
+              COMING SOON
+            </span>
           </Link>
-          <Link className="hover:text-brand-main" href="/items">
+          <Link className="flex gap-1 hover:text-brand-main" href="/items">
             Items
+            <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
+              COMING SOON
+            </span>
           </Link>
         </div>
 

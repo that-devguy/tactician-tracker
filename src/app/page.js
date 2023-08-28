@@ -20,11 +20,11 @@ export default function Home() {
             </p>
           </div>
           <Image
-            src="/leaderboard_image.png"
+            src="/yasuo_dragonmancer_banner.png"
             height="200"
             width="200"
-            alt="Pengu with Trophy"
-            className="h-fill select-none overflow-hidden"
+            alt="Dragonmancer Yasuo Chibi"
+            className="h-fill select-none overflow-hidden rounded-lg"
           />
         </div>
         <div>
