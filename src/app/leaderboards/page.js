@@ -1,7 +1,22 @@
+import { use } from "react";
 import Leaderboard from "@/app/components/Leaderboards";
+import getLeaderboardData from "@/app/libs/getLeaderboardData";
 import Image from "next/image";
 
-export default async function Leaderboards() {
+async function getLeaderboards() {
+  const leaderboardData = await getLeaderboardData();
+  const leaderboards = leaderboardData.entries;
+
+  // Sort leaderboard results in descending order by LP
+  leaderboards.sort((a, b) => b.leaguePoints - a.leaguePoints);
+
+  return leaderboards;
+}
+
+export default function LeaderboardPage() {
+  const leaderboards = use(getLeaderboards());
+  console.log(leaderboards);
+
   return (
     <section className="px-2 pt-8 md:px-6 lg:px-6">
       <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
@@ -10,10 +25,10 @@ export default async function Leaderboards() {
             LEADERBOARDS
           </h3>
           <p className="text-xs text-white sm:hidden">
-            Discover the top Callenger players!
+            Discover the top Challenger players!
           </p>
           <p className="hidden text-xs text-white sm:block md:text-sm">
-            Discover the top Callenger players; browse their match history,
+            Discover the top Challenger players; browse their match history,
             stats, and more.
           </p>
         </div>
@@ -25,7 +40,7 @@ export default async function Leaderboards() {
           className="h-fill select-none overflow-hidden"
         />
       </div>
-      <Leaderboard />
+      <Leaderboard leaderboards={leaderboards} />
     </section>
   );
 }

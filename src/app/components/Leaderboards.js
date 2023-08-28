@@ -1,15 +1,39 @@
-import getLeaderboardData from "@/app/libs/getLeaderboardData";
+"use client";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
-export default async function LeaderboardTable() {
-  const leaderboardData = await getLeaderboardData();
-  const leaderboards = leaderboardData.entries;
+export default function LeaderboardTable({ leaderboards }) {
+  const [currentPage, setCurrentPage] = useState(1);
+  const playersPerPage = 30;
+  const totalPages = Math.ceil(leaderboards.length / playersPerPage);
 
-  // Sort leaderboard results in descending order by LP
-  leaderboards.sort((a, b) => b.leaguePoints - a.leaguePoints);
+  const start = (currentPage - 1) * playersPerPage;
+  const end = start + playersPerPage;
+
+  const Pagination = () => (
+    <div className="pagination my-1 flex justify-center gap-3 px-4 text-sm text-white/50 md:my-3">
+      <button
+        className={currentPage <= 1 ? "none" : "hover:text-brand-main"}
+        disabled={currentPage <= 1}
+        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+      >
+        Prev
+      </button>
+      <span>
+        {currentPage} / {totalPages}
+      </span>
+      <button
+        className={currentPage >= totalPages ? "none" : "hover:text-brand-main"}
+        disabled={currentPage >= totalPages}
+        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+      >
+        Next
+      </button>
+    </div>
+  );
 
   return (
     <div className="mx-auto max-w-7xl">
@@ -21,16 +45,17 @@ export default async function LeaderboardTable() {
         <p className="w-2/12">Top4</p>
         <p className="w-2/12 md:w-1/12">Games</p>
       </div>
-      {leaderboards.slice(0, 30).map((leaderboard, index) => {
+      {leaderboards.slice(start, end).map((leaderboard, index) => {
         let rank = "leaderboard-tile"; // Default border style
+        let actualRank = start + index + 1;
 
-        if (index + 1 === 1) {
+        if (actualRank === 1) {
           rank = "first-placeTile";
-        } else if (index + 1 === 2) {
+        } else if (actualRank === 2) {
           rank = "second-placeTile";
-        } else if (index + 1 === 3) {
+        } else if (actualRank === 3) {
           rank = "third-placeTile";
-        } else if (index + 1 === 4) {
+        } else if (actualRank === 4) {
           rank = "fourth-placeTile";
         }
 
@@ -49,17 +74,17 @@ export default async function LeaderboardTable() {
               >
                 <p
                   className={`flex h-5 w-5 items-center justify-center rounded-md bg-brand-bg2 md:h-6 md:w-6 ${
-                    index + 1 === 1 ? `text-white` : `text-white/50`
+                    actualRank === 1 ? `text-white` : `text-white/50`
                   }`}
                 >
-                  {index + 1}
+                  {actualRank}
                 </p>
               </div>
             </div>
 
             <Link
               href={`/profile/${leaderboard.summonerName}`}
-              className="w-3/12 items-center truncate hover:underline md:flex text-sm md:text-base"
+              className="w-3/12 items-center truncate text-sm hover:underline md:flex md:text-base"
             >
               {leaderboard.summonerName}
               <div className="hidden md:flex">
@@ -90,6 +115,7 @@ export default async function LeaderboardTable() {
           </div>
         );
       })}
+      <Pagination />
     </div>
   );
 }
