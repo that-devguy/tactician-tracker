@@ -15,18 +15,16 @@ export default function Error({ error, reset }) {
   }
 
   return (
-    <div className="mt-10 flex flex-col justify-center px-10">
-      <div className="flex items-center justify-center text-9xl font-black">
-        <p className="relative left-16">O</p>
+    <div className="mt-10 flex flex-col justify-center px-4 md:px-10">
+      <div className="flex items-center justify-center">
         <Image
-          className=""
-          src="/Everything_is_Okay_Emote.png"
+          className="px-5 md:px-0"
+          src="/Soraka_Oops.png"
           alt="Everything is Okay Emote"
           height={256}
-          width={256}
+          width={413}
           layout="fixed"
         />
-        <p className="relative right-14">PS</p>
       </div>
       <div className="flex flex-col justify-center gap-3">
         <h2 className="text-center text-xl font-bold">Something went wrong!</h2>

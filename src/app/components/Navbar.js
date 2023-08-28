@@ -127,9 +127,7 @@ export default function Navbar() {
       <div className="navLinks-container hidden gap-5 md:flex">
         <Link href="/">Home</Link>
         <Link href="/leaderboards">Leaderboards</Link>
-        <p className="text-white/30 select-none">
-          Database
-        </p>
+        <p className="select-none text-white/30">Database</p>
       </div>
 
       {/* Mobile Navbar */}
@@ -141,7 +139,7 @@ export default function Navbar() {
             : "items-left absolute bottom-0 right-[-100%] top-16 flex h-screen w-5/6 min-w-fit flex-grow flex-col justify-start gap-6 bg-brand-bg text-xl duration-300 ease-in md:hidden"
         }
       >
-        <div className="flex flex-col gap-4 p-5">
+        <div className={nav ? "flex flex-col gap-4 p-5" : "hidden"}>
           <div className="flex lg:flex">
             <SummonerSearch />
           </div>
