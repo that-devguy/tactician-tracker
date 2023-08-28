@@ -15,7 +15,6 @@ async function getLeaderboards() {
 
 export default function LeaderboardPage() {
   const leaderboards = use(getLeaderboards());
-  console.log(leaderboards);
 
   return (
     <section className="px-2 pt-8 md:px-6 lg:px-6">

@@ -1,4 +1,3 @@
-"use client";
 import "./globals.css";
 
 // The following import prevents a Font Awesome icon server-side rendering bug,

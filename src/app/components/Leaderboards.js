@@ -18,7 +18,10 @@ export default function LeaderboardTable({ leaderboards }) {
       <button
         className={currentPage <= 1 ? "none" : "hover:text-brand-main"}
         disabled={currentPage <= 1}
-        onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+        onClick={() => {
+          setCurrentPage((prev) => Math.max(prev - 1, 1));
+          window.scrollTo(0, 0);
+        }}
       >
         Prev
       </button>
@@ -28,7 +31,10 @@ export default function LeaderboardTable({ leaderboards }) {
       <button
         className={currentPage >= totalPages ? "none" : "hover:text-brand-main"}
         disabled={currentPage >= totalPages}
-        onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+        onClick={() => {
+          setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+          window.scrollTo(0, 0);
+        }}
       >
         Next
       </button>

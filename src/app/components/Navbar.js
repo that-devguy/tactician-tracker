@@ -7,7 +7,7 @@ import {
   faBars,
   faXmark,
   faHouse,
-  faRankingStar,
+  faTrophy,
   faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -148,7 +148,7 @@ export default function Navbar() {
             Home
           </Link>
           <Link href="/leaderboards" className="flex items-center gap-4">
-            <FontAwesomeIcon className="h-5 w-5" icon={faRankingStar} />
+            <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
           <p className="flex items-center gap-4 text-white/30">
