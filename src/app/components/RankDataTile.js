@@ -69,7 +69,7 @@ const RankDataTile = ({ leagueData }) => {
               <p>{wins}W</p>
               <p>{losses}L</p>
               <FontAwesomeIcon
-                className="h-[0.3px] w-[0.3px]"
+                className="h-[2px] w-[2px]"
                 icon={faCircle}
               />
               <p className="">Top4</p>

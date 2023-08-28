@@ -448,13 +448,13 @@ const MatchTile = ({
         >
           {placement.placementText}
         </p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p className="font-bold text-white">{queueType}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{playTimeDate}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{gameLength}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{patch}</p>
       </div>
       <div className="flex flex-col items-center gap-2 rounded-md bg-brand-bg2 md:hidden">
@@ -478,11 +478,11 @@ const MatchTile = ({
       {/* default styles */}
       <div className="hidden items-center gap-3 text-xs text-white/50 md:flex">
         <p className="font-bold text-white">{queueType}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{playTimeDate}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{gameLength}</p>
-        <FontAwesomeIcon className="h-[0.3px] w-[0.3px]" icon={faCircle} />
+        <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{patch}</p>
       </div>
       <div className="my-3 hidden items-center justify-between gap-3 rounded-md bg-brand-bg2 md:flex">
