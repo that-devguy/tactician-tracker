@@ -40,16 +40,18 @@ export default function Footer() {
                 href="/champions"
               >
                 Champs
-                <span className="flex h-4 items-center justify-center text-[.3rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
-                  COMING SOON
-                </span>
+                <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
+                  <p>COMING</p>
+                  <p>SOON</p>
+                </div>
               </Link>
 
               <Link className="flex gap-1 hover:text-brand-main" href="/items">
                 Items
-                <span className="flex h-4 items-center justify-center text-[.3rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
-                  COMING SOON
-                </span>
+                <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
+                  <p>COMING</p>
+                  <p>SOON</p>
+                </div>
               </Link>
             </div>
 
