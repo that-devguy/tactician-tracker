@@ -29,16 +29,13 @@ export default function Footer() {
           <div className="mobileFooter-links mb-3 flex gap-8 md:hidden">
             <div className="flex flex-col gap-2 text-sm text-white/50">
               <p className="text-base font-semibold text-white">Site Links</p>
-              <Link className="hover:text-brand-main" href="/">
+              <Link className="hover:text-white" href="/">
                 Home
               </Link>
-              <Link className="hover:text-brand-main" href="/leaderboards">
+              <Link className="hover:text-white" href="/leaderboards">
                 Leaderboards
               </Link>
-              <Link
-                className="flex gap-1 hover:text-brand-main"
-                href="/champions"
-              >
+              <Link className="flex gap-1 hover:text-white" href="/champions">
                 Champs
                 <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
                   <p>COMING</p>
@@ -46,7 +43,7 @@ export default function Footer() {
                 </div>
               </Link>
 
-              <Link className="flex gap-1 hover:text-brand-main" href="/items">
+              <Link className="flex gap-1 hover:text-white" href="/items">
                 Items
                 <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
                   <p>COMING</p>
@@ -60,25 +57,37 @@ export default function Footer() {
                 Connect With Me
               </p>
               <Link
-                className="hover:text-brand-main"
+                className="hover:text-white"
                 href="https://www.linkedin.com/in/zachmutch/"
                 target="_blank"
               >
                 LinkedIn
+                <FontAwesomeIcon
+                  className="mb-1 ml-1 text-xs"
+                  icon={faArrowUpRightFromSquare}
+                />
               </Link>
               <Link
-                className="hover:text-brand-main"
+                className="hover:text-white"
                 href="https://github.com/that-devguy"
                 target="_blank"
               >
                 GitHub
+                <FontAwesomeIcon
+                  className="mb-1 ml-1 text-xs"
+                  icon={faArrowUpRightFromSquare}
+                />
               </Link>
               <Link
-                className="hover:text-brand-main"
+                className="hover:text-white"
                 href="https://www.thatdevguy.app/"
                 target="_blank"
               >
                 Portfolio
+                <FontAwesomeIcon
+                  className="mb-1 ml-1 text-xs"
+                  icon={faArrowUpRightFromSquare}
+                />
               </Link>
             </div>
           </div>
@@ -93,7 +102,7 @@ export default function Footer() {
             <Link
               href="https://www.thatdevguy.app/"
               target="_blank"
-              className="underline hover:text-brand-main md:no-underline"
+              className="underline hover:text-brand-secondary md:no-underline"
             >
               that_devguy
               <FontAwesomeIcon
@@ -107,19 +116,19 @@ export default function Footer() {
         {/* Site Links */}
         <div className="hidden flex-col gap-2 text-sm text-white/50 md:flex">
           <p className="text-base font-semibold text-white">Site Links</p>
-          <Link className="hover:text-brand-main" href="/">
+          <Link className="hover:text-white" href="/">
             Home
           </Link>
-          <Link className="hover:text-brand-main" href="/leaderboards">
+          <Link className="hover:text-white" href="/leaderboards">
             Leaderboards
           </Link>
-          <Link className="flex gap-1 hover:text-brand-main" href="/champions">
+          <Link className="flex gap-1 hover:text-white" href="/champions">
             Champions
             <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
               COMING SOON
             </span>
           </Link>
-          <Link className="flex gap-1 hover:text-brand-main" href="/items">
+          <Link className="flex gap-1 hover:text-white" href="/items">
             Items
             <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
               COMING SOON
@@ -130,25 +139,37 @@ export default function Footer() {
         <div className="hidden flex-col gap-2 text-sm text-white/50 md:flex">
           <p className="text-base font-semibold text-white">Connect With Me</p>
           <Link
-            className="hover:text-brand-main"
+            className="hover:text-white"
             href="https://www.linkedin.com/in/zachmutch/"
             target="_blank"
           >
             LinkedIn
+            <FontAwesomeIcon
+              className="mb-1 ml-1 text-xs"
+              icon={faArrowUpRightFromSquare}
+            />
           </Link>
           <Link
-            className="hover:text-brand-main"
+            className="hover:text-white"
             href="https://github.com/that-devguy"
             target="_blank"
           >
             GitHub
+            <FontAwesomeIcon
+              className="mb-1 ml-1 text-xs"
+              icon={faArrowUpRightFromSquare}
+            />
           </Link>
           <Link
-            className="hover:text-brand-main"
+            className="hover:text-white"
             href="https://www.thatdevguy.app/"
             target="_blank"
           >
             Portfolio
+            <FontAwesomeIcon
+              className="mb-1 ml-1 text-xs"
+              icon={faArrowUpRightFromSquare}
+            />
           </Link>
         </div>
       </div>
