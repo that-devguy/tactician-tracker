@@ -153,9 +153,9 @@ export default function Navbar() {
           </Link>
           <p className="flex items-center gap-4 text-white/30">
             <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
-            <p className="flex gap-2">
+            <p className="flex gap-1">
               Database
-              <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
+              <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
                 COMING SOON
               </span>
             </p>

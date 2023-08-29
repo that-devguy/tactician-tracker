@@ -32,10 +32,10 @@ export default function LeaderboardPage() {
           </p>
         </div>
         <Image
-          src="/leaderboard_image.png"
+          src="/teemo_base_banner.png"
           height="200"
           width="200"
-          alt="Pengu with Trophy"
+          alt="Base Teemo Chibi"
           className="h-fill select-none overflow-hidden"
         />
       </div>
