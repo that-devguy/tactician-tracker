@@ -16,6 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Tactician Tracker - TFT Stats",
   description: "Team Fight Tactics Stats Tracker",
+  content: "width=device-width, initial-scale=1, max-scale=1"
 };
 
 export default function RootLayout({ children }) {
