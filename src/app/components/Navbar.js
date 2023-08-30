@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import SummonerSearch from "@/app/components/SummonerSearch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,6 +17,7 @@ export default function Navbar() {
   const [scrollBackground, setScrollBackground] = useState(false);
   const menuRef = useRef(null);
   const navbarRef = useRef(null);
+  const currentRoute = usePathname();
 
   // Function for toggling navbar
   const handleNav = () => {
@@ -96,7 +98,8 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 py-5 md:px-6 lg:px-10"
+      // px-2 py-5 md:px-6 lg:px-10
+      className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 md:px-6 lg:px-10"
     >
       <div className="navLogo-container flex items-center gap-5">
         <Link href="/" className="flex gap-2 px-2 text-lg font-bold">
@@ -124,10 +127,28 @@ export default function Navbar() {
         <FontAwesomeIcon className="h-6 w-6" icon={faXmark} />
       </div>
 
-      <div className="navLinks-container hidden gap-5 md:flex">
-        <Link href="/">Home</Link>
-        <Link href="/leaderboards">Leaderboards</Link>
-        <p className="select-none text-white/30">Database</p>
+      <div className="navLinks-container hidden h-full  text-white/50 md:flex md:items-center">
+        <Link
+          href="/"
+          className={`flex h-full items-center px-3 hover:text-white ${
+            currentRoute === "/"
+              ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
+              : ""
+          }`}
+        >
+          Home
+        </Link>
+        <Link
+          href="/leaderboards"
+          className={`flex h-full items-center px-3 hover:text-white ${
+            currentRoute === "/leaderboards"
+              ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
+              : ""
+          }`}
+        >
+          Leaderboards
+        </Link>
+        <p className="select-none px-3">Database</p>
       </div>
 
       {/* Mobile Navbar */}
@@ -139,19 +160,33 @@ export default function Navbar() {
             : "items-left absolute bottom-0 right-[-100%] top-16 flex h-screen w-5/6 min-w-fit flex-grow flex-col justify-start gap-6 bg-brand-bg text-xl duration-300 ease-in md:hidden"
         }
       >
-        <div className={nav ? "flex flex-col gap-4 p-5" : "hidden"}>
-          <div className="flex lg:flex">
+        <div className={nav ? "flex flex-col gap-2 py-5" : "hidden"}>
+          <div className="flex h-10 px-5 lg:flex">
             <SummonerSearch />
           </div>
-          <Link href="/" className="flex items-center gap-4">
+          <Link
+            href="/"
+            className={`flex h-10 items-center gap-4 px-5 ${
+              currentRoute === "/"
+                ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-15% to-brand-bg to-30% text-white"
+                : ""
+            }`}
+          >
             <FontAwesomeIcon className="h-5 w-5" icon={faHouse} />
             Home
           </Link>
-          <Link href="/leaderboards" className="flex items-center gap-4">
+          <Link
+            href="/leaderboards"
+            className={`flex h-10 items-center gap-4 px-5 ${
+              currentRoute === "/leaderboards"
+                ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
+                : ""
+            }`}
+          >
             <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
-          <p className="flex items-center gap-4 text-white/30">
+          <p className="flex h-10 items-center gap-4 px-5 text-white/30">
             <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
             <p className="flex gap-1">
               Database

@@ -56,9 +56,14 @@ export default async function Profile({ params: { summonerName } }) {
               NA
             </p>
           </div>
-          <p className="mx-1 w-fit select-none rounded-md bg-brand-secondary px-3 py-1 text-xs font-black text-brand-bg">
-            Level {summonerData.summonerLevel}
-          </p>
+          <div className="flex gap-1 text-[.6rem] font-black leading-[.8rem] text-brand-bg md:gap-2 md:text-xs">
+            <p className="flex w-fit select-none items-center rounded-md bg-brand-secondary px-2 py-1 md:px-3">
+              Level {summonerData.summonerLevel}
+            </p>
+            {/* <p className="w-fit select-none rounded-md bg-brand-main px-2 py-1 md:px-3">
+              Refresh Data
+            </p> */}
+          </div>
         </div>
       </div>
       <div>

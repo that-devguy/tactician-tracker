@@ -442,9 +442,9 @@ const MatchTile = ({
   return (
     <div className="mx-auto mb-2 flex max-w-lg select-none flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
       {/* mobile styles */}
-      <div className="mb-2 flex items-center gap-3 text-xs text-white/50 md:hidden">
+      <div className="mb-2 flex items-center gap-2 text-[.6rem] text-white/50 md:hidden">
         <p
-          className={`text-center text-lg font-black text-white/50 ${placement.placementColor}`}
+          className={`text-center text-base font-black text-white/50 ${placement.placementColor}`}
         >
           {placement.placementText}
         </p>
@@ -465,11 +465,11 @@ const MatchTile = ({
             </div>
           </div>
         </div>
-        <div className="traitsAugments-container flex w-full flex-row items-center justify-between">
-          <div className="flex flex-wrap items-center justify-center gap-1">
+        <div className="traitsAugments-container flex w-full gap-2 flex-row items-center justify-between">
+          <div className="flex flex-shrink items-center justify-center gap-1">
             {traits}
           </div>
-          <div className="flex items-center justify-center gap-1">
+          <div className="flex flex-shrink items-center justify-center gap-1">
             {augments}
           </div>
         </div>
