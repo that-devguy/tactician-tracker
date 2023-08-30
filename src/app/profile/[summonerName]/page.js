@@ -60,9 +60,9 @@ export default async function Profile({ params: { summonerName } }) {
             <p className="flex w-fit select-none items-center rounded-md bg-brand-secondary px-2 py-1 md:px-3">
               Level {summonerData.summonerLevel}
             </p>
-            <p className="w-fit select-none rounded-md bg-brand-main px-2 py-1 md:px-3">
+            {/* <p className="w-fit select-none rounded-md bg-brand-main px-2 py-1 md:px-3">
               Refresh Data
-            </p>
+            </p> */}
           </div>
         </div>
       </div>

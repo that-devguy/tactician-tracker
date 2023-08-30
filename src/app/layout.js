@@ -16,7 +16,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Tactician Tracker - TFT Stats",
   description: "Team Fight Tactics Stats Tracker",
-  content: "width=device-width, initial-scale=1, max-scale=1"
+  content: "width=device-width, initial-scale=1, max-scale=1",
 };
 
 export default function RootLayout({ children }) {
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       <body className={`bg-brand-bg text-white ${inter.className}`}>
         <div className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="mb-8 lg:mb-12 flex-grow pb-5 pt-16">{children}</main>
+          <main className="mb-8 flex-grow pb-5 pt-16 lg:mb-12">{children}</main>
           <Footer />
         </div>
       </body>
