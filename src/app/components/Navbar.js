@@ -127,7 +127,7 @@ export default function Navbar() {
         <FontAwesomeIcon className="h-6 w-6" icon={faXmark} />
       </div>
 
-      <div className="navLinks-container hidden h-full text-sm font-semibold text-white/50 md:flex md:items-center">
+      <div className="navLinks-container hidden h-full  text-white/50 md:flex md:items-center">
         <Link
           href="/"
           className={`flex h-full items-center px-3 hover:text-white ${
@@ -166,7 +166,7 @@ export default function Navbar() {
           </div>
           <Link
             href="/"
-            className={`flex h-10 items-center gap-4 px-5 font-semibold ${
+            className={`flex h-10 items-center gap-4 px-5 ${
               currentRoute === "/"
                 ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-15% to-brand-bg to-30% text-white"
                 : ""
@@ -177,7 +177,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/leaderboards"
-            className={`flex h-10 items-center gap-4 px-5 font-semibold ${
+            className={`flex h-10 items-center gap-4 px-5 ${
               currentRoute === "/leaderboards"
                 ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
                 : ""
@@ -186,7 +186,7 @@ export default function Navbar() {
             <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
-          <p className="flex h-10 items-center gap-4 px-5 font-semibold text-white/30">
+          <p className="flex h-10 items-center gap-4 px-5 text-white/30">
             <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
             <p className="flex gap-1">
               Database
