@@ -98,7 +98,6 @@ export default function Navbar() {
   return (
     <nav
       ref={navbarRef}
-      // px-2 py-5 md:px-6 lg:px-10
       className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 md:px-6 lg:px-10"
     >
       <div className="navLogo-container flex items-center gap-5">
@@ -127,7 +126,7 @@ export default function Navbar() {
         <FontAwesomeIcon className="h-6 w-6" icon={faXmark} />
       </div>
 
-      <div className="navLinks-container hidden h-full  text-white/50 md:flex md:items-center">
+      <div className="navLinks-container hidden h-full text-white/50 md:flex md:items-center">
         <Link
           href="/"
           className={`flex h-full items-center px-3 hover:text-white ${
@@ -166,6 +165,7 @@ export default function Navbar() {
           </div>
           <Link
             href="/"
+            onClick={closeMenu}
             className={`flex h-10 items-center gap-4 px-5 ${
               currentRoute === "/"
                 ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-15% to-brand-bg to-30% text-white"
@@ -177,6 +177,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/leaderboards"
+            onClick={closeMenu}
             className={`flex h-10 items-center gap-4 px-5 ${
               currentRoute === "/leaderboards"
                 ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
