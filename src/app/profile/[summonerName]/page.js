@@ -56,7 +56,7 @@ export default async function Profile({ params: { summonerName } }) {
               NA
             </p>
           </div>
-          <div className="flex gap-1 text-[.6rem] font-black leading-[.8rem] text-brand-bg md:gap-2 md:text-xs">
+          <div className="flex gap-1 text-xs font-black text-brand-bg md:gap-2 md:text-sm">
             <p className="flex w-fit select-none items-center rounded-md bg-brand-secondary px-2 py-1 md:px-3">
               Level {summonerData.summonerLevel}
             </p>
