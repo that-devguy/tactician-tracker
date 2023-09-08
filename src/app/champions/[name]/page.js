@@ -1,5 +1,6 @@
 import Image from "next/image";
 import ChampionStats from "@/app/components/ChampionStats";
+import ChampionAbility from "@/app/components/ChampionAbility";
 
 export default function Champion({ params: { name } }) {
   return (
@@ -62,8 +63,13 @@ export default function Champion({ params: { name } }) {
         </div>
       </div>
       <div>
-        <div className="md:m-w-none mx-auto mb-6 max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:w-5/12">
-          <ChampionStats />
+        <div className="md:m-w-none mx-auto mb-6 max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
+          <div className="lg:w-1/2">
+            <ChampionStats />
+          </div>
+          <div className="flex lg:w-1/2">
+            <ChampionAbility />
+          </div>
         </div>
       </div>
     </section>

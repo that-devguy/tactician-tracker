@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function ChampionStats() {
   return (
-    <div className="mb-3 select-none rounded-md bg-brand-bg">
-      <div className="flex items-center gap-3 rounded-md px-4 md:px-0">
+    <div className="mb-6 select-none rounded-md bg-brand-bg lg:mb-0">
+      <div className="flex items-center gap-3 rounded-md px-4 md:px-0 lg:py-4">
         <div className="flex w-full flex-col divide-y divide-brand-bg3">
           <div className="flex items-center justify-between gap-4 pb-2">
             <p className="text-sm font-semibold">Aatrox Stats</p>
