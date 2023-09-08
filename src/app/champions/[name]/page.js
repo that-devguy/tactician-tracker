@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ChampionStats from "@/app/components/ChampionStats";
 
 export default function Champion({ params: { name } }) {
   return (
@@ -18,11 +19,10 @@ export default function Champion({ params: { name } }) {
             <h1 className="text-3xl font-bold md:text-4xl">Aatrox</h1>
           </div>
           <div className="flex gap-2 text-[.6rem] font-black leading-[.8rem] text-brand-bg md:gap-2 md:text-xs">
-
             {/* Traits */}
             <div
               key={`trait1`}
-              className={`bg-brand-secondary h-fit w-fit rounded-full p-1`}
+              className={`h-fit w-fit rounded-full bg-brand-secondary p-1`}
             >
               <Image
                 className={`z-10 invert`}
@@ -35,7 +35,7 @@ export default function Champion({ params: { name } }) {
 
             <div
               key={`trait2`}
-              className={`bg-brand-secondary h-fit w-fit rounded-full p-1`}
+              className={`h-fit w-fit rounded-full bg-brand-secondary p-1`}
             >
               <Image
                 className={`z-10 invert`}
@@ -48,7 +48,7 @@ export default function Champion({ params: { name } }) {
 
             <div
               key={`trait3`}
-              className={`bg-brand-secondary h-fit w-fit rounded-full p-1`}
+              className={`h-fit w-fit rounded-full bg-brand-secondary p-1`}
             >
               <Image
                 className={`z-10 invert`}
@@ -58,8 +58,12 @@ export default function Champion({ params: { name } }) {
                 width="20"
               />
             </div>
-
           </div>
+        </div>
+      </div>
+      <div>
+        <div className="md:m-w-none mx-auto mb-6 max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:w-5/12">
+          <ChampionStats />
         </div>
       </div>
     </section>
