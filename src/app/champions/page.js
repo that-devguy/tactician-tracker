@@ -1,5 +1,6 @@
 import Image from "next/image";
 import getUnitData from "@/app/libs/getUnitData";
+import Link from "next/link";
 
 export default async function Champions() {
   const tft_set_number = 9;
@@ -38,7 +39,8 @@ export default async function Champions() {
       </div>
       <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 py-8">
         {filteredUnits.map((champion) => (
-          <div
+          <Link
+            href={`/champions/${champion.name.toLowerCase()}`}
             key={champion.name}
             className="flex w-16 flex-col items-center justify-center"
           >
@@ -51,7 +53,7 @@ export default async function Champions() {
             <p className="mt-1 w-full truncate text-center text-xs">
               {champion.name}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import ChampionStats from "@/app/components/ChampionStats";
 import ChampionAbility from "@/app/components/ChampionAbility";
 
-export default async function Champion({ params: { championName } }) {
+export default async function Champion({ params: { champion } }) {
   return (
     <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
       <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
