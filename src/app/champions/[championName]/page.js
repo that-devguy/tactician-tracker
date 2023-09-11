@@ -1,23 +1,35 @@
 import Image from "next/image";
+import Link from "next/link";
+import getUnitData from "@/app/libs/getUnitData";
 import ChampionStats from "@/app/components/ChampionStats";
 import ChampionAbility from "@/app/components/ChampionAbility";
 
-export default async function Champion({ params: { champion } }) {
+export default async function Champion({ params: { championName } }) {
+  const tft_set_number = 9;
+  const unitData = await getUnitData(tft_set_number);
+  console.log(championName);
+  const selectedChampion = unitData.find(
+    (champion) => champion.name.toLowerCase() === championName
+  );
+  console.log(selectedChampion);
+
   return (
     <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
       <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
             className="rounded-full border-4 border-transparent ring-4 ring-brand-main"
-            src={`https://raw.communitydragon.org/latest/game/assets/characters/tft9_aatrox/hud/tft9_aatrox_square.tft_set9.png`}
-            alt={`Aatrox`}
+            src={`https://raw.communitydragon.org/latest/game/assets/characters/${selectedChampion.apiName.toLowerCase()}/hud/${selectedChampion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+            alt={selectedChampion.name}
             height="100"
             width="100"
           />
         </div>
         <div className="flex flex-col items-center gap-1 md:items-start">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold md:text-4xl">Aatrox</h1>
+            <h1 className="text-3xl font-bold md:text-4xl">
+              {selectedChampion.name}
+            </h1>
           </div>
           <div className="flex gap-2 text-[.6rem] font-black leading-[.8rem] text-brand-bg md:gap-2 md:text-xs">
             {/* Traits */}
@@ -65,10 +77,10 @@ export default async function Champion({ params: { champion } }) {
       <div>
         <div className="md:m-w-none mx-auto mb-6 max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
           <div className="lg:w-1/2">
-            <ChampionStats />
+            <ChampionStats selectedChampion={selectedChampion} />
           </div>
           <div className="flex lg:w-1/2">
-            <ChampionAbility />
+            <ChampionAbility selectedChampion={selectedChampion} />
           </div>
         </div>
       </div>

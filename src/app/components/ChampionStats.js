@@ -1,15 +1,17 @@
 import Image from "next/image";
 
-export default function ChampionStats() {
+export default function ChampionStats({selectedChampion}) {
+  const championDPS = Math.round(selectedChampion.stats.attackSpeed * selectedChampion.stats.damage)
+
   return (
     <div className="mb-6 select-none rounded-md bg-brand-bg lg:mb-0">
       <div className="flex items-center gap-3 rounded-md px-4 md:px-0 lg:py-4">
         <div className="flex w-full flex-col divide-y divide-brand-bg3">
           <div className="flex items-center justify-between gap-4 pb-2">
-            <p className="text-sm font-semibold">Aatrox Stats</p>
+            <p className="text-sm font-semibold">{selectedChampion.name} Stats</p>
             <div className="flex gap-1 px-7">
               <Image src="/coin.svg" alt="Cost Icon" height="18" width="18" />
-              <p className="text-sm font-semibold">5</p>
+              <p className="text-sm font-semibold">{selectedChampion.cost}</p>
             </div>
           </div>
           <div className="flex justify-between pt-2 text-xs font-light text-white/50">
@@ -26,7 +28,7 @@ export default function ChampionStats() {
                     width="14"
                   />
                   <p className="text-sm font-normal text-white">
-                    1100 / 1900 / 3564
+                    {selectedChampion.stats.hp}
                   </p>
                 </div>
               </div>
@@ -41,7 +43,7 @@ export default function ChampionStats() {
                     width="14"
                   />
                   <p className="text-sm font-normal text-white">
-                    99 / 149 / 223
+                  {selectedChampion.stats.damage}
                   </p>
                 </div>
               </div>
@@ -55,7 +57,7 @@ export default function ChampionStats() {
                     height="14"
                     width="14"
                   />
-                  <p className="text-sm font-normal text-white">0.85</p>
+                  <p className="text-sm font-normal text-white">{selectedChampion.stats.attackSpeed}</p>
                 </div>
               </div>
               {/* dps */}
@@ -64,7 +66,7 @@ export default function ChampionStats() {
                 <div className="flex items-center gap-2">
                   <Image src="/dps.svg" alt="DPS Icon" height="14" width="14" />
                   <p className="text-sm font-normal text-white">
-                    84 / 127 / 190
+                  {championDPS}
                   </p>
                 </div>
               </div>
@@ -81,7 +83,7 @@ export default function ChampionStats() {
                     height="14"
                     width="14"
                   />
-                  <p className="text-sm font-normal text-white">70</p>
+                  <p className="text-sm font-normal text-white">{selectedChampion.stats.armor}</p>
                 </div>
               </div>
               {/* mr */}
@@ -94,7 +96,7 @@ export default function ChampionStats() {
                     height="14"
                     width="14"
                   />
-                  <p className="text-sm font-normal text-white">70</p>
+                  <p className="text-sm font-normal text-white">{selectedChampion.stats.magicResist}</p>
                 </div>
               </div>
               {/* mana */}
@@ -107,14 +109,14 @@ export default function ChampionStats() {
                     height="14"
                     width="14"
                   />
-                  <p className="text-sm font-normal text-white">0 / 50</p>
+                  <p className="text-sm font-normal text-white">{selectedChampion.stats.initialMana} / {selectedChampion.stats.mana}</p>
                 </div>
               </div>
               {/* range */}
               <div className="range--container">
                 <p>Range</p>
                 <div className="flex items-center gap-2">
-                  <p className="text-sm font-normal text-white">1</p>
+                  <p className="text-sm font-normal text-white">{selectedChampion.stats.range}</p>
                 </div>
               </div>
             </div>
