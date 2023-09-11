@@ -8,7 +8,7 @@ export default function ChampionStats() {
           <div className="flex items-center justify-between gap-4 pb-2">
             <p className="text-sm font-semibold">Aatrox Stats</p>
             <div className="flex gap-1 px-7">
-              <Image src="/coin.svg" alt="Cost Icon" height="16" width="16" />
+              <Image src="/coin.svg" alt="Cost Icon" height="18" width="18" />
               <p className="text-sm font-semibold">5</p>
             </div>
           </div>

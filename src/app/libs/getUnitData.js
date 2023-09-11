@@ -14,6 +14,9 @@ const getUnitData = async (tft_set_number) => {
         apiName: champion.apiName,
         name: champion.name,
         cost: champion.cost,
+        traits: champion.traits,
+        stats: champion.stats,
+        ability: champion.ability,
       }));
     }
 
