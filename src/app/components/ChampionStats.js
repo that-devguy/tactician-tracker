@@ -2,6 +2,10 @@ import Image from "next/image";
 
 export default function ChampionStats({selectedChampion}) {
   const championDPS = Math.round(selectedChampion.stats.attackSpeed * selectedChampion.stats.damage)
+  function roundedAttackSpeed(num) {
+    return Math.round(num * 100) / 100;
+  }
+  const championAttackSpeed = roundedAttackSpeed(selectedChampion.stats.attackSpeed)
 
   return (
     <div className="mb-6 select-none rounded-md bg-brand-bg lg:mb-0">
@@ -57,7 +61,7 @@ export default function ChampionStats({selectedChampion}) {
                     height="14"
                     width="14"
                   />
-                  <p className="text-sm font-normal text-white">{selectedChampion.stats.attackSpeed}</p>
+                  <p className="text-sm font-normal text-white">{championAttackSpeed}</p>
                 </div>
               </div>
               {/* dps */}
