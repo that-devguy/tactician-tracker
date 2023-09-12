@@ -4,13 +4,25 @@ export default function ChampionAbility({ selectedChampion }) {
   const abilityIcon = selectedChampion.ability.icon.replace(".dds", ".png");
 
   const fillVariables = (desc, variables) => {
-    return desc.replace(/@([^@]+)@/g, (match, varName) => {
-      const variableObject = variables.find(v => v.name === varName);
+    // 1. Replace placeholders with respective values
+    let filledDesc = desc.replace(/@([^@]+)@/g, (match, varName) => {
+      const variableObject = variables.find((v) => v.name === varName);
+      // Special case: if there's an operation like "*100" within the placeholder
+      if (variableObject && /([a-zA-Z]+)\*([\d]+)/.test(varName)) {
+        const [_, baseVar, multiplier] = /([a-zA-Z]+)\*([\d]+)/.exec(varName);
+        const baseVariableObject = variables.find((v) => v.name === baseVar);
+        if (baseVariableObject) {
+          return baseVariableObject.value[0] * multiplier;
+        }
+      }
       return variableObject ? variableObject.value[0] : match; // Using the first value in the value array
     });
-  };
 
-  console.log(selectedChampion.ability.variables)
+    // 2. Strip away unnecessary tags to make it plain text
+    filledDesc = filledDesc.replace(/<[^>]+>/g, "");
+
+    return filledDesc;
+  };
 
   const cleanDesc = fillVariables(
     selectedChampion.ability.desc,
@@ -18,12 +30,12 @@ export default function ChampionAbility({ selectedChampion }) {
   );
 
   return (
-    <div className="mx-auto mb-2 flex max-w-lg select-none flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
+    <div className="mx-auto mb-2 flex max-w-lg flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
       <div className="flex h-full w-full flex-col divide-y divide-brand-bg3">
         <p className="pb-2 text-sm font-semibold">Ability</p>
         <div className="flex h-full gap-4 pt-3">
           <Image
-            className="w-50 h-fit border border-white"
+            className="w-50 h-fit select-none border border-white"
             src={`https://raw.communitydragon.org/latest/game/${abilityIcon.toLowerCase()}`}
             alt={`Aatrox`}
             height="50"

@@ -18,7 +18,7 @@ export default async function Champion({ params: { championName } }) {
       <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
-            className="rounded-full border-4 border-transparent ring-4 ring-brand-main"
+            className="select-none rounded-full border-4 border-transparent ring-4 ring-brand-main"
             src={`https://raw.communitydragon.org/latest/game/assets/characters/${selectedChampion.apiName.toLowerCase()}/hud/${selectedChampion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={selectedChampion.name}
             height="100"
