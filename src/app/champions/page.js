@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
 
-
 export default async function Champions() {
   const tft_set_number = 9;
   const unitData = await getUnitData(tft_set_number);
@@ -38,24 +37,40 @@ export default async function Champions() {
           className="h-fill select-none overflow-hidden rounded-lg"
         />
       </div>
-      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 py-8">
-        {filteredUnits.map((champion) => (
-          <Link
-            href={`/champions/${champion.name.toLowerCase()}`}
-            key={champion.name}
-            className="flex w-16 flex-col items-center justify-center"
-          >
-            <Image
-              src={`https://raw.communitydragon.org/latest/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
-              alt={`${champion.name} icon`}
-              height="75"
-              width="75"
-            />
-            <p className="mt-1 w-full truncate text-center text-xs">
-              {champion.name}
-            </p>
-          </Link>
-        ))}
+      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-6 py-8">
+        {filteredUnits.map((champion) => {
+          let costColor = "";
+
+          if (champion.cost === 1) {
+            costColor = "one-cost";
+          } else if (champion.cost === 2) {
+            costColor = "two-cost";
+          } else if (champion.cost === 3) {
+            costColor = "three-cost";
+          } else if (champion.cost === 4) {
+            costColor = "four-cost";
+          } else {
+            costColor = "five-cost";
+          }
+          return (
+            <Link
+              href={`/champions/${champion.name.toLowerCase()}`}
+              key={champion.name}
+              className="flex w-16 flex-col items-center justify-center"
+            >
+              <Image
+                src={`https://raw.communitydragon.org/latest/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+                alt={`${champion.name} icon`}
+                height="75"
+                width="75"
+                className={`rounded-md ${costColor}`}
+              />
+              <p className="mt-2 w-full truncate text-center text-xs">
+                {champion.name}
+              </p>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );
