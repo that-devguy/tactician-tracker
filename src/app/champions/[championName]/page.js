@@ -13,12 +13,26 @@ export default async function Champion({ params: { championName } }) {
   );
   console.log(selectedChampion);
 
+  let costColor = "";
+
+  if (selectedChampion.cost === 1) {
+    costColor = "one-costChamp";
+  } else if (selectedChampion.cost === 2) {
+    costColor = "two-costChamp";
+  } else if (selectedChampion.cost === 3) {
+    costColor = "three-costChamp";
+  } else if (selectedChampion.cost === 4) {
+    costColor = "four-costChamp";
+  } else {
+    costColor = "five-costChamp";
+  };
+
   return (
     <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
       <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
         <div className="flex flex-col justify-center py-2">
           <Image
-            className="select-none rounded-full border-4 border-transparent ring-4 ring-brand-main"
+            className={`select-none rounded-full border-4 border-transparent ${costColor}`}
             src={`https://raw.communitydragon.org/latest/game/assets/characters/${selectedChampion.apiName.toLowerCase()}/hud/${selectedChampion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
             alt={selectedChampion.name}
             height="100"
