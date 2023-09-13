@@ -1,10 +1,22 @@
+"use client";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
 
-export default async function Champions() {
+export default function Champions() {
+  const [unitData, setUnitData] = useState([]);
+  const [sortChoice, setSortChoice] = useState("name"); // 'name' or 'cost'
   const tft_set_number = 9;
-  const unitData = await getUnitData(tft_set_number);
+
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getUnitData(tft_set_number);
+      setUnitData(data);
+    }
+
+    fetchData();
+  }, []);
   const filteredUnits = unitData.filter(
     (champion) =>
       champion.cost < 6 &&
@@ -12,7 +24,11 @@ export default async function Champions() {
       champion.name !== "Target Dummy" &&
       !/^TFT9_Ryze.+/.test(champion.apiName)
   );
-  console.log(unitData);
+
+  const units = filteredUnits.sort((a, b) => a.name.localeCompare(b.name) )
+
+  // Sort based on user choice
+  
 
   return (
     <section className="px-2 pt-8 md:px-6 lg:px-6">
@@ -38,7 +54,7 @@ export default async function Champions() {
         />
       </div>
       <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-6 py-8">
-        {filteredUnits.map((champion) => {
+        {units.map((champion) => {
           let costColor = "";
 
           if (champion.cost === 1) {
