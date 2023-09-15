@@ -24,7 +24,7 @@ export default async function Profile({ params: { summonerName } }) {
     })
   );
 
-  const tft_set_number = matchDetailsArray[0]?.info?.tft_set_number || 9;
+  const tft_set_number = matchDetailsArray[0]?.info?.tft_set_number;
   const championData = await getUnitData(tft_set_number);
   const augmentData = await getAugmentData();
   const traitData = await getTraitsData(tft_set_number);

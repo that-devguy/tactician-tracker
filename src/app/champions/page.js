@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
+import getTraitsData from "@/app/libs/getTraitsData";
 
 export default function Champions() {
   const [unitData, setUnitData] = useState([]);
@@ -25,10 +26,9 @@ export default function Champions() {
       !/^TFT9_Ryze.+/.test(champion.apiName)
   );
 
-  const units = filteredUnits.sort((a, b) => a.name.localeCompare(b.name) )
+  const units = filteredUnits.sort((a, b) => a.name.localeCompare(b.name));
 
   // Sort based on user choice
-  
 
   return (
     <section className="px-2 pt-8 md:px-6 lg:px-6">
@@ -53,40 +53,51 @@ export default function Champions() {
           className="h-fill select-none overflow-hidden rounded-lg"
         />
       </div>
-      <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-6 py-8">
-        {units.map((champion) => {
-          let costColor = "";
+      <div className="mx-auto flex max-w-7xl flex-col justify-center gap-6 lg:flex-row lg:py-8">
+        <div className="mb-2 flex flex-col rounded-md bg-brand-bg2 p-4 md:p-4 lg:w-1/3">
+          <div className="flex h-full w-full flex-col divide-y divide-brand-bg3">
+            <div className="flex justify-between px-1">
+              <p className="pb-2 text-sm font-semibold">Filters</p>
+              <p className="pb-2 text-sm">Reset</p>
+            </div>
+            <div className="flex h-full gap-4 pt-3"></div>
+          </div>
+        </div>
+        <div className="mx-auto flex flex-wrap justify-center gap-6 lg:w-2/3 lg:justify-start">
+          {units.map((champion) => {
+            let costColor = "";
 
-          if (champion.cost === 1) {
-            costColor = "one-cost";
-          } else if (champion.cost === 2) {
-            costColor = "two-cost";
-          } else if (champion.cost === 3) {
-            costColor = "three-cost";
-          } else if (champion.cost === 4) {
-            costColor = "four-cost";
-          } else {
-            costColor = "five-cost";
-          }
-          return (
-            <Link
-              href={`/champions/${champion.name.toLowerCase()}`}
-              key={champion.name}
-              className="flex w-16 flex-col items-center justify-center"
-            >
-              <Image
-                src={`https://raw.communitydragon.org/latest/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
-                alt={`${champion.name} icon`}
-                height="75"
-                width="75"
-                className={`rounded-md ${costColor}`}
-              />
-              <p className="mt-2 w-full truncate text-center text-xs">
-                {champion.name}
-              </p>
-            </Link>
-          );
-        })}
+            if (champion.cost === 1) {
+              costColor = "one-cost";
+            } else if (champion.cost === 2) {
+              costColor = "two-cost";
+            } else if (champion.cost === 3) {
+              costColor = "three-cost";
+            } else if (champion.cost === 4) {
+              costColor = "four-cost";
+            } else {
+              costColor = "five-cost";
+            }
+            return (
+              <Link
+                href={`/champions/${champion.name.toLowerCase()}`}
+                key={champion.name}
+                className="flex w-16 flex-col items-center justify-center"
+              >
+                <Image
+                  src={`https://raw.communitydragon.org/latest/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+                  alt={`${champion.name} icon`}
+                  height="75"
+                  width="75"
+                  className={`rounded-md ${costColor}`}
+                />
+                <p className="mt-2 w-full truncate text-center text-xs">
+                  {champion.name}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ const getTraitsData = async (tft_set_number) => {
         icon: traitData.icon,
       }));
     }
-
+    
     return traitData;
   } catch (error) {
     console.error("Error fetching or filtering trait data:", error);
