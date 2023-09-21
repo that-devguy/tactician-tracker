@@ -12,6 +12,8 @@ export default async function Champion({ params: { championName } }) {
     (champion) => champion.name.toLowerCase() === championName
   );
   console.log(selectedChampion);
+  
+  const icon = selectedChampion.icon.replace(".tex", ".png");
 
   let costColor = "";
 
@@ -33,7 +35,7 @@ export default async function Champion({ params: { championName } }) {
         <div className="flex flex-col justify-center py-2">
           <Image
             className={`select-none rounded-full border-4 border-transparent ${costColor}`}
-            src={`https://raw.communitydragon.org/latest/game/assets/characters/${selectedChampion.apiName.toLowerCase()}/hud/${selectedChampion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+            src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
             alt={selectedChampion.name}
             height="100"
             width="100"

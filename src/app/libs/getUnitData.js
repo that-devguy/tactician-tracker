@@ -15,6 +15,7 @@ const getUnitData = async (tft_set_number) => {
         traits: champion.traits,
         stats: champion.stats,
         ability: champion.ability,
+        icon: champion.tileIcon,
       }));
     }
 

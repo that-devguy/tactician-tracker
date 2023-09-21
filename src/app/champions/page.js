@@ -78,6 +78,9 @@ export default function Champions() {
             } else {
               costColor = "five-cost";
             }
+
+            const icon = champion.icon.replace(".tex", ".png");
+            
             return (
               <Link
                 href={`/champions/${champion.name.toLowerCase()}`}
@@ -85,7 +88,7 @@ export default function Champions() {
                 className="flex w-16 flex-col items-center justify-center"
               >
                 <Image
-                  src={`https://raw.communitydragon.org/latest/game/assets/characters/${champion.apiName.toLowerCase()}/hud/${champion.apiName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+                  src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
                   alt={`${champion.name} icon`}
                   height="75"
                   width="75"
