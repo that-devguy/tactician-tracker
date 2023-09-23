@@ -1,4 +1,4 @@
-const getTraitsData = async (tft_set_number) => {
+const getTraitsData = async (mutator) => {
   try {
     const res = await fetch(
       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
@@ -7,19 +7,27 @@ const getTraitsData = async (tft_set_number) => {
       }
     );
     const cdData = await res.json();
-    let traitData = [];
 
-    if (cdData.sets && cdData.sets[tft_set_number]) {
-      traitData = cdData.sets[tft_set_number].traits.map((traitData) => ({
-        apiName: traitData.apiName,
-        name: traitData.name,
-        icon: traitData.icon,
-      }));
+    if (!cdData.setData) {
+      throw new Error("No setData found in the fetched data");
     }
-    
-    return traitData;
+
+    const setData = cdData.setData.find((set) => set.mutator === mutator);
+
+    if (!setData || !setData.traits) {
+      throw new Error("The desired mutator was not found or had no traits");
+    }
+
+    const traits = setData.traits.map((trait) => ({
+      apiName: trait.apiName,
+      name: trait.name,
+      icon: trait.icon,
+    }));
+
+    return traits;
   } catch (error) {
     console.error("Error fetching or filtering trait data:", error);
+    throw error;
   }
 };
 

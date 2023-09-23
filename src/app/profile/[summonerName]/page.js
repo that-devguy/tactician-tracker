@@ -16,6 +16,7 @@ export default async function Profile({ params: { summonerName } }) {
   const summonerId = summonerData.id;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
+  const mutator = "TFTSet9_Stage2";
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
@@ -23,11 +24,10 @@ export default async function Profile({ params: { summonerName } }) {
       return matchDetails;
     })
   );
-
-  const tft_set_number = matchDetailsArray[0]?.info?.tft_set_number;
-  const championData = await getUnitData(tft_set_number);
+  
+  const championData = await getUnitData(mutator);
   const augmentData = await getAugmentData();
-  const traitData = await getTraitsData(tft_set_number);
+  const traitData = await getTraitsData(mutator);
   const placements = matchDetailsArray.map(
     (matchDetails) =>
       matchDetails.info.participants.find(
