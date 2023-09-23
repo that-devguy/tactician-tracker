@@ -8,11 +8,11 @@ import getTraitsData from "@/app/libs/getTraitsData";
 export default function Champions() {
   const [unitData, setUnitData] = useState([]);
   const [sortChoice, setSortChoice] = useState("name"); // 'name' or 'cost'
-  const tft_set_number = 9;
+  const mutator = "TFTSet9_Stage2";
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getUnitData(tft_set_number);
+      const data = await getUnitData(mutator);
       setUnitData(data);
     }
 
