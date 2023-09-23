@@ -5,8 +5,8 @@ import ChampionStats from "@/app/components/ChampionStats";
 import ChampionAbility from "@/app/components/ChampionAbility";
 
 export default async function Champion({ params: { championName } }) {
-  const tft_set_number = 9;
-  const unitData = await getUnitData(tft_set_number);
+  const mutator = "TFTSet9_Stage2";
+  const unitData = await getUnitData(mutator);
   console.log(championName);
   const selectedChampion = unitData.find(
     (champion) => champion.name.toLowerCase() === championName
