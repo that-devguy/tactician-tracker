@@ -38,10 +38,10 @@ export default function Champions() {
             CHAMPIONS
           </h3>
           <p className="text-xs text-white sm:hidden">
-            Explore a database of all the Champions in Set 9.
+            Explore a database of all the Champions in the current set.
           </p>
           <p className="hidden text-xs text-white sm:block md:text-sm">
-            Explore a database of all the Champions in Set 9: their origins,
+            Explore a database of all the Champions in the current set: their origins,
             classes, and costs
           </p>
         </div>
