@@ -197,6 +197,8 @@ const MatchTile = ({
         augmentData.find((item) => item.apiName === itemName)
       );
 
+      const icon = champion.icon.replace(".tex", ".png");
+
       // console.log(itemData);
 
       return (
@@ -265,7 +267,7 @@ const MatchTile = ({
 
           <Image
             className={`mx-auto mb-2 rounded-full ${costColor}`}
-            src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+            src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
             alt={champion.name}
             height="40"
             width="40"
