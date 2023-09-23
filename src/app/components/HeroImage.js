@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function heroImage() {
   return (
-    <div className="relative flex min-h-[16rem] items-end overflow-hidden bg-gradient-to-t from-[#ff571d] to-[#F8A634] md:max-h-[28rem] lg:rounded-lg">
+    <div className="relative flex min-h-[16rem] select-none items-end overflow-hidden bg-gradient-to-t from-[#ff571d] to-[#F8A634] md:max-h-[28rem] lg:rounded-lg">
       <Image
         src="/layer-3.png"
         height="1298"
