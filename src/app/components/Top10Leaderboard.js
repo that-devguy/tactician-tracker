@@ -7,8 +7,6 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 export default async function Top10LeaderboardTable() {
   const leaderboardData = await getLeaderboardData();
   const leaderboards = leaderboardData.entries;
-  console.log(leaderboardData);
-
   // Sort leaderboard results in descending order by LP
   // leaderboards.sort((a, b) => b.leaguePoints - a.leaguePoints);
 

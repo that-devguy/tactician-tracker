@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
 export default function LeaderboardTable({ leaderboards }) {
+  console.log("Received leaderboards:", leaderboards);
   const [currentPage, setCurrentPage] = useState(1);
   const playersPerPage = 30;
   const totalPages = Math.ceil(leaderboards.length / playersPerPage);
