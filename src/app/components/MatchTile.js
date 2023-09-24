@@ -168,8 +168,6 @@ const MatchTile = ({
     );
 
     const units = filteredUnitData.map((champion) => {
-      const urlName = champion.apiName.replace(/^(.*Ryze).*/, "$1");
-
       let costColor = "";
 
       if (champion.cost === 1) {
@@ -198,8 +196,6 @@ const MatchTile = ({
       );
 
       const icon = champion.icon.replace(".tex", ".png");
-
-      // console.log(itemData);
 
       return (
         <div
@@ -468,7 +464,7 @@ const MatchTile = ({
             </div>
           </div>
         </div>
-        <div className="traitsAugments-container flex w-full gap-2 flex-row items-center justify-between">
+        <div className="traitsAugments-container flex w-full flex-row items-center justify-between gap-2">
           <div className="flex flex-shrink items-center justify-center gap-1">
             {traits}
           </div>
