@@ -16,6 +16,7 @@ export default async function Profile({ params: { summonerName } }) {
   const summonerId = summonerData.id;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
+  const mutator = "TFTSet9_Stage2";
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
@@ -23,11 +24,10 @@ export default async function Profile({ params: { summonerName } }) {
       return matchDetails;
     })
   );
-
-  const tft_set_number = matchDetailsArray[0]?.info?.tft_set_number || 9;
-  const championData = await getUnitData(tft_set_number);
+  
+  const championData = await getUnitData(mutator);
   const augmentData = await getAugmentData();
-  const traitData = await getTraitsData(tft_set_number);
+  const traitData = await getTraitsData(mutator);
   const placements = matchDetailsArray.map(
     (matchDetails) =>
       matchDetails.info.participants.find(
@@ -56,7 +56,7 @@ export default async function Profile({ params: { summonerName } }) {
               NA
             </p>
           </div>
-          <div className="flex gap-1 text-[.6rem] font-black leading-[.8rem] text-brand-bg md:gap-2 md:text-xs">
+          <div className="flex gap-1 text-xs font-black text-brand-bg md:gap-2 md:text-sm">
             <p className="flex w-fit select-none items-center rounded-md bg-brand-secondary px-2 py-1 md:px-3">
               Level {summonerData.summonerLevel}
             </p>
@@ -72,7 +72,7 @@ export default async function Profile({ params: { summonerName } }) {
           <MatchPlacementsTile placements={placements} />
         </div>
       </div>
-      {matchDetailsArray.slice(0, 1).map((matchDetails) => (
+      {matchDetailsArray.slice(0, 5).map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}

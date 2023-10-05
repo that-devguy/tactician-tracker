@@ -187,7 +187,7 @@ export default function Navbar() {
             <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
-          <p className="flex h-10 items-center gap-4 px-5 text-white/30">
+          <div className="flex h-10 items-center gap-4 px-5 text-white/30">
             <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
             <p className="flex gap-1">
               Database
@@ -195,7 +195,7 @@ export default function Navbar() {
                 COMING SOON
               </span>
             </p>
-          </p>
+          </div>
         </div>
       </div>
     </nav>

@@ -168,8 +168,6 @@ const MatchTile = ({
     );
 
     const units = filteredUnitData.map((champion) => {
-      const urlName = champion.apiName.replace(/^(.*Ryze).*/, "$1");
-
       let costColor = "";
 
       if (champion.cost === 1) {
@@ -197,7 +195,7 @@ const MatchTile = ({
         augmentData.find((item) => item.apiName === itemName)
       );
 
-      // console.log(itemData);
+      const icon = champion.icon.replace(".tex", ".png");
 
       return (
         <div
@@ -265,7 +263,7 @@ const MatchTile = ({
 
           <Image
             className={`mx-auto mb-2 rounded-full ${costColor}`}
-            src={`https://raw.communitydragon.org/latest/game/assets/characters/${urlName.toLowerCase()}/hud/${urlName.toLowerCase()}_square.tft_set${tft_set_number}.png`}
+            src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
             alt={champion.name}
             height="40"
             width="40"
@@ -335,11 +333,12 @@ const MatchTile = ({
         i++;
       }
     }
-
+    // console.log(participantTraits);
     const traits = participantTraits.map((trait) => {
       const traitRawData = traitData.find(
         (data) => data.apiName === trait.name
       );
+      // console.log(traitRawData);
       const traitIcon = traitRawData.icon
         .toLowerCase()
         .replace(/\.tex$/, ".png");
@@ -465,7 +464,7 @@ const MatchTile = ({
             </div>
           </div>
         </div>
-        <div className="traitsAugments-container flex w-full gap-2 flex-row items-center justify-between">
+        <div className="traitsAugments-container flex w-full flex-row items-center justify-between gap-2">
           <div className="flex flex-shrink items-center justify-center gap-1">
             {traits}
           </div>

@@ -1,6 +1,4 @@
 const MatchPlacementsTile = ({ placements }) => {
-  console.log(placements);
-
   const mapMatchHistory = (placements) => {
     const mappedPlacements = placements.map((placement, index) => {
       let placementBox = "";

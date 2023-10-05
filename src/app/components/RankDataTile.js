@@ -25,7 +25,7 @@ function getWinLoss(wins, losses) {
 }
 
 const RankDataTile = ({ leagueData }) => {
-  console.log(leagueData);
+  // console.log(leagueData);
   const { tier, rank, leaguePoints, wins, losses, hotStreak } =
     leagueData[0] || {};
 
@@ -43,7 +43,6 @@ const RankDataTile = ({ leagueData }) => {
             alt={`${capTier} tier emblem`}
             height={131}
             width={150}
-            layout="fixed"
           />
         </div>
         <div className="flex w-full flex-col gap-1 md:mr-6 md:w-7/12">
@@ -68,10 +67,7 @@ const RankDataTile = ({ leagueData }) => {
             <div className="flex items-center gap-2">
               <p>{wins}W</p>
               <p>{losses}L</p>
-              <FontAwesomeIcon
-                className="h-[2px] w-[2px]"
-                icon={faCircle}
-              />
+              <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
               <p className="">Top4</p>
               <p className="font-bold text-white">
                 {getWinLoss(wins, losses)}%
