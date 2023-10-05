@@ -33,6 +33,8 @@ export default async function Top10LeaderboardTable() {
         let gamesPlayed = leaderboard.wins + leaderboard.losses;
         let top4Percent = (leaderboard.wins / gamesPlayed) * 100;
         let winRate = Math.round(top4Percent);
+        const tier = leaderboard.tier;
+        const capTier = tier.charAt(0).toUpperCase() + tier.slice(1);
 
         return (
           <div
@@ -67,13 +69,13 @@ export default async function Top10LeaderboardTable() {
             </Link>
             <p className="flex w-1/12 gap-1 md:w-2/12">
               <Image
-                src="https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/challenger.png"
+                src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier}.png`}
                 height="22"
                 width="22"
-                alt="Mini Challenger Emblem"
+                alt={`Mini ${capTier} Emblem`}
                 className="select-none"
               />
-              <span className="hidden md:block">Challenger</span>
+              <span className="hidden md:block">{capTier}</span>
             </p>
             <p className="w-1/12 text-white/50">{leaderboard.leaguePoints}</p>
             <p className="w-2/12 text-white/50">
