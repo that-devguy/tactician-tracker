@@ -333,12 +333,12 @@ const MatchTile = ({
         i++;
       }
     }
-    console.log(participantTraits);
+    // console.log(participantTraits);
     const traits = participantTraits.map((trait) => {
       const traitRawData = traitData.find(
         (data) => data.apiName === trait.name
       );
-      console.log(traitRawData);
+      // console.log(traitRawData);
       const traitIcon = traitRawData.icon
         .toLowerCase()
         .replace(/\.tex$/, ".png");
