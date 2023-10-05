@@ -5,10 +5,6 @@ import Image from "next/image";
 
 async function getLeaderboards() {
   const leaderboardData = await getLeaderboardData();
-
-  // Sort leaderboard results in descending order by LP
-  leaderboardData.sort((a, b) => b.leaguePoints - a.leaguePoints);
-
   return leaderboardData;
 }
 

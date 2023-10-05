@@ -30,7 +30,7 @@ export default async function getLeaderboardData() {
     ]);
 
     // Process and combine the data from different tiers
-    const leaderboards = [
+    const sortedLeaderboards = [
       ...challengerData.entries.map((entry) => ({
         ...entry,
         tier: "challenger",
@@ -42,7 +42,17 @@ export default async function getLeaderboardData() {
       ...masterData.entries.map((entry) => ({ ...entry, tier: "master" })),
     ];
 
-    return leaderboards;
+    // Sort by tier first (Challenger > Grandmaster > Master)
+    sortedLeaderboards.sort((a, b) => {
+      if (a.tier !== b.tier) {
+        return a.tier.localeCompare(b.tier);
+      } else {
+        // If tiers are the same, sort by leaguePoints in descending order
+        return b.leaguePoints - a.leaguePoints;
+      }
+    });
+
+    return sortedLeaderboards;
   } catch (error) {
     console.error(error);
     throw new Error("An error occurred while fetching leaderboard data.");
