@@ -1,21 +1,19 @@
-"use client";
-import { useState, useEffect } from "react";
+import { use } from "react";
 import Leaderboard from "@/app/components/Leaderboards";
 import getLeaderboardData from "@/app/libs/getLeaderboardData";
 import Image from "next/image";
 
+async function getLeaderboards() {
+  const leaderboardData = await getLeaderboardData();
+
+  // Sort leaderboard results in descending order by LP
+  leaderboardData.sort((a, b) => b.leaguePoints - a.leaguePoints);
+
+  return leaderboardData;
+}
+
 export default function LeaderboardPage() {
-  const [leaderboards, setLeaderboards] = useState([]);
-
-  useEffect(() => {
-    async function fetchLeaderboards() {
-      const leaderboardData = await getLeaderboardData();
-      leaderboardData.sort((a, b) => b.leaguePoints - a.leaguePoints);
-      setLeaderboards(leaderboardData);
-    }
-
-    fetchLeaderboards();
-  }, []);
+  const leaderboards = use(getLeaderboards());
 
   return (
     <section className="px-2 pt-8 md:px-6 lg:px-6">
