@@ -4,6 +4,7 @@ import getUnitData from "@/app/libs/getUnitData";
 import getTraitsData from "@/app/libs/getTraitsData";
 import ChampionStats from "@/app/components/ChampionStats";
 import ChampionAbility from "@/app/components/ChampionAbility";
+import ChampionTraits from "@/app/components/ChampionTraits";
 
 export default async function Champion({ params: { championName } }) {
   const mutator = "TFTSet9_Stage2";
@@ -64,7 +65,9 @@ export default async function Champion({ params: { championName } }) {
                 >
                   <Image
                     className={`z-10 invert`}
-                    src={`https://raw.communitydragon.org/latest/game/${trait.icon.replace(".tex", ".png").toLowerCase()}`}
+                    src={`https://raw.communitydragon.org/latest/game/${trait.icon
+                      .replace(".tex", ".png")
+                      .toLowerCase()}`}
                     alt={trait.name}
                     height="20"
                     width="20"
@@ -75,13 +78,16 @@ export default async function Champion({ params: { championName } }) {
           </div>
         </div>
         <div>
-          <div className="md:m-w-none mx-auto mb-6 max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
+          <div className="md:m-w-none mx-auto max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
             <div className="lg:w-1/2">
               <ChampionStats selectedChampion={selectedChampion} />
             </div>
             <div className="flex lg:w-1/2">
               <ChampionAbility selectedChampion={selectedChampion} />
             </div>
+          </div>
+          <div className="md:m-w-none mx-auto mb-6 max-w-lg pb-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
+            <ChampionTraits traits={traits} />
           </div>
         </div>
       </section>
