@@ -38,6 +38,12 @@ export default async function Champion({ params: { championName } }) {
       costColor = "five-costChamp";
     }
 
+    const unitsWithMatchingTraits = unitData.filter((unit) =>
+      unit.traits.some((unitTrait) => traitNames.includes(unitTrait))
+    );
+
+    console.log(unitsWithMatchingTraits);
+
     return (
       <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
         <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
@@ -87,7 +93,7 @@ export default async function Champion({ params: { championName } }) {
             </div>
           </div>
           <div className="md:m-w-none mx-auto mb-6 max-w-lg pb-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
-            <ChampionTraits traits={traits} />
+            <ChampionTraits traits={traits} units={unitsWithMatchingTraits}/>
           </div>
         </div>
       </section>
