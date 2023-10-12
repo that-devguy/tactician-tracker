@@ -27,6 +27,7 @@ export default function ChampionTraits({ traits, units }) {
                 <div className="flex flex-wrap gap-2">
                   {units
                     .filter((unit) => unit.traits.includes(trait.name))
+                    .sort((a, b) => a.cost - b.cost)
                     .map((unit) => {
                       let costColor = "";
 
