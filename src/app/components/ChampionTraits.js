@@ -26,7 +26,8 @@ export default function ChampionTraits({ traits, units }) {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {units
-                    .filter((unit) => unit.traits.includes(trait.name))
+                    .filter((unit) => unit.traits.includes(trait.name) &&
+                    !/^TFT9_Ryze.+/.test(unit.apiName))
                     .sort((a, b) => a.cost - b.cost)
                     .map((unit) => {
                       let costColor = "";
