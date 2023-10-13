@@ -23,6 +23,7 @@ export default async function Champion({ params: { championName } }) {
     console.log(traits);
 
     const icon = selectedChampion.icon.replace(".tex", ".png");
+    const bg = selectedChampion.bg.replace(".tex", ".png");
 
     let costColor = "";
 
@@ -46,7 +47,8 @@ export default async function Champion({ params: { championName } }) {
 
     return (
       <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
-        <div className="profile-headerCard flex flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
+        <div className="profile-headerCard flex w-full flex-col items-center gap-1 p-2 md:flex-row md:gap-5 md:p-4">
+          <div></div>
           <div className="flex flex-col justify-center py-2">
             <Image
               className={`select-none rounded-full border-4 border-transparent ${costColor}`}
@@ -82,6 +84,13 @@ export default async function Champion({ params: { championName } }) {
               ))}
             </div>
           </div>
+          <Image
+            className={`select none`}
+            src={`https://raw.communitydragon.org/latest/game/${bg.toLowerCase()}`}
+            alt={selectedChampion.name}
+            height="128"
+            width="256"
+          />
         </div>
         <div>
           <div className="md:m-w-none mx-auto max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
@@ -93,7 +102,7 @@ export default async function Champion({ params: { championName } }) {
             </div>
           </div>
           <div className="md:m-w-none mx-auto mb-6 max-w-lg pb-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
-            <ChampionTraits traits={traits} units={unitsWithMatchingTraits}/>
+            <ChampionTraits traits={traits} units={unitsWithMatchingTraits} />
           </div>
         </div>
       </section>

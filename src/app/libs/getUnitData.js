@@ -24,6 +24,7 @@ const getUnitData = async (mutator) => {
       stats: champion.stats,
       ability: champion.ability,
       icon: champion.tileIcon,
+      bg: champion.squareIcon,
     }));
 
     return champions;
