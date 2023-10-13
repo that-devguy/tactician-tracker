@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ChampionTraits({ traits, units }) {
   return (
@@ -26,8 +27,11 @@ export default function ChampionTraits({ traits, units }) {
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {units
-                    .filter((unit) => unit.traits.includes(trait.name) &&
-                    !/^TFT9_Ryze.+/.test(unit.apiName))
+                    .filter(
+                      (unit) =>
+                        unit.traits.includes(trait.name) &&
+                        !/^TFT9_Ryze.+/.test(unit.apiName)
+                    )
                     .sort((a, b) => a.cost - b.cost)
                     .map((unit) => {
                       let costColor = "";
@@ -47,8 +51,9 @@ export default function ChampionTraits({ traits, units }) {
                       }
 
                       return (
-                        <div
+                        <Link
                           key={unit.apiName}
+                          href={`/champions/${unit.name.toLowerCase()}`}
                           className="my-1 w-11 flex-col items-center justify-center md:w-12"
                         >
                           <Image
@@ -63,7 +68,7 @@ export default function ChampionTraits({ traits, units }) {
                           <p className="hidden truncate text-center text-xs md:block">
                             {unit.name}
                           </p>
-                        </div>
+                        </Link>
                       );
                     })}
                 </div>
