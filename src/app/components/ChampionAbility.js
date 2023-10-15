@@ -1,7 +1,62 @@
 import Image from "next/image";
 
+const spellLevel = 1;
+
+function resolveSpellDescription(spell, spellLevel) {
+  let resolvedDescription = spell.desc;
+
+  const variablePattern = /@([^@]+)@/g;
+
+  let match;
+  while ((match = variablePattern.exec(spell.desc)) !== null) {
+    const variableName = match[1];
+    let resolvedValue = null;
+
+    const namedDataValue = spell.variables.find(
+      (variable) => variable.name === variableName
+    );
+    if (namedDataValue) {
+      resolvedValue = namedDataValue.value[spellLevel];
+    }
+
+    // Check if the variable is a spell calculation
+    if (!resolvedValue) {
+      const spellCalculation = findSpellCalculationByName(spell, variableName);
+      if (spellCalculation) {
+        resolvedValue = resolveSpellCalculation(spellCalculation, spellLevel);
+      }
+    }
+
+    if (resolvedValue !== null) {
+      resolvedDescription = resolvedDescription.replace(
+        `@${variableName}@`,
+        resolvedValue
+      );
+    }
+  }
+
+  return resolvedDescription;
+}
+
+function findSpellCalculationByName(spell, variableName) {
+  // Implement logic to find the spell calculation by name in the spell object
+  // You'll need to examine the spell's structure to locate the correct calculation
+  // and return it as an object.
+}
+
+function resolveSpellCalculation(calculation, spellLevel) {
+  // Implement the logic to resolve the spell calculation
+  // Handle the various calculation parts and operations involved.
+  // Return the final resolved value.
+}
+
 export default function ChampionAbility({ selectedChampion }) {
   const abilityIcon = selectedChampion.ability.icon.replace(".dds", ".png");
+  console.log(selectedChampion.ability, selectedChampion.ability.variables);
+  const resolvedDescription = resolveSpellDescription(
+    selectedChampion.ability,
+    spellLevel
+  );
 
   return (
     <div className="mx-auto mb-2 flex max-w-lg flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
@@ -21,7 +76,7 @@ export default function ChampionAbility({ selectedChampion }) {
                 {selectedChampion.ability.name}
               </p>
               <p className="text-xs text-white/50 lg:pr-5 lg:text-sm">
-                {selectedChampion.ability.desc}
+                {resolvedDescription}
               </p>
             </div>
             <p className="text-sm text-brand-main">

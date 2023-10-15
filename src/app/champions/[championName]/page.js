@@ -14,13 +14,11 @@ export default async function Champion({ params: { championName } }) {
   const selectedChampion = unitData.find(
     (champion) => champion.name.toLowerCase() === championName
   );
-  console.log(selectedChampion);
 
   if (selectedChampion) {
     const traitNames = selectedChampion.traits || [];
 
     const traits = traitData.filter((trait) => traitNames.includes(trait.name));
-    console.log(traits);
 
     const icon = selectedChampion.icon.replace(".tex", ".png");
     const bg = selectedChampion.bg.replace(".tex", ".png");
@@ -42,8 +40,6 @@ export default async function Champion({ params: { championName } }) {
     const unitsWithMatchingTraits = unitData.filter((unit) =>
       unit.traits.some((unitTrait) => traitNames.includes(unitTrait))
     );
-
-    console.log(unitsWithMatchingTraits);
 
     return (
       <section className="mx-auto max-w-7xl px-2 pt-4 text-lg md:px-10 md:pt-8">
