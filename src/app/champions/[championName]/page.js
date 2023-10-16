@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
 import getTraitsData from "@/app/libs/getTraitsData";
 import ChampionStats from "@/app/components/ChampionStats";
@@ -11,6 +10,7 @@ export default async function Champion({ params: { championName } }) {
   const unitData = await getUnitData(mutator);
   const traitData = await getTraitsData(mutator);
   console.log(championName);
+  championName = championName.replace(/%20/g, " ");
   const selectedChampion = unitData.find(
     (champion) => champion.name.toLowerCase() === championName
   );
@@ -21,7 +21,6 @@ export default async function Champion({ params: { championName } }) {
     const traits = traitData.filter((trait) => traitNames.includes(trait.name));
 
     const icon = selectedChampion.icon.replace(".tex", ".png");
-    const bg = selectedChampion.bg.replace(".tex", ".png");
 
     let costColor = "";
 
@@ -80,13 +79,6 @@ export default async function Champion({ params: { championName } }) {
               ))}
             </div>
           </div>
-          {/* <Image
-            className={`select none`}
-            src={`https://raw.communitydragon.org/latest/game/${bg.toLowerCase()}`}
-            alt={selectedChampion.name}
-            height="128"
-            width="256"
-          /> */}
         </div>
         <div>
           <div className="md:m-w-none mx-auto max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">

@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-function resolveVariables(text, variables) {
-  return text.replace(/@(\w+)@/g, (match, variableName) => {
+function resolveVariables(abilityDesc, variables) {
+  return abilityDesc.replace(/@(\w+)@/g, (match, variableName) => {
     const variable = variables.find((v) => v.name === variableName);
     if (variable) {
       return variable.value[1];
@@ -40,9 +40,6 @@ export default function ChampionAbility({ selectedChampion }) {
                 {resolvedDesc}
               </p>
             </div>
-            <p className="text-sm text-brand-main">
-              Damage: 275% / 275% / 2500%
-            </p>
           </div>
         </div>
       </div>
