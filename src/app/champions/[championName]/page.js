@@ -80,13 +80,13 @@ export default async function Champion({ params: { championName } }) {
               ))}
             </div>
           </div>
-          <Image
+          {/* <Image
             className={`select none`}
             src={`https://raw.communitydragon.org/latest/game/${bg.toLowerCase()}`}
             alt={selectedChampion.name}
             height="128"
             width="256"
-          />
+          /> */}
         </div>
         <div>
           <div className="md:m-w-none mx-auto max-w-lg py-3 md:mx-0 md:w-8/12 md:px-2 lg:flex lg:w-full lg:max-w-7xl lg:gap-10">
