@@ -1,7 +1,23 @@
 import Image from "next/image";
 
+function resolveVariables(abilityDesc, variables) {
+  return abilityDesc.replace(/@(\w+)@/g, (match, variableName) => {
+    const variable = variables.find((v) => v.name === variableName);
+    if (variable) {
+      return variable.value[1];
+    }
+    return match;
+  });
+}
+
 export default function ChampionAbility({ selectedChampion }) {
   const abilityIcon = selectedChampion.ability.icon.replace(".dds", ".png");
+  console.log(selectedChampion.ability, selectedChampion.ability.variables);
+
+  const resolvedDesc = resolveVariables(
+    selectedChampion.ability.desc,
+    selectedChampion.ability.variables
+  );
 
   return (
     <div className="mx-auto mb-2 flex max-w-lg flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
@@ -21,12 +37,9 @@ export default function ChampionAbility({ selectedChampion }) {
                 {selectedChampion.ability.name}
               </p>
               <p className="text-xs text-white/50 lg:pr-5 lg:text-sm">
-                {selectedChampion.ability.desc}
+                {resolvedDesc}
               </p>
             </div>
-            <p className="text-sm text-brand-main">
-              Damage: 275% / 275% / 2500%
-            </p>
           </div>
         </div>
       </div>
