@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
 import getTraitsData from "@/app/libs/getTraitsData";
+import CostFilter from "@/app/components/CostFilter";
 
 export default function Champions() {
   const [unitData, setUnitData] = useState([]);
-  const [sortChoice, setSortChoice] = useState("name"); // 'name' or 'cost'
   const mutator = "TFTSet9_Stage2";
+  const [selectedCost, setSelectedCost] = useState("all");
 
   useEffect(() => {
     async function fetchData() {
@@ -18,20 +19,28 @@ export default function Champions() {
 
     fetchData();
   }, []);
-  const filteredUnits = unitData.filter(
-    (champion) =>
-      champion.cost < 6 &&
-      champion.name !== "Voidspawn" &&
-      champion.name !== "Target Dummy" &&
-      !/^TFT9_Ryze.+/.test(champion.apiName)
-  );
+  const filteredUnits = unitData
+    .filter(
+      (champion) =>
+        champion.cost < 6 &&
+        champion.name !== "Voidspawn" &&
+        champion.name !== "Target Dummy" &&
+        !/^TFT9_Ryze.+/.test(champion.apiName)
+    )
+    .filter(
+      (champion) =>
+        selectedCost === "all" || champion.cost.toString() === selectedCost
+    );
 
   const units = filteredUnits.sort((a, b) => a.name.localeCompare(b.name));
 
-  // Sort based on user choice
+  const handleCostChange = (value) => {
+    setSelectedCost(value);
+    console.log(selectedCost);
+  };
 
   return (
-    <section className="px-2 pt-8 md:px-6 lg:px-6">
+    <section className="select-none px-2 pt-8 md:px-6 lg:px-6">
       <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
         <div className="flex flex-col justify-center px-4 py-2 md:p-4">
           <h3 className="text-xl font-black sm:text-2xl md:text-3xl">
@@ -41,8 +50,8 @@ export default function Champions() {
             Explore a database of all the Champions in the current set.
           </p>
           <p className="hidden text-xs text-white sm:block md:text-sm">
-            Explore a database of all the Champions in the current set: their origins,
-            classes, and costs
+            Explore a database of all the Champions in the current set: their
+            origins, classes, and costs
           </p>
         </div>
         <Image
@@ -60,7 +69,12 @@ export default function Champions() {
               <p className="pb-2 text-sm font-semibold">Filters</p>
               <p className="pb-2 text-sm">Reset</p>
             </div>
-            <div className="flex h-full gap-4 pt-3"></div>
+            <div className="flex h-full gap-4 pt-3">
+              <CostFilter
+                selectedCost={selectedCost}
+                onCostChange={handleCostChange}
+              />
+            </div>
           </div>
         </div>
         <div className="mx-auto flex flex-wrap justify-center gap-6 lg:w-2/3 lg:justify-start">
@@ -80,7 +94,7 @@ export default function Champions() {
             }
 
             const icon = champion.icon.replace(".tex", ".png");
-            
+
             return (
               <Link
                 href={`/champions/${champion.name.toLowerCase()}`}

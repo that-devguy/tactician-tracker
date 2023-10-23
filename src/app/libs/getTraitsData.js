@@ -22,6 +22,7 @@ const getTraitsData = async (mutator) => {
       apiName: trait.apiName,
       name: trait.name,
       icon: trait.icon,
+      desc: trait.desc,
     }));
 
     return traits;
