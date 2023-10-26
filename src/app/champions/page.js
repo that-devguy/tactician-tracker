@@ -5,11 +5,15 @@ import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
 import getTraitsData from "@/app/libs/getTraitsData";
 import CostFilter from "@/app/components/CostFilter";
+import OriginFilter from "@/app/components/OriginFilter";
+import ClassFilter from "@/app/components/ClassFilter";
 
 export default function Champions() {
   const [unitData, setUnitData] = useState([]);
   const mutator = "TFTSet9_Stage2";
   const [selectedCost, setSelectedCost] = useState("all");
+  const [selectedOrigin, setSelectedOrigin] = useState("all");
+  const [selectedClass, setSelectedClass] = useState("all");
 
   useEffect(() => {
     async function fetchData() {
@@ -30,13 +34,37 @@ export default function Champions() {
     .filter(
       (champion) =>
         selectedCost === "all" || champion.cost.toString() === selectedCost
-    );
+    )
+    .filter((champion) => {
+      if (selectedOrigin === "all") {
+        return true;
+      } else {
+        return champion.traits.some((trait) => trait === selectedOrigin);
+      }
+    })
+    .filter((champion) => {
+      if (selectedClass === "all") {
+        return true;
+      } else {
+        return champion.traits.some((trait) => trait === selectedClass);
+      }
+    });
 
   const units = filteredUnits.sort((a, b) => a.name.localeCompare(b.name));
 
   const handleCostChange = (value) => {
     setSelectedCost(value);
     console.log(selectedCost);
+  };
+
+  const handleOriginChange = (value) => {
+    setSelectedOrigin(value);
+    console.log(selectedOrigin);
+  };
+
+  const handleClassChange = (value) => {
+    setSelectedClass(value);
+    console.log(selectedClass);
   };
 
   return (
@@ -69,10 +97,18 @@ export default function Champions() {
               <p className="pb-2 text-sm font-semibold">Filters</p>
               <p className="pb-2 text-sm">Reset</p>
             </div>
-            <div className="flex h-full gap-4 pt-3">
+            <div className="flex h-full flex-col gap-4 pt-3">
               <CostFilter
                 selectedCost={selectedCost}
                 onCostChange={handleCostChange}
+              />
+              <OriginFilter
+                selectedOrigin={selectedOrigin}
+                onOriginChange={handleOriginChange}
+              />
+              <ClassFilter
+                selectedClass={selectedClass}
+                onClassChange={handleClassChange}
               />
             </div>
           </div>
@@ -94,6 +130,7 @@ export default function Champions() {
             }
 
             const icon = champion.icon.replace(".tex", ".png");
+            console.log(champion);
 
             return (
               <Link
