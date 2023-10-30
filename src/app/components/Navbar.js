@@ -10,6 +10,8 @@ import {
   faHouse,
   faTrophy,
   faLayerGroup,
+  faChevronDown,
+  faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
@@ -187,14 +189,41 @@ export default function Navbar() {
             <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
-          <div className="flex h-10 items-center gap-4 px-5 text-white/30">
+          <div
+            onClick=""
+            className={`flex h-10 items-center gap-4 px-5 ${
+              currentRoute === "/database"
+                ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
+                : ""
+            }`}
+          >
             <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
             <p className="flex gap-1">
               Database
               <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
-                COMING SOON
+                NEW
               </span>
+              <FontAwesomeIcon className="h-4 w-8 my-auto" icon={faChevronDown} />
+              <FontAwesomeIcon className="h-4 w-8 my-auto" icon={faChevronUp} />
             </p>
+          </div>
+          <div className="">
+            <div className={`flex h-10 items-center gap-4 px-14`}>
+              <p className="flex gap-1">
+                Champions
+                <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
+                  NEW
+                </span>
+              </p>
+            </div>
+            <div className={`flex h-10 items-center gap-4 px-14`}>
+              <p className="flex gap-1 text-white/50">
+                Items
+                <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
+                  COMING SOON
+                </span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
