@@ -67,6 +67,12 @@ export default function Champions() {
     console.log(selectedClass);
   };
 
+  const handleReset = () => {
+    setSelectedCost("all");
+    setSelectedOrigin("all");
+    setSelectedClass("all");
+  }
+
   return (
     <section className="select-none px-2 pt-8 md:px-6 lg:px-6">
       <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
@@ -95,7 +101,7 @@ export default function Champions() {
           <div className="flex h-full w-full flex-col divide-y divide-brand-bg3">
             <div className="flex justify-between px-1">
               <p className="pb-2 text-sm font-semibold">Filters</p>
-              <p className="pb-2 text-sm">Reset</p>
+              <button className="pb-2 text-sm hover:text-brand-main" onClick={handleReset}>Reset</button>
             </div>
             <div className="flex h-full flex-col gap-4 pt-3">
               <CostFilter
