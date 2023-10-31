@@ -32,6 +32,7 @@ export default function Navbar() {
   const closeMenu = () => {
     setNav(false);
     setMobileDatabaseDropdown(false);
+    setDatabaseDropdown(false);
   };
 
   const handleMobileDatabaseDropdown = () => {
@@ -151,7 +152,9 @@ export default function Navbar() {
         </Link>
         <p
           onClick={handleDatabaseDropdown}
-          className="flex select-none gap-1 hover:text-white hover:cursor-pointer"
+          className={`flex select-none gap-1 hover:cursor-pointer hover:text-white ${
+            databaseDropdown ? "text-white" : ""
+          }`}
         >
           Database
           <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
@@ -166,6 +169,26 @@ export default function Navbar() {
             icon={faChevronUp}
           />
         </p>
+        <div
+          className={`absolute right-10 top-12 z-50 py-4 bg-brand-bg2 rounded-md ${
+            databaseDropdown ? "" : "hidden"
+          }`}
+        >
+          <Link
+            href="/champions"
+            onClick={closeMenu}
+            className={`flex h-8 items-center gap-4 pl-20 pr-4 hover:text-white`}
+          >
+            <p className="ml-auto flex gap-1">Champions</p>
+          </Link>
+          <Link
+            href="/"
+            onClick={closeMenu}
+            className={`flex h-8 items-center gap-4 pl-20 pr-4`}
+          >
+            <p className="ml-auto flex gap-1 text-white/50">Items</p>
+          </Link>
+        </div>
       </div>
 
       {/* Mobile Navbar */}
@@ -239,18 +262,14 @@ export default function Navbar() {
               onClick={closeMenu}
               className={`flex h-10 items-center gap-4 px-14`}
             >
-              <p className="flex gap-1">
-                Champions
-              </p>
+              <p className="flex gap-1">Champions</p>
             </Link>
             <Link
               href="/"
               onClick={closeMenu}
               className={`flex h-10 items-center gap-4 px-14`}
             >
-              <p className="flex gap-1 text-white/50">
-                Items
-              </p>
+              <p className="flex gap-1 text-white/50">Items</p>
             </Link>
           </div>
         </div>
