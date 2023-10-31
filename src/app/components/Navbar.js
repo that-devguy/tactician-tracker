@@ -16,6 +16,7 @@ import {
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
+  const [mobileDatabaseDropdown, setMobileDatabaseDropdown] = useState(false);
   const [databaseDropdown, setDatabaseDropdown] = useState(false);
   const [scrollBackground, setScrollBackground] = useState(false);
   const menuRef = useRef(null);
@@ -30,7 +31,11 @@ export default function Navbar() {
   // Function to close navbar
   const closeMenu = () => {
     setNav(false);
-    setDatabaseDropdown(false);
+    setMobileDatabaseDropdown(false);
+  };
+
+  const handleMobileDatabaseDropdown = () => {
+    setMobileDatabaseDropdown(!mobileDatabaseDropdown);
   };
 
   const handleDatabaseDropdown = () => {
@@ -66,6 +71,7 @@ export default function Navbar() {
         return;
       }
       setNav(false);
+      setMobileDatabaseDropdown(false);
     };
 
     // Function for updating scrollBackground
@@ -73,6 +79,7 @@ export default function Navbar() {
       if (window.scrollY > 0) {
         setScrollBackground(true);
         setNav(false);
+        setMobileDatabaseDropdown(false);
       } else {
         setScrollBackground(false);
       }
@@ -89,19 +96,6 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const redirectToPath = (path) => {
-    if (typeof window !== "undefined") {
-      window.location.href = path;
-    }
-  };
-
-  const urlCheck = (url) => {
-    if (typeof window !== "undefined" && window.location.pathname === url) {
-      return true;
-    }
-    return false;
-  };
 
   return (
     <nav
@@ -155,7 +149,23 @@ export default function Navbar() {
         >
           Leaderboards
         </Link>
-        <p className="select-none px-3">Database</p>
+        <p
+          onClick={handleDatabaseDropdown}
+          className="flex select-none gap-1 hover:text-white hover:cursor-pointer"
+        >
+          Database
+          <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
+            NEW
+          </span>
+          <FontAwesomeIcon
+            className={`my-auto h-4 w-8 ${databaseDropdown ? "hidden" : ""}`}
+            icon={faChevronDown}
+          />
+          <FontAwesomeIcon
+            className={`my-auto h-4 w-8 ${databaseDropdown ? "" : "hidden"}`}
+            icon={faChevronUp}
+          />
+        </p>
       </div>
 
       {/* Mobile Navbar */}
@@ -196,7 +206,7 @@ export default function Navbar() {
             Leaderboards
           </Link>
           <div
-            onClick={handleDatabaseDropdown}
+            onClick={handleMobileDatabaseDropdown}
             className={`flex h-10 items-center gap-4 px-5 ${
               currentRoute === "/champions" || currentRoute === "/items"
                 ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
@@ -211,19 +221,19 @@ export default function Navbar() {
               </span>
               <FontAwesomeIcon
                 className={`my-auto h-4 w-8 ${
-                  databaseDropdown ? "hidden" : ""
+                  mobileDatabaseDropdown ? "hidden" : ""
                 }`}
                 icon={faChevronDown}
               />
               <FontAwesomeIcon
                 className={`my-auto h-4 w-8 ${
-                  databaseDropdown ? "" : "hidden"
+                  mobileDatabaseDropdown ? "" : "hidden"
                 }`}
                 icon={faChevronUp}
               />
             </p>
           </div>
-          <div className={`${databaseDropdown ? "" : "hidden"}`}>
+          <div className={`${mobileDatabaseDropdown ? "" : "hidden"}`}>
             <Link
               href="/champions"
               onClick={closeMenu}
@@ -231,9 +241,6 @@ export default function Navbar() {
             >
               <p className="flex gap-1">
                 Champions
-                <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
-                  NEW
-                </span>
               </p>
             </Link>
             <Link
@@ -243,9 +250,6 @@ export default function Navbar() {
             >
               <p className="flex gap-1 text-white/50">
                 Items
-                <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
-                  COMING SOON
-                </span>
               </p>
             </Link>
           </div>
