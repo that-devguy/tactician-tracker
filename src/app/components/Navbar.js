@@ -10,10 +10,15 @@ import {
   faHouse,
   faTrophy,
   faLayerGroup,
+  faChevronDown,
+  faChevronUp,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
   const [nav, setNav] = useState(false);
+  const [mobileDatabaseDropdown, setMobileDatabaseDropdown] = useState(false);
+  const [databaseDropdown, setDatabaseDropdown] = useState(false);
   const [scrollBackground, setScrollBackground] = useState(false);
   const menuRef = useRef(null);
   const navbarRef = useRef(null);
@@ -27,6 +32,16 @@ export default function Navbar() {
   // Function to close navbar
   const closeMenu = () => {
     setNav(false);
+    setMobileDatabaseDropdown(false);
+    setDatabaseDropdown(false);
+  };
+
+  const handleMobileDatabaseDropdown = () => {
+    setMobileDatabaseDropdown(!mobileDatabaseDropdown);
+  };
+
+  const handleDatabaseDropdown = () => {
+    setDatabaseDropdown(!databaseDropdown);
   };
 
   // Function to scroll to top
@@ -58,6 +73,8 @@ export default function Navbar() {
         return;
       }
       setNav(false);
+      setMobileDatabaseDropdown(false);
+      setDatabaseDropdown(false);
     };
 
     // Function for updating scrollBackground
@@ -65,6 +82,8 @@ export default function Navbar() {
       if (window.scrollY > 0) {
         setScrollBackground(true);
         setNav(false);
+        setMobileDatabaseDropdown(false);
+        setDatabaseDropdown(false);
       } else {
         setScrollBackground(false);
       }
@@ -82,26 +101,17 @@ export default function Navbar() {
     };
   }, []);
 
-  const redirectToPath = (path) => {
-    if (typeof window !== "undefined") {
-      window.location.href = path;
-    }
-  };
-
-  const urlCheck = (url) => {
-    if (typeof window !== "undefined" && window.location.pathname === url) {
-      return true;
-    }
-    return false;
-  };
-
   return (
     <nav
       ref={navbarRef}
       className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 md:px-6 lg:px-10"
     >
       <div className="navLogo-container flex items-center gap-5">
-        <Link href="/" className="flex gap-2 px-2 text-lg font-bold">
+        <Link
+          href="/"
+          onClick={closeMenu}
+          className="flex gap-2 px-2 text-lg font-bold"
+        >
           Tactician Tracker
           <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
             BETA
@@ -129,6 +139,7 @@ export default function Navbar() {
       <div className="navLinks-container hidden h-full text-white/50 md:flex md:items-center">
         <Link
           href="/"
+          onClick={closeMenu}
           className={`flex h-full items-center px-3 hover:text-white ${
             currentRoute === "/"
               ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
@@ -139,6 +150,7 @@ export default function Navbar() {
         </Link>
         <Link
           href="/leaderboards"
+          onClick={closeMenu}
           className={`flex h-full items-center px-3 hover:text-white ${
             currentRoute === "/leaderboards"
               ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
@@ -147,7 +159,79 @@ export default function Navbar() {
         >
           Leaderboards
         </Link>
-        <p className="select-none px-3">Database</p>
+        <p
+          onClick={handleDatabaseDropdown}
+          className={`flex h-full select-none items-center gap-1 px-3 hover:cursor-pointer hover:text-white ${
+            databaseDropdown ? "text-white" : ""
+          }
+          ${
+            currentRoute === "/champions" || currentRoute === "/items"
+              ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
+              : ""
+          }`}
+        >
+          Database
+          <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
+            NEW
+          </span>
+          <FontAwesomeIcon
+            className={`my-auto h-4 w-4 pl-1 ${
+              databaseDropdown ? "hidden" : ""
+            }`}
+            icon={faChevronDown}
+          />
+          <FontAwesomeIcon
+            className={`my-auto h-4 w-4 pl-1 ${
+              databaseDropdown ? "" : "hidden"
+            }`}
+            icon={faChevronUp}
+          />
+        </p>
+        <div
+          className={`absolute lg:right-10 right-6 top-16 z-50 w-[152px] divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg ${
+            databaseDropdown ? "" : "hidden"
+          }`}
+        >
+          <Link
+            href="/champions"
+            onClick={closeMenu}
+            className={`flex h-14 items-center gap-4 pl-3 hover:text-white`}
+          >
+            <p
+              className={`flex gap-2 ${
+                currentRoute === "/champions" ? "text-white" : ""
+              }`}
+            >
+              Champions
+              <FontAwesomeIcon
+                className={`my-auto h-3 w-3 text-brand-secondary ${
+                  currentRoute === "/champions" ? "" : "invisible"
+                }`}
+                icon={faChevronLeft}
+              />
+            </p>
+          </Link>
+          <Link
+            href="/"
+            onClick={closeMenu}
+            className={`flex h-14 items-center gap-4 pl-3 hover:cursor-default`}
+          >
+            <p
+              className={`flex gap-1 text-white/20 ${
+                currentRoute === "/items" ? "text-brand-secondary" : ""
+              }
+          `}
+            >
+              Items
+              <FontAwesomeIcon
+                className={`my-auto h-3 w-3 text-brand-secondary ${
+                  currentRoute === "/items" ? "" : "invisible"
+                }`}
+                icon={faChevronLeft}
+              />
+            </p>
+          </Link>
+        </div>
       </div>
 
       {/* Mobile Navbar */}
@@ -187,14 +271,49 @@ export default function Navbar() {
             <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
-          <div className="flex h-10 items-center gap-4 px-5 text-white/30">
+          <div
+            onClick={handleMobileDatabaseDropdown}
+            className={`flex h-10 items-center gap-4 px-5 ${
+              currentRoute === "/champions" || currentRoute === "/items"
+                ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
+                : ""
+            }`}
+          >
             <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
             <p className="flex gap-1">
               Database
               <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
-                COMING SOON
+                NEW
               </span>
+              <FontAwesomeIcon
+                className={`my-auto h-4 w-8 ${
+                  mobileDatabaseDropdown ? "hidden" : ""
+                }`}
+                icon={faChevronDown}
+              />
+              <FontAwesomeIcon
+                className={`my-auto h-4 w-8 ${
+                  mobileDatabaseDropdown ? "" : "hidden"
+                }`}
+                icon={faChevronUp}
+              />
             </p>
+          </div>
+          <div className={`${mobileDatabaseDropdown ? "" : "hidden"}`}>
+            <Link
+              href="/champions"
+              onClick={closeMenu}
+              className={`flex h-10 items-center gap-4 px-14`}
+            >
+              <p className="flex gap-1">Champions</p>
+            </Link>
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className={`flex h-10 items-center gap-4 px-14`}
+            >
+              <p className="flex gap-1 text-white/50">Items</p>
+            </Link>
           </div>
         </div>
       </div>

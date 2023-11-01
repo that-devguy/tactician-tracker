@@ -38,8 +38,7 @@ export default function Footer() {
               <Link className="flex gap-1 hover:text-white" href="/champions">
                 Champs
                 <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
-                  <p>COMING</p>
-                  <p>SOON</p>
+                  <p>NEW</p>
                 </div>
               </Link>
 
@@ -125,7 +124,7 @@ export default function Footer() {
           <Link className="flex gap-1 hover:text-white" href="/champions">
             Champions
             <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
-              COMING SOON
+              NEW
             </span>
           </Link>
           <Link className="flex gap-1 hover:text-white" href="/items">
