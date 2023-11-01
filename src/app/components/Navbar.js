@@ -73,6 +73,7 @@ export default function Navbar() {
       }
       setNav(false);
       setMobileDatabaseDropdown(false);
+      setDatabaseDropdown(false);
     };
 
     // Function for updating scrollBackground
@@ -81,6 +82,7 @@ export default function Navbar() {
         setScrollBackground(true);
         setNav(false);
         setMobileDatabaseDropdown(false);
+        setDatabaseDropdown(false);
       } else {
         setScrollBackground(false);
       }
@@ -104,7 +106,11 @@ export default function Navbar() {
       className="fixed top-0 z-[100] flex h-16 w-full flex-row items-center justify-between border-b-[0.5px] border-brand-bg2 bg-brand-bg px-2 md:px-6 lg:px-10"
     >
       <div className="navLogo-container flex items-center gap-5">
-        <Link href="/" className="flex gap-2 px-2 text-lg font-bold">
+        <Link
+          href="/"
+          onClick={closeMenu}
+          className="flex gap-2 px-2 text-lg font-bold"
+        >
           Tactician Tracker
           <span className="flex h-4 items-center justify-center rounded-[.25rem] bg-brand-secondary px-2 text-[.6rem] font-black text-brand-bg md:h-5 md:rounded-md md:text-xs">
             BETA
@@ -132,6 +138,7 @@ export default function Navbar() {
       <div className="navLinks-container hidden h-full text-white/50 md:flex md:items-center">
         <Link
           href="/"
+          onClick={closeMenu}
           className={`flex h-full items-center px-3 hover:text-white ${
             currentRoute === "/"
               ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
@@ -142,6 +149,7 @@ export default function Navbar() {
         </Link>
         <Link
           href="/leaderboards"
+          onClick={closeMenu}
           className={`flex h-full items-center px-3 hover:text-white ${
             currentRoute === "/leaderboards"
               ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
