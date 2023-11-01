@@ -175,20 +175,12 @@ export default function Navbar() {
             NEW
           </span>
           <FontAwesomeIcon
-            className={`my-auto h-4 w-4 pl-1 ${
-              databaseDropdown ? "hidden" : "flex"
-            }`}
+            className={`my-auto h-4 w-4 pl-1`}
             icon={faChevronDown}
-          />
-          <FontAwesomeIcon
-            className={`my-auto h-4 w-4 pl-1 ${
-              databaseDropdown ? "flex" : "hidden"
-            }`}
-            icon={faChevronUp}
           />
         </p>
         <div
-          className={`absolute lg:right-10 right-6 top-16 z-50 w-[152px] divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg ${
+          className={`absolute right-6 top-16 z-50 w-[152px] divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg lg:right-10 ${
             databaseDropdown ? "" : "hidden"
           }`}
         >
@@ -204,7 +196,7 @@ export default function Navbar() {
             >
               Champions
               <FontAwesomeIcon
-                className={`my-auto h-3 w-3 text-brand-secondary ${
+                className={`my-auto h-2 w-2 text-brand-secondary ${
                   currentRoute === "/champions" ? "" : "invisible"
                 }`}
                 icon={faChevronLeft}
@@ -286,16 +278,8 @@ export default function Navbar() {
                 NEW
               </span>
               <FontAwesomeIcon
-                className={`my-auto h-4 w-8 ${
-                  mobileDatabaseDropdown ? "hidden" : "flex"
-                }`}
+                className={`my-auto h-4 w-8`}
                 icon={faChevronDown}
-              />
-              <FontAwesomeIcon
-                className={`my-auto h-4 w-8 ${
-                  mobileDatabaseDropdown ? "flex" : "hidden"
-                }`}
-                icon={faChevronUp}
               />
             </p>
           </div>
@@ -305,14 +289,30 @@ export default function Navbar() {
               onClick={closeMenu}
               className={`flex h-10 items-center gap-4 px-14`}
             >
-              <p className="flex gap-1">Champions</p>
+              <p className="flex gap-3">
+                Champions
+                <FontAwesomeIcon
+                  className={`my-auto h-2 w-2 text-brand-secondary ${
+                    currentRoute === "/champions" ? "" : "invisible"
+                  }`}
+                  icon={faChevronLeft}
+                />
+              </p>
             </Link>
             <Link
               href="/"
               onClick={closeMenu}
               className={`flex h-10 items-center gap-4 px-14`}
             >
-              <p className="flex gap-1 text-white/50">Items</p>
+              <p className="flex gap-3 text-white/50">
+                Items
+                <FontAwesomeIcon
+                  className={`my-auto h-2 w-2 text-brand-secondary ${
+                    currentRoute === "/items" ? "" : "invisible"
+                  }`}
+                  icon={faChevronLeft}
+                />
+              </p>
             </Link>
           </div>
         </div>
