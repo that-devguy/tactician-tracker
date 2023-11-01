@@ -176,13 +176,13 @@ export default function Navbar() {
           </span>
           <FontAwesomeIcon
             className={`my-auto h-4 w-4 pl-1 ${
-              databaseDropdown ? "hidden" : ""
+              databaseDropdown ? "hidden" : "flex"
             }`}
             icon={faChevronDown}
           />
           <FontAwesomeIcon
             className={`my-auto h-4 w-4 pl-1 ${
-              databaseDropdown ? "" : "hidden"
+              databaseDropdown ? "flex" : "hidden"
             }`}
             icon={faChevronUp}
           />
@@ -287,13 +287,13 @@ export default function Navbar() {
               </span>
               <FontAwesomeIcon
                 className={`my-auto h-4 w-8 ${
-                  mobileDatabaseDropdown ? "hidden" : ""
+                  mobileDatabaseDropdown ? "hidden" : "flex"
                 }`}
                 icon={faChevronDown}
               />
               <FontAwesomeIcon
                 className={`my-auto h-4 w-8 ${
-                  mobileDatabaseDropdown ? "" : "hidden"
+                  mobileDatabaseDropdown ? "flex" : "hidden"
                 }`}
                 icon={faChevronUp}
               />
