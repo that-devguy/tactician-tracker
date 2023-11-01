@@ -12,6 +12,7 @@ import {
   faLayerGroup,
   faChevronDown,
   faChevronUp,
+  faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Navbar() {
@@ -174,36 +175,46 @@ export default function Navbar() {
             NEW
           </span>
           <FontAwesomeIcon
-            className={`my-auto h-4 w-5 ${databaseDropdown ? "hidden" : ""}`}
+            className={`my-auto h-4 w-4 pl-1 ${
+              databaseDropdown ? "hidden" : ""
+            }`}
             icon={faChevronDown}
           />
           <FontAwesomeIcon
-            className={`my-auto h-4 w-5 ${databaseDropdown ? "" : "hidden"}`}
+            className={`my-auto h-4 w-4 pl-1 ${
+              databaseDropdown ? "" : "hidden"
+            }`}
             icon={faChevronUp}
           />
         </p>
         <div
-          className={`absolute right-9 top-16 z-50 w-40 divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg ${
+          className={`absolute lg:right-10 right-6 top-16 z-50 w-[152px] divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg ${
             databaseDropdown ? "" : "hidden"
           }`}
         >
           <Link
             href="/champions"
             onClick={closeMenu}
-            className={`flex h-12 items-center gap-4 px-4 hover:text-white`}
+            className={`flex h-14 items-center gap-4 pl-3 hover:text-white`}
           >
             <p
-              className={`flex gap-1 ${
-                currentRoute === "/champions" ? "text-brand-secondary" : ""
+              className={`flex gap-2 ${
+                currentRoute === "/champions" ? "text-white" : ""
               }`}
             >
               Champions
+              <FontAwesomeIcon
+                className={`my-auto h-3 w-3 text-brand-secondary ${
+                  currentRoute === "/champions" ? "" : "invisible"
+                }`}
+                icon={faChevronLeft}
+              />
             </p>
           </Link>
           <Link
             href="/"
             onClick={closeMenu}
-            className={`flex h-12 items-center gap-4 px-4 hover:cursor-default`}
+            className={`flex h-14 items-center gap-4 pl-3 hover:cursor-default`}
           >
             <p
               className={`flex gap-1 text-white/20 ${
@@ -212,6 +223,12 @@ export default function Navbar() {
           `}
             >
               Items
+              <FontAwesomeIcon
+                className={`my-auto h-3 w-3 text-brand-secondary ${
+                  currentRoute === "/items" ? "" : "invisible"
+                }`}
+                icon={faChevronLeft}
+              />
             </p>
           </Link>
         </div>
