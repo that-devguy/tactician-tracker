@@ -4,6 +4,7 @@ const nextConfig = {
     unoptimized: true,
     domains: ["raw.communitydragon.org", "ddragon.leagueoflegends.com"],
   },
+  optimizeFonts: false,
 };
 
 module.exports = nextConfig;
