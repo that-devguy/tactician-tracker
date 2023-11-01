@@ -152,8 +152,13 @@ export default function Navbar() {
         </Link>
         <p
           onClick={handleDatabaseDropdown}
-          className={`flex select-none gap-1 hover:cursor-pointer hover:text-white ${
+          className={`flex h-full select-none items-center gap-1 px-3 hover:cursor-pointer hover:text-white ${
             databaseDropdown ? "text-white" : ""
+          }
+          ${
+            currentRoute === "/champions" || currentRoute === "/items"
+              ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
+              : ""
           }`}
         >
           Database
@@ -161,32 +166,45 @@ export default function Navbar() {
             NEW
           </span>
           <FontAwesomeIcon
-            className={`my-auto h-4 w-8 ${databaseDropdown ? "hidden" : ""}`}
+            className={`my-auto h-4 w-5 ${databaseDropdown ? "hidden" : ""}`}
             icon={faChevronDown}
           />
           <FontAwesomeIcon
-            className={`my-auto h-4 w-8 ${databaseDropdown ? "" : "hidden"}`}
+            className={`my-auto h-4 w-5 ${databaseDropdown ? "" : "hidden"}`}
             icon={faChevronUp}
           />
         </p>
         <div
-          className={`absolute right-10 top-12 z-50 py-4 bg-brand-bg2 rounded-md ${
+          className={`absolute right-9 top-16 z-50 w-40 divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg ${
             databaseDropdown ? "" : "hidden"
           }`}
         >
           <Link
             href="/champions"
             onClick={closeMenu}
-            className={`flex h-8 items-center gap-4 pl-20 pr-4 hover:text-white`}
+            className={`flex h-12 items-center gap-4 px-4 hover:text-white`}
           >
-            <p className="ml-auto flex gap-1">Champions</p>
+            <p
+              className={`flex gap-1 ${
+                currentRoute === "/champions" ? "text-brand-secondary" : ""
+              }`}
+            >
+              Champions
+            </p>
           </Link>
           <Link
             href="/"
             onClick={closeMenu}
-            className={`flex h-8 items-center gap-4 pl-20 pr-4`}
+            className={`flex h-12 items-center gap-4 px-4 hover:cursor-default`}
           >
-            <p className="ml-auto flex gap-1 text-white/50">Items</p>
+            <p
+              className={`flex gap-1 text-white/20 ${
+                currentRoute === "/items" ? "text-brand-secondary" : ""
+              }
+          `}
+            >
+              Items
+            </p>
           </Link>
         </div>
       </div>
