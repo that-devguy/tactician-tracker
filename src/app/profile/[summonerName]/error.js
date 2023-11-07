@@ -35,14 +35,14 @@ export default function Error({ error, reset }) {
           there are no spelling mistakes.
         </p>
         <button
-          className="mx-auto flex w-fit items-center gap-2 rounded-lg bg-brand-secondary px-6 py-1 font-bold text-brand-bg"
+          className="mx-auto flex w-fit items-center gap-2 rounded-md bg-brand-secondary px-6 py-1 font-bold text-brand-bg"
           onClick={() => window.location.reload()}
         >
           Try Again
-          <FontAwesomeIcon icon={faRefresh} className="text-brand-bg" />
+          <FontAwesomeIcon icon={faRefresh} />
         </button>
         <button
-          className="mx-auto w-fit rounded-lg bg-brand-main px-6 py-1 font-bold text-brand-bg"
+          className="mx-auto w-fit rounded-md bg-brand-main px-6 py-1 font-bold text-brand-bg"
           onClick={() => reset(GoToHomePage())}
         >
           Return to Home
