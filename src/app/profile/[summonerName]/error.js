@@ -2,6 +2,8 @@
 
 import { useEffect } from "react";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
 
 export default function Error({ error, reset }) {
   useEffect(() => {
@@ -33,10 +35,17 @@ export default function Error({ error, reset }) {
           there are no spelling mistakes.
         </p>
         <button
-          className="mx-auto w-fit rounded-lg bg-brand-main px-6 py-1 font-bold text-brand-bg"
+          className="mx-auto flex w-fit items-center gap-2 rounded-md bg-brand-secondary px-6 py-1 font-bold text-brand-bg"
+          onClick={() => window.location.reload()}
+        >
+          Try Again
+          <FontAwesomeIcon icon={faRefresh} />
+        </button>
+        <button
+          className="mx-auto w-fit rounded-md bg-brand-main px-6 py-1 font-bold text-brand-bg"
           onClick={() => reset(GoToHomePage())}
         >
-          Try again
+          Return to Home
         </button>
       </div>
     </div>
