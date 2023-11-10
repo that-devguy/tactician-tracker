@@ -9,10 +9,10 @@ export default function Items() {
             ITEMS
           </h3>
           <p className="text-xs text-white sm:hidden">
-            Explore a database of all the Items in Set 9.
+            Explore a database of all the Items in the current set.
           </p>
           <p className="hidden text-xs text-white sm:block md:text-sm">
-          Explore a database of all the Items in Set 9 and their recipes.
+          Explore a database of all the Items in the current set and their recipes.
           </p>
         </div>
         <Image

@@ -2,7 +2,7 @@ const getUnitData = async (mutator) => {
   try {
     const res = await fetch(
       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
-      { next: { revalidate: 3600 } }
+      { next: { revalidate: 14400 } }
     );
     const cdData = await res.json();
 
