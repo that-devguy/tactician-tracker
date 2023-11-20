@@ -2,7 +2,9 @@ const getUnitData = async (mutator) => {
   try {
     const res = await fetch(
       `https://raw.communitydragon.org/latest/cdragon/tft/en_us.json`,
-      { next: { revalidate: 3600 } }
+      {
+        cache: "no-store",
+      }
     );
     const cdData = await res.json();
 
