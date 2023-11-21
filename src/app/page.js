@@ -89,12 +89,10 @@ export default function Home() {
               Discover the top 10 summoners NA.
             </p>
           </div>
-          <Image
-            src="/yasuo_dragonmancer_banner.png"
-            height="200"
-            width="200"
+          <img
+            src="yasuo_dragonmancer_banner.png"
             alt="Dragonmancer Yasuo Chibi"
-            className="h-fill select-none overflow-hidden rounded-lg"
+            className="w-64 select-none overflow-hidden rounded-lg"
           />
         </div>
         <div>
