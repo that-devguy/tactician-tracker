@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import HeroBanner from "@/app/components/HeroBanner";
+import Image from "next/image";
 import Top10 from "@/app/components/Top10Leaderboard";
 
 export default function Home() {
@@ -88,10 +89,12 @@ export default function Home() {
               Discover the top 10 summoners NA.
             </p>
           </div>
-          <img
-            src="yasuo_dragonmancer_banner.png"
+          <Image
+            src="/yasuo_dragonmancer_banner.png"
+            height="200"
+            width="200"
             alt="Dragonmancer Yasuo Chibi"
-            className="w-64 select-none overflow-hidden rounded-lg"
+            className="h-fill select-none overflow-hidden rounded-lg"
           />
         </div>
         <div>
