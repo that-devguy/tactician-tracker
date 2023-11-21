@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import HeroBanner from "@/app/components/HeroBanner";
-import Image from "next/image";
 import Top10 from "@/app/components/Top10Leaderboard";
 
 export default function Home() {
