@@ -10,7 +10,7 @@ import ClassFilter from "@/app/components/ClassFilter";
 
 export default function Champions() {
   const [unitData, setUnitData] = useState([]);
-  const mutator = "TFTSet9_Stage2";
+  const mutator = "TFTSet10";
   const [selectedCost, setSelectedCost] = useState("all");
   const [selectedOrigin, setSelectedOrigin] = useState("all");
   const [selectedClass, setSelectedClass] = useState("all");
@@ -29,7 +29,8 @@ export default function Champions() {
         champion.cost < 6 &&
         champion.name !== "Voidspawn" &&
         champion.name !== "Target Dummy" &&
-        !/^TFT9_Ryze.+/.test(champion.apiName)
+        !/^TFT9_Ryze.+/.test(champion.apiName) &&
+        champion.apiName !== "TFT10_Akali"
     )
     .filter(
       (champion) =>
@@ -71,7 +72,7 @@ export default function Champions() {
     setSelectedCost("all");
     setSelectedOrigin("all");
     setSelectedClass("all");
-  }
+  };
 
   return (
     <section className="select-none px-2 pt-8 md:px-6 lg:px-6">
@@ -101,7 +102,12 @@ export default function Champions() {
           <div className="flex h-full w-full flex-col divide-y divide-brand-bg3">
             <div className="flex justify-between px-1">
               <p className="pb-2 text-sm font-semibold">Filters</p>
-              <button className="pb-2 text-sm hover:text-brand-main" onClick={handleReset}>Reset</button>
+              <button
+                className="pb-2 text-sm hover:text-brand-main"
+                onClick={handleReset}
+              >
+                Reset
+              </button>
             </div>
             <div className="flex h-full flex-col gap-4 pt-3">
               <CostFilter
@@ -135,7 +141,9 @@ export default function Champions() {
               costColor = "five-cost";
             }
 
-            const icon = champion.icon.replace(".tex", ".png");
+            const icon = champion.icon
+              .replace(".tex", ".png")
+              .replace(".dds", ".png");
             console.log(champion);
 
             return (

@@ -32,6 +32,7 @@ export default function Home() {
               New TFT Set 10, Remix Rumble, is now LIVE! Check out new
               Champions, Synergies, Items, and more.
             </p>
+            <p className="text-xs font-semibold mt-2">NOV 21, 2023</p>
           </div>
         </div>
         <Link
