@@ -17,16 +17,16 @@ function ClassFilter({ selectedClass, onClassChange }) {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">Any Class</SelectItem>
-          <SelectItem value="Bastion">
+          <SelectItem value="Big Shot">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_bastion.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_bigshot.tft_set10.png"
                 className="select-none"
-                alt="Bastion Icon"
+                alt="Big Shot Icon"
                 height="18"
                 width="18"
               />
-              Bastion
+              Big Shot
             </div>
           </SelectItem>
           <SelectItem value="Bruiser">
@@ -41,160 +41,124 @@ function ClassFilter({ selectedClass, onClassChange }) {
               Bruiser
             </div>
           </SelectItem>
-          <SelectItem value="Challenger">
+          <SelectItem value="Crowd Diver">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_6_challenger.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_crowddiver.tft_set10.png"
                 className="select-none"
-                alt="Challenger Icon"
+                alt="Crowd Diver Icon"
                 height="18"
                 width="18"
               />
-              Challenger
+              Crowd Diver
             </div>
           </SelectItem>
-          <SelectItem value="Empress">
+          <SelectItem value="Dazzler">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_empress.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_4_dazzler.png"
                 className="select-none"
-                alt="Empress Icon"
+                alt="Dazzler Icon"
                 height="18"
                 width="18"
               />
-              Empress
+              Dazzler
             </div>
           </SelectItem>
-          <SelectItem value="Gunner">
+          <SelectItem value="Edgelord">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_gunner.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_edgelord.tft_set10.png"
                 className="select-none"
-                alt="Gunner Icon"
+                alt="Edgelord Icon"
                 height="18"
                 width="18"
               />
-              Gunner
+              Edgelord
             </div>
           </SelectItem>
-          <SelectItem value="Invoker">
+          <SelectItem value="Executioner">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_preserver.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_4_executioner.png"
                 className="select-none"
-                alt="Invoker Icon"
+                alt="Executioner Icon"
                 height="18"
                 width="18"
               />
-              Invoker
+              Executioner
             </div>
           </SelectItem>
-          <SelectItem value="Juggernaut">
+          <SelectItem value="Guardian">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_juggernaut.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_7_guardian.png"
                 className="select-none"
-                alt="Juggernaut Icon"
+                alt="Guardian Icon"
                 height="18"
                 width="18"
               />
-              Juggernaut
+              Guardian
             </div>
           </SelectItem>
-          <SelectItem value="Multicaster">
+          <SelectItem value="Mosher">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_multicaster.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_mosher.tft_set10.png"
                 className="select-none"
-                alt="Multicaster Icon"
+                alt="Mosher Icon"
                 height="18"
                 width="18"
               />
-              Multicaster
+              Mosher
             </div>
           </SelectItem>
-          <SelectItem value="Reaver King">
+          <SelectItem value="Rapidfire">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_reaverking.tft_set9_stage2.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_rapidfire.tft_set10.png"
                 className="select-none"
-                alt="Reaver King Icon"
+                alt="Rapidfire Icon"
                 height="18"
                 width="18"
               />
-              Reaver King
+              Rapidfire
             </div>
           </SelectItem>
-          <SelectItem value="Rogue">
+          <SelectItem value="Sentinel">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_rogue.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_warden.tft_set10.png"
                 className="select-none"
-                alt="Rogue Icon"
+                alt="Sentinel Icon"
                 height="18"
                 width="18"
               />
-              Rogue
+              Sentinel
             </div>
           </SelectItem>
-          <SelectItem value="Slayer">
+          <SelectItem value="Spellweaver">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_4_slayer.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_5_sorcerer.png"
                 className="select-none"
-                alt="Slayer Icon"
+                alt="Spellweaver Icon"
                 height="18"
                 width="18"
               />
-              Slayer
+              Spellweaver
             </div>
           </SelectItem>
-          <SelectItem value="Sorcerer">
+          <SelectItem value="Superfan">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_3_sorcerer.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_superfan.tft_set10.png"
                 className="select-none"
-                alt="Sorcerer Icon"
+                alt="Superfan Icon"
                 height="18"
                 width="18"
               />
-              Sorcerer
-            </div>
-          </SelectItem>
-          <SelectItem value="Strategist">
-            <div className="flex gap-2">
-              <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_strategist.tft_set9.png"
-                className="select-none"
-                alt="Strategist Icon"
-                height="18"
-                width="18"
-              />
-              Strategist
-            </div>
-          </SelectItem>
-          <SelectItem value="Technogenius">
-            <div className="flex gap-2">
-              <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_technogenius.tft_set9.png"
-                className="select-none"
-                alt="Technogenius Icon"
-                height="18"
-                width="18"
-              />
-              Technogenius
-            </div>
-          </SelectItem>
-          <SelectItem value="Vanquisher">
-            <div className="flex gap-2">
-              <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_vanquisher.tft_set9_stage2.png"
-                className="select-none"
-                alt="Vanquisher Icon"
-                height="18"
-                width="18"
-              />
-              Vanquisher
+              Superfan
             </div>
           </SelectItem>
         </SelectContent>

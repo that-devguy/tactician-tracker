@@ -13,34 +13,41 @@ export default async function getLeaderboardData() {
         fetch(masterEndpoint),
       ]);
 
-    // Check if any of the responses are not OK
-    if (
-      ![challengerResponse, grandMasterResponse, masterResponse].every(
-        (response) => response.ok
-      )
-    ) {
-      throw new Error("Failed to fetch one or more endpoints");
+    // Process and combine the data from different tiers
+    const sortedLeaderboards = [];
+
+    // Handle Challenger data
+    if (challengerResponse.ok) {
+      const challengerData = await challengerResponse.json();
+      sortedLeaderboards.push(
+        ...challengerData.entries.map((entry) => ({
+          ...entry,
+          tier: "challenger",
+        }))
+      );
     }
 
-    // Parse JSON data from the responses
-    const [challengerData, grandMasterData, masterData] = await Promise.all([
-      challengerResponse.json(),
-      grandMasterResponse.json(),
-      masterResponse.json(),
-    ]);
+    // Handle Grandmaster data
+    if (grandMasterResponse.ok) {
+      const grandMasterData = await grandMasterResponse.json();
+      sortedLeaderboards.push(
+        ...grandMasterData.entries.map((entry) => ({
+          ...entry,
+          tier: "grandmaster",
+        }))
+      );
+    }
 
-    // Process and combine the data from different tiers
-    const sortedLeaderboards = [
-      ...challengerData.entries.map((entry) => ({
-        ...entry,
-        tier: "challenger",
-      })),
-      ...grandMasterData.entries.map((entry) => ({
-        ...entry,
-        tier: "grandmaster",
-      })),
-      ...masterData.entries.map((entry) => ({ ...entry, tier: "master" })),
-    ];
+    // Handle Master data
+    if (masterResponse.ok) {
+      const masterData = await masterResponse.json();
+      sortedLeaderboards.push(
+        ...masterData.entries.map((entry) => ({
+          ...entry,
+          tier: "master",
+        }))
+      );
+    }
 
     // Sort by tier first (Challenger > Grandmaster > Master)
     sortedLeaderboards.sort((a, b) => {

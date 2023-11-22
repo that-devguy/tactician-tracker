@@ -6,7 +6,7 @@ import ChampionAbility from "@/app/components/ChampionAbility";
 import ChampionTraits from "@/app/components/ChampionTraits";
 
 export default async function Champion({ params: { championName } }) {
-  const mutator = "TFTSet9_Stage2";
+  const mutator = "TFTSet10";
   const unitData = await getUnitData(mutator);
   const traitData = await getTraitsData(mutator);
   console.log(championName);
@@ -20,7 +20,9 @@ export default async function Champion({ params: { championName } }) {
 
     const traits = traitData.filter((trait) => traitNames.includes(trait.name));
 
-    const icon = selectedChampion.icon.replace(".tex", ".png");
+    const icon = selectedChampion.icon
+      .replace(".tex", ".png")
+      .replace(".dds", ".png");
 
     let costColor = "";
 

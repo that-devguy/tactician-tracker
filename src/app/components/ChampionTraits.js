@@ -60,6 +60,7 @@ export default function ChampionTraits({ traits, units }) {
                             className={`mx-auto rounded-full md:mb-2 ${costColor}`}
                             src={`https://raw.communitydragon.org/latest/game/${unit.icon
                               .replace(".tex", ".png")
+                              .replace(".dds", ".png")
                               .toLowerCase()}`}
                             alt={unit.name}
                             height="40"

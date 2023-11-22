@@ -16,7 +16,7 @@ export default async function Profile({ params: { summonerName } }) {
   const summonerId = summonerData.id;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
-  const mutator = "TFTSet9_Stage2";
+  const mutator = "TFTSet10";
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
@@ -72,7 +72,7 @@ export default async function Profile({ params: { summonerName } }) {
           <MatchPlacementsTile placements={placements} />
         </div>
       </div>
-      {matchDetailsArray.slice(0, 20).map((matchDetails) => (
+      {matchDetailsArray.slice(0, 6).map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}
