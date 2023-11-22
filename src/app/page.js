@@ -12,29 +12,34 @@ export default function Home() {
       <div className="mx-auto flex h-full max-w-7xl flex-col lg:pt-8">
         <HeroBanner />
       </div>
-      <div className="mx-auto mb-10 grid max-h-96 max-w-7xl grid-cols-3 grid-rows-2 gap-5">
-        <div className="group relative row-span-2 flex rounded-lg">
+      <div className="mx-auto mb-2 grid max-h-96 max-w-7xl grid-cols-1 grid-rows-2 gap-2 px-2 sm:mb-5 sm:grid-cols-2 sm:grid-rows-1 md:mb-10 md:grid-cols-3 md:grid-rows-2 md:gap-3 md:px-6 lg:px-0">
+        <Link
+          href="/set-10-release"
+          className="group relative flex rounded-lg md:row-span-2"
+        >
           <img
             src="set10-Promo.jpg"
             alt="Remix Rumble"
-            className="rounded-lg object-cover"
+            className="w-full rounded-lg object-cover object-top md:object-left"
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
-          <div className="absolute bottom-0 p-4">
-            <p className="text-xl font-black drop-shadow-md  group-hover:text-brand-secondary sm:text-2xl md:text-3xl">
-              WELCOME TO REMIX RUMBLE
+          <div className="absolute bottom-0 p-2 md:p-4">
+            <p className="text-2xl font-black drop-shadow-md group-hover:text-brand-secondary md:text-3xl">
+              WELCOME TO <br /> REMIX RUMBLE
               <FontAwesomeIcon
-                className="invisible mb-3 ml-1 text-xs group-hover:visible"
+                className="visible mb-1 ml-1 text-xs group-hover:visible md:invisible md:mb-3"
                 icon={faArrowUpRightFromSquare}
               />
             </p>
-            <p className="text-white/50">
+            <p className="text-sm text-white/50 md:text-base">
               New TFT Set 10, Remix Rumble, is now LIVE! Check out new
               Champions, Synergies, Items, and more.
             </p>
-            <p className="text-xs font-semibold mt-2">NOV 21, 2023</p>
+            <p className="mt-2 hidden text-xs font-semibold md:flex">
+              NOV 21, 2023
+            </p>
           </div>
-        </div>
+        </Link>
         <Link
           href="/champions"
           className="group relative flex rounded-md bg-brand-bg"
@@ -42,24 +47,24 @@ export default function Home() {
           <img
             src="set10-Viego.jpg"
             alt="Champion Database"
-            className="w-full rounded-lg object-cover"
+            className="w-full rounded-lg object-cover object-top"
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
 
           <div className="absolute bottom-0 p-4">
-            <p className="text-xl font-black drop-shadow-md group-hover:text-brand-secondary sm:text-2xl md:text-3xl">
-              CHAMPION DATABASE
+            <p className="text-2xl font-black drop-shadow-md group-hover:text-brand-secondary md:text-3xl">
+              CHAMPIONS <br />DATABASE
               <FontAwesomeIcon
-                className="invisible mb-3 ml-1 text-xs group-hover:visible"
+                className="visible mb-1 ml-1 text-xs group-hover:visible md:invisible md:mb-3"
                 icon={faArrowUpRightFromSquare}
               />
             </p>
-            <p className="text-white/50">
+            <p className="text-sm text-white/50 md:text-base">
               Explore a database of all champions in Set 10
             </p>
           </div>
         </Link>
-        <div className="relative flex rounded-lg bg-brand-bg">
+        <div className="relative hidden rounded-lg bg-brand-bg md:flex">
           <img
             src="tft-Items.jpg"
             alt="Items Database"
@@ -69,14 +74,14 @@ export default function Home() {
           <div className="absolute bottom-0 p-4">
             <p className="text-xs font-semibold">COMING SOON</p>
             <p className="text-xl font-black drop-shadow-md sm:text-2xl md:text-3xl">
-              ITEM DATABASE
+              ITEM <br />DATABASE
             </p>
             <p className="text-white/50">
               Explore a database of item combos in Set 10
             </p>
           </div>
         </div>
-        <div className="relative col-span-2 flex rounded-lg bg-brand-bg">
+        <div className="relative hidden rounded-lg bg-brand-bg md:col-span-2 md:flex">
           <img
             src="set10-Portals.jpg"
             alt="Set 10 Portals"

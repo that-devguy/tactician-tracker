@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import getUnitData from "@/app/libs/getUnitData";
-import getTraitsData from "@/app/libs/getTraitsData";
 import CostFilter from "@/app/components/CostFilter";
 import OriginFilter from "@/app/components/OriginFilter";
 import ClassFilter from "@/app/components/ClassFilter";

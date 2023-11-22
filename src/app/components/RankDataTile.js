@@ -25,7 +25,7 @@ function getWinLoss(wins, losses) {
 }
 
 const RankDataTile = ({ leagueData }) => {
-  // console.log(leagueData);
+  console.log(leagueData);
   const { tier, rank, leaguePoints, wins, losses, hotStreak } =
     leagueData[0] || {};
 
@@ -53,7 +53,7 @@ const RankDataTile = ({ leagueData }) => {
                 src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier.toLowerCase()}.png`}
                 height="22"
                 width="22"
-                alt="Mini Challenger Emblem"
+                alt="Mini Ranked Emblem"
                 className="select-none md:hidden"
               />
               {capTier} {rankNum}
