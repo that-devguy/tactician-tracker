@@ -17,160 +17,208 @@ function OriginFilter({ selectedOrigin, onOriginChange }) {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="all">Any Origin</SelectItem>
-          <SelectItem value="Bilgewater">
+          <SelectItem value="8-bit">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_bilgewater.tft_set9_stage2.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_8bit.tft_set10.png"
                 className="select-none"
-                alt="Bilgewater Icon"
+                alt="8-bit Icon"
                 height="18"
                 width="18"
               />
-              Bilgewater
+              8-bit
             </div>
           </SelectItem>
-          <SelectItem value="Darkin">
+          <SelectItem value="Breakout">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_darkin.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_breakout.tft_set10.png"
                 className="select-none"
-                alt="Darkin Icon"
+                alt="Breakout Icon"
                 height="18"
                 width="18"
               />
-              Darkin
+              Breakout
             </div>
           </SelectItem>
-          <SelectItem value="Demacia">
+          <SelectItem value="Country">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_demacia.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_country.tft_set10.png"
                 className="select-none"
-                alt="Demacia Icon"
+                alt="Country Icon"
                 height="18"
                 width="18"
               />
-              Demacia
+              Country
             </div>
           </SelectItem>
-          <SelectItem value="Freljord">
+          <SelectItem value="Disco">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_freljord.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_funk.tft_set10.png"
                 className="select-none"
-                alt="Freljord Icon"
+                alt="Disco Icon"
                 height="18"
                 width="18"
               />
-              Freljord
+              Disco
             </div>
           </SelectItem>
-          <SelectItem value="Ionia">
+          <SelectItem value="EDM">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_ionia.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_edm.tft_set10.png"
                 className="select-none"
-                alt="Ionia Icon"
+                alt="EDM Icon"
                 height="18"
                 width="18"
               />
-              Ionia
+              EDM
             </div>
           </SelectItem>
-          <SelectItem value="Ixtal">
+          <SelectItem value="Emo">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_ixtal.tft_set9_stage2.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_bigsad.tft_set10.png"
                 className="select-none"
-                alt="Ixtal Icon"
+                alt="Emo Icon"
                 height="18"
                 width="18"
               />
-              Ixtal
+              Emo
             </div>
           </SelectItem>
-          <SelectItem value="Noxus">
+          <SelectItem value="HEARTSTEEL">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_noxus.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_heartsteel.tft_set10.png"
                 className="select-none"
-                alt="Noxus Icon"
+                alt="HEARTSTEEL Icon"
                 height="18"
                 width="18"
               />
-              Noxus
+              HEARTSTEEL
             </div>
           </SelectItem>
-          <SelectItem value="Piltover">
+          <SelectItem value="Hyperpop">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_piltover.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_hyperpop.tft_set10.png"
                 className="select-none"
-                alt="Piltover Icon"
+                alt="Hyperpop Icon"
                 height="18"
                 width="18"
               />
-              Piltover
+              Hyperpop
             </div>
           </SelectItem>
-          <SelectItem value="Shurima">
+          <SelectItem value="ILLBEATS">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_shurima.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_illbeats.tft_set10.png"
                 className="select-none"
-                alt="Shurima Icon"
+                alt="ILLBEATS Icon"
                 height="18"
                 width="18"
               />
-              Shurima
+              ILLBEATS
             </div>
           </SelectItem>
-          <SelectItem value="Targon">
+          <SelectItem value="Jazz">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_targon.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_jazz.tft_set10.png"
                 className="select-none"
-                alt="Targon Icon"
+                alt="Jazz Icon"
                 height="18"
                 width="18"
               />
-              Targon
+              Jazz
             </div>
           </SelectItem>
-          <SelectItem value="Void">
+          <SelectItem value="K/DA">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_void.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_kda.tft_set10.png"
                 className="select-none"
-                alt="Void Icon"
+                alt="K/DA Icon"
                 height="18"
                 width="18"
               />
-              Void
+              K/DA
             </div>
           </SelectItem>
-          <SelectItem value="Wanderer">
+          <SelectItem value="Maestro">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_wanderer.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_classical.tft_set10.png"
                 className="select-none"
-                alt="Wanderer Icon"
+                alt="Maestro Icon"
                 height="18"
                 width="18"
               />
-              Wanderer
+              Maestro
             </div>
           </SelectItem>
-          <SelectItem value="Zaun">
+          <SelectItem value="Mixmaster">
             <div className="flex gap-2">
               <Image
-                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_9_zaun.tft_set9.png"
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_dj.tft_set10.png"
                 className="select-none"
-                alt="Zaun Icon"
+                alt="Mixmaster Icon"
                 height="18"
                 width="18"
               />
-              Zaun
+              Mixmaster
+            </div>
+          </SelectItem>
+          <SelectItem value="Pentakill">
+            <div className="flex gap-2">
+              <Image
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_pentakill.tft_set10.png"
+                className="select-none"
+                alt="Pentakill Icon"
+                height="18"
+                width="18"
+              />
+              Pentakill
+            </div>
+          </SelectItem>
+          <SelectItem value="Punk">
+            <div className="flex gap-2">
+              <Image
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_punk.tft_set10.png"
+                className="select-none"
+                alt="Punk Icon"
+                height="18"
+                width="18"
+              />
+              Punk
+            </div>
+          </SelectItem>
+          <SelectItem value="True Damage">
+            <div className="flex gap-2">
+              <Image
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_truedamage.tft_set10.png"
+                className="select-none"
+                alt="True Damage Icon"
+                height="18"
+                width="18"
+              />
+              True Damage
+            </div>
+          </SelectItem>
+          <SelectItem value="Wildcard">
+            <div className="flex gap-2">
+              <Image
+                src="https://raw.communitydragon.org/latest/game/assets/ux/traiticons/trait_icon_10_wildcard.tft_set10.png"
+                className="select-none"
+                alt="Wildcard Icon"
+                height="18"
+                width="18"
+              />
+              Wildcard
             </div>
           </SelectItem>
         </SelectContent>
