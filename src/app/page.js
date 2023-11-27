@@ -53,7 +53,7 @@ export default function Home() {
 
           <div className="absolute bottom-0 p-4">
             <p className="text-2xl font-black drop-shadow-md group-hover:text-brand-secondary md:text-3xl">
-              CHAMPIONS <br />DATABASE
+              CHAMPION <br />DATABASE
               <FontAwesomeIcon
                 className="visible mb-1 ml-1 text-xs group-hover:visible md:invisible md:mb-3"
                 icon={faArrowUpRightFromSquare}

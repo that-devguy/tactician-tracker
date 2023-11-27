@@ -69,7 +69,7 @@ export default async function Top10LeaderboardTable() {
             </Link>
             <p className="flex w-1/12 gap-1 md:w-2/12">
               <Image
-                src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier}.png`}
+                src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier}.svg`}
                 height="22"
                 width="22"
                 alt={`Mini ${capTier} Emblem`}

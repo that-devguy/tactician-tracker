@@ -50,7 +50,7 @@ const RankDataTile = ({ leagueData }) => {
           <div className="flex items-center justify-between">
             <p className="flex gap-2 text-base font-bold md:text-lg">
               <Image
-                src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier.toLowerCase()}.png`}
+                src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier.toLowerCase()}.svg`}
                 height="22"
                 width="22"
                 alt="Mini Ranked Emblem"
