@@ -21,7 +21,7 @@ export default function Home() {
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
           <div className="absolute bottom-0 p-4">
-            <p className="text-xl font-black drop-shadow-md  group-hover:text-brand-secondary sm:text-2xl md:text-3xl">
+            <p className="text-xl font-black drop-shadow-md group-hover:text-brand-secondary sm:text-2xl md:text-3xl">
               WELCOME TO REMIX RUMBLE
               <FontAwesomeIcon
                 className="invisible mb-3 ml-1 text-xs group-hover:visible"
