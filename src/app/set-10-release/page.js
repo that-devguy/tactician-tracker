@@ -34,6 +34,8 @@ export default function Set10Release() {
           music system, and various other enhancements.
         </h2>
       </div>
+
+      {/* Systems Sections */}
       <section className="px-2 pt-8 md:px-6 lg:px-6">
         <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
           <div className="flex flex-col justify-center px-4 py-2 md:p-4">
@@ -119,6 +121,7 @@ export default function Set10Release() {
         </div>
       </section>
 
+      {/* Traits Section */}
       <section className="px-2 pt-8 md:px-6 lg:px-6">
         <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
           <div className="flex flex-col justify-center px-4 py-2 md:p-4">
@@ -137,7 +140,9 @@ export default function Set10Release() {
             className="h-fill select-none overflow-hidden"
           />
         </div>
+        {/* Traits Grid */}
         <div className="grid gap-3 py-4 md:grid-cols-2 lg:grid-cols-3">
+          {/* Trait 1 */}
           <div className="mx-auto mb-2 flex w-full max-w-lg flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4">
             <div className="flex h-full w-full flex-col divide-y divide-brand-bg3">
               <div className="flex items-start gap-3">
