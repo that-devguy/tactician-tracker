@@ -148,7 +148,7 @@ export default async function Set10Release() {
         </div>
         {/* Traits Grid */}
         <div className="grid gap-3 py-4 md:grid-cols-2 lg:grid-cols-3">
-          {/* Trait Container*/}
+          {/* Traits Map */}
           {traitData
             .sort((a, b) => a.name.localeCompare(b.name))
             .map((trait) => (
@@ -206,24 +206,24 @@ export default async function Set10Release() {
                     <ul className="flex gap-2 pt-4">
                       {unitData
                         .filter(
-                          (unit) =>
-                            unit.traits.includes(trait.name) &&
-                            unit.apiName !== "TFT10_YorickGhoulMelee" &&
-                            unit.apiName !== "TFT10_DiscoBall"
+                          (champion) =>
+                            champion.traits.includes(trait.name) &&
+                            champion.apiName !== "TFT10_YorickGhoulMelee" &&
+                            champion.apiName !== "TFT10_DiscoBall"
                         )
                         .sort((a, b) => a.cost - b.cost)
-                        .map((unit) => {
+                        .map((champion) => {
                           let costColor = "";
 
-                          if (unit.cost === 1) {
+                          if (champion.cost === 1) {
                             costColor = "one-cost";
-                          } else if (unit.cost === 2) {
+                          } else if (champion.cost === 2) {
                             costColor = "two-cost";
-                          } else if (unit.cost === 3) {
+                          } else if (champion.cost === 3) {
                             costColor = "three-cost";
-                          } else if (unit.cost === 4) {
+                          } else if (champion.cost === 4) {
                             costColor = "four-cost";
-                          } else if (unit.cost === 5) {
+                          } else if (champion.cost === 5) {
                             costColor = "five-cost";
                           } else {
                             costColor = "random-cost";
@@ -231,22 +231,22 @@ export default async function Set10Release() {
 
                           return (
                             <li
-                              key={unit.apiName}
-                              href={`/champions/${unit.name.toLowerCase()}`}
+                              key={champion.apiName}
+                              href={`/champions/${champion.name.toLowerCase()}`}
                               className="my-1 w-11 flex-col items-center justify-center md:w-12"
                             >
                               <Image
                                 className={`mx-auto rounded-full md:mb-2 ${costColor}`}
-                                src={`https://raw.communitydragon.org/latest/game/${unit.icon
+                                src={`https://raw.communitydragon.org/latest/game/${champion.icon
                                   .replace(".tex", ".png")
                                   .replace(".dds", ".png")
                                   .toLowerCase()}`}
-                                alt={unit.name}
+                                alt={champion.name}
                                 height="40"
                                 width="40"
                               />
                               <p className="hidden truncate text-center text-xs md:block">
-                                {unit.name}
+                                {champion.name}
                               </p>
                             </li>
                           );
@@ -256,6 +256,131 @@ export default async function Set10Release() {
                 </div>
               </div>
             ))}
+        </div>
+      </section>
+      {/* Units Section */}
+      <section className="px-2 pt-8 md:px-6 lg:px-6">
+        <div className="mx-auto mb-2 flex max-h-28 max-w-7xl justify-between rounded-lg bg-gradient-to-tr from-[#ff571d] to-[#F8A634]">
+          <div className="flex flex-col justify-center px-4 py-2 md:p-4">
+            <h3 className="text-xl font-black sm:text-2xl md:text-3xl">
+              Champions
+            </h3>
+            <p className="text-sm text-white">
+              Detailed breakdown of set 10 Champions
+            </p>
+          </div>
+          <Image
+            src="/teemo_base_banner.png"
+            height="200"
+            width="200"
+            alt="Base Teemo Chibi"
+            className="h-fill select-none overflow-hidden"
+          />
+        </div>
+        <div className="grid gap-3 py-4 md:grid-cols-2 lg:grid-cols-3">
+          {/* Units Map */}
+          {unitData
+            .filter(
+              (champion) =>
+                champion.cost < 6 &&
+                champion.name !== "Voidspawn" &&
+                champion.name !== "Target Dummy" &&
+                champion.apiName !== "TFT10_Akali"
+            )
+            .sort((a, b) => parseFloat(a.cost) - parseFloat(b.cost))
+            .map((champion) => {
+              let costColor = "";
+
+              if (champion.cost === 1) {
+                costColor = "one-costChamp";
+              } else if (champion.cost === 2) {
+                costColor = "two-costChamp";
+              } else if (champion.cost === 3) {
+                costColor = "three-costChamp";
+              } else if (champion.cost === 4) {
+                costColor = "four-costChamp";
+              } else {
+                costColor = "five-costChamp";
+              }
+
+              const traitNames = champion.traits || [];
+              const traits = traitData.filter((trait) =>
+                traitNames.includes(trait.name)
+              );
+
+              return (
+                <div
+                  key={champion.name}
+                  className="mx-auto mb-2 flex w-full max-w-lg flex-col rounded-md bg-brand-bg2 p-4 md:max-w-none md:p-4"
+                >
+                  <div className="flex h-full w-full flex-col divide-y divide-brand-bg3">
+                    <div className="flex items-start justify-between gap-3">
+                      <p className="text-base font-semibold lg:text-lg">
+                        {champion.name}
+                      </p>
+                      <div className="flex gap-2">
+                        {traits.map((trait) => (
+                          <Image
+                            key={trait.name}
+                            className={`green-filter z-10 pb-2`}
+                            src={`https://raw.communitydragon.org/latest/game/${trait.icon
+                              .replace(".tex", ".png")
+                              .toLowerCase()}`}
+                            alt={trait.name}
+                            height="26"
+                            width="26"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    <div className="pt-4">
+                      <div className="flex gap-5">
+                        <Image
+                          className={`select-none rounded-full border-4 border-transparent ${costColor}`}
+                          src={`https://raw.communitydragon.org/latest/game/${champion.icon
+                            .replace(".dds", ".png")
+                            .replace(".tex", ".png")
+                            .toLowerCase()}`}
+                          alt={champion.name}
+                          height="85"
+                          width="85"
+                        />
+                        <div className="flex items-center gap-2 pt-4">
+                          <Image
+                            className="h-fit select-none border border-white"
+                            src={`https://raw.communitydragon.org/latest/game/${champion.ability.icon
+                              .replace(".dds", ".png")
+                              .replace(".tex", ".png")
+                              .toLowerCase()}`}
+                            alt={`Aatrox`}
+                            height="35"
+                            width="35"
+                          />
+                          <div>
+                            <p className="text-sm font-semibold lg:text-base">
+                              {champion.ability.name}
+                            </p>
+                            <p className="flex items-center gap-1 text-xs lg:pr-5 lg:text-sm">
+                              <Image
+                                src="/mana.svg"
+                                className="select-none"
+                                alt="Mana Icon"
+                                height="12"
+                                width="12"
+                              />
+                              {champion.stats.initialMana}/{champion.stats.mana}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <p className="pt-4 text-xs text-white/50 lg:pr-5 lg:text-sm">
+                        {champion.ability.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </section>
     </div>
