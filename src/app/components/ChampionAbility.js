@@ -12,7 +12,7 @@ function resolveVariables(abilityDesc, variables) {
 
 export default function ChampionAbility({ selectedChampion }) {
   const abilityIcon = selectedChampion.ability.icon.replace(".dds", ".png");
-  console.log(selectedChampion.ability, selectedChampion.ability.variables);
+  // console.log(selectedChampion.ability, selectedChampion.ability.variables);
 
   const resolvedDesc = resolveVariables(
     selectedChampion.ability.desc,
