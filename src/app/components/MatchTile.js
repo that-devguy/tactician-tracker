@@ -143,12 +143,7 @@ const MatchTile = ({
                   />
                 </div>
               </TooltipTrigger>
-              <TooltipContent>
-                <div className="my-1 w-48 select-none">
-                  <p className="mb-1 text-brand-secondary">{augment.name}</p>
-                  <p>{augment.desc}</p>
-                </div>
-              </TooltipContent>
+              <TooltipContent>{augment.name}</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </>

@@ -2,9 +2,6 @@
 import HeroBanner from "@/app/components/HeroBanner";
 import Image from "next/image";
 import Top10 from "@/app/components/Top10Leaderboard";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   return (
@@ -13,68 +10,76 @@ export default function Home() {
         <HeroBanner />
       </div>
       <div className="mx-auto mb-2 grid max-h-96 max-w-7xl grid-cols-1 grid-rows-2 gap-2 px-2 sm:mb-5 sm:grid-cols-2 sm:grid-rows-1 md:mb-10 md:grid-cols-3 md:grid-rows-2 md:gap-3 md:px-6 lg:px-0">
-        <Link
+        <div
           href="/set-10-release"
           className="group relative flex rounded-lg md:row-span-2"
         >
-          <img
-            src="set10-Promo.jpg"
+          <Image
+            src="/set10-Promo.jpg"
             alt="Remix Rumble"
+            width="1920"
+            height="1080"
             className="w-full rounded-lg object-cover object-top md:object-left"
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
           <div className="absolute bottom-0 p-2 md:p-4">
-            <p className="text-2xl font-black drop-shadow-md group-hover:text-brand-secondary md:text-3xl">
-              WELCOME TO <br /> REMIX RUMBLE
-              <FontAwesomeIcon
-                className="visible mb-1 ml-1 text-xs group-hover:visible md:invisible md:mb-3"
-                icon={faArrowUpRightFromSquare}
-              />
+            <p className="text-xs font-semibold text-brand-secondary">
+              COMING SOON
+            </p>
+            <p className="text-2xl font-black drop-shadow-md md:text-3xl">
+              GUIDES, NEWS, <br />& PATCHNOTES
             </p>
             <p className="text-sm text-white/50 md:text-base">
               New TFT Set 10, Remix Rumble, is now LIVE! Check out new
               Champions, Synergies, Items, and more.
             </p>
-            <p className="mt-2 hidden text-xs font-semibold md:flex">
+            <p className="mt-2 hidden text-xs font-semibold text-white/50 md:flex">
               NOV 21, 2023
             </p>
           </div>
-        </Link>
-        <Link
+        </div>
+        <div
           href="/champions"
           className="group relative flex rounded-md bg-brand-bg"
         >
-          <img
-            src="set10-Viego.jpg"
+          <Image
+            src="/set10-Viego.jpg"
             alt="Champion Database"
+            width="1920"
+            height="1080"
             className="w-full rounded-lg object-cover object-top"
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
 
           <div className="absolute bottom-0 p-4">
-            <p className="text-2xl font-black drop-shadow-md group-hover:text-brand-secondary md:text-3xl">
-              CHAMPION <br />DATABASE
-              <FontAwesomeIcon
-                className="visible mb-1 ml-1 text-xs group-hover:visible md:invisible md:mb-3"
-                icon={faArrowUpRightFromSquare}
-              />
+            <p className="text-xs font-semibold text-brand-secondary">
+              COMING SOON
+            </p>
+            <p className="text-2xl font-black drop-shadow-md md:text-3xl">
+              CHAMPION <br />
+              DATABASE
             </p>
             <p className="text-sm text-white/50 md:text-base">
               Explore a database of all champions in Set 10
             </p>
           </div>
-        </Link>
+        </div>
         <div className="relative hidden rounded-lg bg-brand-bg md:flex">
-          <img
-            src="tft-Items.jpg"
+          <Image
+            src="/tft-Items.jpg"
             alt="Items Database"
-            className="w-full rounded-lg object-cover pb-1 grayscale"
+            width="1400"
+            height="1050"
+            className="w-full rounded-lg object-cover pb-1"
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
           <div className="absolute bottom-0 p-4">
-            <p className="text-xs font-semibold">COMING SOON</p>
+            <p className="text-xs font-semibold text-brand-secondary">
+              COMING SOON
+            </p>
             <p className="text-xl font-black drop-shadow-md sm:text-2xl md:text-3xl">
-              ITEM <br />DATABASE
+              ITEM <br />
+              DATABASE
             </p>
             <p className="text-white/50">
               Explore a database of item combos in Set 10
@@ -82,14 +87,18 @@ export default function Home() {
           </div>
         </div>
         <div className="relative hidden rounded-lg bg-brand-bg md:col-span-2 md:flex">
-          <img
-            src="set10-Portals.jpg"
+          <Image
+            src="/set10-Portals.jpg"
             alt="Set 10 Portals"
-            className="w-full rounded-lg object-cover grayscale"
+            width="1920"
+            height="1080"
+            className="w-full rounded-lg object-cover"
           />
           <div className="via-brand-bg/65 absolute inset-0 rounded-lg bg-gradient-to-t from-brand-bg from-15% via-65% to-brand-bg/0"></div>
           <div className="absolute bottom-0 p-4">
-            <p className="text-xs font-semibold">COMING SOON</p>
+            <p className="text-xs font-semibold text-brand-secondary">
+              COMING SOON
+            </p>
             <p className="text-xl font-black drop-shadow-md sm:text-2xl md:text-3xl">
               META TEAM COMPS
             </p>

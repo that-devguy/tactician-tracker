@@ -72,7 +72,7 @@ export default async function Profile({ params: { summonerName } }) {
           <MatchPlacementsTile placements={placements} />
         </div>
       </div>
-      {matchDetailsArray.slice(0, 6).map((matchDetails) => (
+      {matchDetailsArray.slice(0, 5).map((matchDetails) => (
         <MatchTile
           key={matchDetails.matchId}
           matchDetails={matchDetails}

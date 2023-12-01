@@ -35,20 +35,6 @@ export default function Footer() {
               <Link className="hover:text-white" href="/leaderboards">
                 Leaderboards
               </Link>
-              <Link className="flex gap-1 hover:text-white" href="/champions">
-                Champs
-                <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
-                  <p>NEW</p>
-                </div>
-              </Link>
-
-              <Link className="flex gap-1 hover:text-white" href="/items">
-                Items
-                <div className="flex h-4 flex-col justify-center text-[.4rem] font-semibold leading-[.4rem] text-brand-secondary md:h-5 md:rounded-md md:text-[.6rem] md:text-xs">
-                  <p>COMING</p>
-                  <p>SOON</p>
-                </div>
-              </Link>
             </div>
 
             <div className="flex flex-col gap-2 text-sm text-white/50 md:hidden">
@@ -120,18 +106,6 @@ export default function Footer() {
           </Link>
           <Link className="hover:text-white" href="/leaderboards">
             Leaderboards
-          </Link>
-          <Link className="flex gap-1 hover:text-white" href="/champions">
-            Champions
-            <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
-              NEW
-            </span>
-          </Link>
-          <Link className="flex gap-1 hover:text-white" href="/items">
-            Items
-            <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md">
-              COMING SOON
-            </span>
           </Link>
         </div>
 
