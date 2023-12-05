@@ -7,7 +7,6 @@ import {
   TooltipTrigger,
 } from "@/app/components/ui/tooltip";
 
-import getSummonerById from "@/app/libs/getSummonerById";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
