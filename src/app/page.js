@@ -3,7 +3,6 @@ import { use } from "react";
 import HeroBanner from "@/app/components/HeroBanner";
 import Image from "next/image";
 import Top10 from "@/app/components/Top10Leaderboard";
-import Leaderboard from "@/app/components/Leaderboards";
 import getLeaderboardData from "@/app/libs/getLeaderboardData";
 
 async function getLeaderboards() {
