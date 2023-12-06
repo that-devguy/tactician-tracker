@@ -159,71 +159,6 @@ export default function Navbar() {
         >
           Leaderboards
         </Link>
-        <p
-          onClick={handleDatabaseDropdown}
-          className={`flex h-full select-none items-center gap-1 px-3 hover:cursor-pointer hover:text-white ${
-            databaseDropdown ? "text-white" : ""
-          }
-          ${
-            currentRoute === "/champions" || currentRoute === "/items"
-              ? "bg-gradient-to-t from-brand-secondary/50 from-5% via-brand-secondary/10 via-45% to-brand-bg to-90% text-white"
-              : ""
-          }`}
-        >
-          Database
-          <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
-            NEW
-          </span>
-          <FontAwesomeIcon
-            className={`my-auto h-4 w-4 pl-1`}
-            icon={faChevronDown}
-          />
-        </p>
-        <div
-          className={`absolute right-6 top-16 z-50 w-[152px] divide-y-[0.5px] divide-brand-bg2 border-x-[0.5px] border-b-[0.5px] border-brand-bg2 bg-brand-bg lg:right-10 ${
-            databaseDropdown ? "" : "hidden"
-          }`}
-        >
-          <Link
-            href="/champions"
-            onClick={closeMenu}
-            className={`flex h-14 items-center gap-4 pl-3 hover:text-white`}
-          >
-            <p
-              className={`flex gap-2 ${
-                currentRoute === "/champions" ? "text-white" : ""
-              }`}
-            >
-              Champions
-              <FontAwesomeIcon
-                className={`my-auto h-2 w-2 text-brand-secondary ${
-                  currentRoute === "/champions" ? "" : "invisible"
-                }`}
-                icon={faChevronLeft}
-              />
-            </p>
-          </Link>
-          <Link
-            href="/"
-            onClick={closeMenu}
-            className={`flex h-14 items-center gap-4 pl-3 hover:cursor-default`}
-          >
-            <p
-              className={`flex gap-1 text-white/20 ${
-                currentRoute === "/items" ? "text-brand-secondary" : ""
-              }
-          `}
-            >
-              Items
-              <FontAwesomeIcon
-                className={`my-auto h-3 w-3 text-brand-secondary ${
-                  currentRoute === "/items" ? "" : "invisible"
-                }`}
-                icon={faChevronLeft}
-              />
-            </p>
-          </Link>
-        </div>
       </div>
 
       {/* Mobile Navbar */}
@@ -263,58 +198,6 @@ export default function Navbar() {
             <FontAwesomeIcon className="h-5 w-5" icon={faTrophy} />
             Leaderboards
           </Link>
-          <div
-            onClick={handleMobileDatabaseDropdown}
-            className={`flex h-10 items-center gap-4 px-5 ${
-              currentRoute === "/champions" || currentRoute === "/items"
-                ? "bg-gradient-to-r from-brand-secondary/50 from-[1%] via-brand-secondary/10 via-20% to-brand-bg to-45% text-white"
-                : ""
-            }`}
-          >
-            <FontAwesomeIcon className="h-5 w-5" icon={faLayerGroup} />
-            <p className="flex gap-1">
-              Database
-              <span className="flex h-4 items-center justify-center text-[.6rem] font-semibold text-brand-secondary md:h-5 md:rounded-md md:text-xs">
-                NEW
-              </span>
-              <FontAwesomeIcon
-                className={`my-auto h-4 w-8`}
-                icon={faChevronDown}
-              />
-            </p>
-          </div>
-          <div className={`${mobileDatabaseDropdown ? "" : "hidden"}`}>
-            <Link
-              href="/champions"
-              onClick={closeMenu}
-              className={`flex h-10 items-center gap-4 px-14`}
-            >
-              <p className="flex gap-3">
-                Champions
-                <FontAwesomeIcon
-                  className={`my-auto h-2 w-2 text-brand-secondary ${
-                    currentRoute === "/champions" ? "" : "invisible"
-                  }`}
-                  icon={faChevronLeft}
-                />
-              </p>
-            </Link>
-            <Link
-              href="/"
-              onClick={closeMenu}
-              className={`flex h-10 items-center gap-4 px-14`}
-            >
-              <p className="flex gap-3 text-white/50">
-                Items
-                <FontAwesomeIcon
-                  className={`my-auto h-2 w-2 text-brand-secondary ${
-                    currentRoute === "/items" ? "" : "invisible"
-                  }`}
-                  icon={faChevronLeft}
-                />
-              </p>
-            </Link>
-          </div>
         </div>
       </div>
     </nav>

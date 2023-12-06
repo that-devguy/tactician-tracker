@@ -3,14 +3,22 @@ export default async function getLeaderboardData() {
   const challengerEndpoint = `https://na1.api.riotgames.com/tft/league/v1/challenger?api_key=${riotAPI}`;
   const grandMasterEndpoint = `https://na1.api.riotgames.com/tft/league/v1/grandmaster?api_key=${riotAPI}`;
   const masterEndpoint = `https://na1.api.riotgames.com/tft/league/v1/master?api_key=${riotAPI}`;
+  const cacheMaxAge = 3600;
+
+  const cacheOptions = {
+    method: "GET",
+    headers: new Headers({
+      "Cache-Control": `max-age=${cacheMaxAge}`,
+    }),
+  };
 
   try {
     // Fetch data from the three endpoints in parallel
     const [challengerResponse, grandMasterResponse, masterResponse] =
       await Promise.all([
-        fetch(challengerEndpoint),
-        fetch(grandMasterEndpoint),
-        fetch(masterEndpoint),
+        fetch(challengerEndpoint, cacheOptions),
+        fetch(grandMasterEndpoint, cacheOptions),
+        fetch(masterEndpoint, cacheOptions),
       ]);
 
     // Process and combine the data from different tiers

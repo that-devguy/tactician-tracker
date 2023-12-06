@@ -27,10 +27,10 @@ export default function LeaderboardPage() {
           </p>
         </div>
         <Image
-          src="/teemo_base_banner.png"
+          src="/lux_stargaurdian_banner.png"
           height="200"
           width="200"
-          alt="Base Teemo Chibi"
+          alt="Star Gaurdian Lux Chibi"
           className="h-fill select-none overflow-hidden"
         />
       </div>
