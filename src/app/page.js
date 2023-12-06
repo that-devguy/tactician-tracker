@@ -1,9 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
+import { use } from "react";
 import HeroBanner from "@/app/components/HeroBanner";
 import Image from "next/image";
 import Top10 from "@/app/components/Top10Leaderboard";
+import Leaderboard from "@/app/components/Leaderboards";
+import getLeaderboardData from "@/app/libs/getLeaderboardData";
+
+async function getLeaderboards() {
+  const leaderboardData = await getLeaderboardData();
+  return leaderboardData;
+}
 
 export default function Home() {
+  const leaderboards = use(getLeaderboards());
   return (
     <section className="lg:px-6">
       <div className="mx-auto flex h-full max-w-7xl flex-col lg:pt-8">
@@ -127,7 +136,7 @@ export default function Home() {
           />
         </div>
         <div>
-          <Top10 />
+          <Top10 leaderboards={leaderboards} />
         </div>
       </div>
     </section>

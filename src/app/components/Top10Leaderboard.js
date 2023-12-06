@@ -1,12 +1,10 @@
-import getLeaderboardData from "@/app/libs/getLeaderboardData";
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
-export default async function Top10LeaderboardTable() {
-  const leaderboards = await getLeaderboardData();
-
+export default function Top10LeaderboardTable({ leaderboards }) {
   return (
     <div className="mx-auto max-w-7xl">
       <div className="headers flex justify-between px-2 py-2 text-xs font-light text-white/50 md:text-sm">
@@ -36,6 +34,15 @@ export default async function Top10LeaderboardTable() {
         const tier = leaderboard.tier;
         const capTier = tier.charAt(0).toUpperCase() + tier.slice(1);
 
+        // Dynamically generate links to summoner profiles to avoid crawlers from trying to load every profile link
+        function generateSummonerProfileLink() {
+          const baseURL = "https://tacticiantracker.com/profile/";
+          let summonerName = leaderboard.summonerName;
+          let dynamicLink = baseURL + summonerName;
+
+          window.location.href = dynamicLink;
+        }
+
         return (
           <div
             key={leaderboard.summonerId}
@@ -55,9 +62,9 @@ export default async function Top10LeaderboardTable() {
               </div>
             </div>
 
-            <Link
-              href={`/profile/${leaderboard.summonerName}`}
-              className="w-3/12 items-center truncate text-sm hover:underline md:flex md:text-base"
+            <p
+              onClick={generateSummonerProfileLink}
+              className="w-3/12 items-center truncate text-sm hover:cursor-pointer hover:underline md:flex md:text-base"
             >
               {leaderboard.summonerName}
               <div className="hidden md:flex">
@@ -66,7 +73,7 @@ export default async function Top10LeaderboardTable() {
                   className="ml-1 text-xs text-white/50"
                 />
               </div>
-            </Link>
+            </p>
             <p className="flex w-1/12 gap-1 md:w-2/12">
               <Image
                 src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier}.svg`}
