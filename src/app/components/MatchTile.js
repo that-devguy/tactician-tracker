@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   Tooltip,
   TooltipContent,
@@ -7,7 +6,6 @@ import {
   TooltipTrigger,
 } from "@/app/components/ui/tooltip";
 
-import getSummonerById from "@/app/libs/getSummonerById";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -26,7 +24,6 @@ const MatchTile = ({
       game_datetime,
       game_length,
       game_version,
-      tft_set_number,
     },
     metadata: { match_id },
   } = matchDetails;
@@ -37,43 +34,6 @@ const MatchTile = ({
       (participant) => participant.puuid === puuid
     );
     return participant ? participant.level : null;
-  };
-
-  // Extracting participant names with icons
-  const renderParticipantData = async (puuid) => {
-    try {
-      const participantsArray = await Promise.all(
-        participants.map((participant) => getSummonerById(participant.puuid))
-      );
-      const participantData = participantsArray.map((participant) => {
-        const { name, profileIconId } = participant;
-        return (
-          <div key={name} className="mb-1 flex h-fit items-center gap-1">
-            <Image
-              className="rounded-full"
-              src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${profileIconId}.jpg`}
-              alt={name}
-              width={18}
-              height={18}
-            />
-            <Link
-              className={`truncate text-xs hover:text-white hover:underline ${
-                puuid === participant.puuid
-                  ? "pointer-events-none text-white hover:no-underline"
-                  : "text-white/50"
-              }`}
-              href={`/profile/${name}`}
-            >
-              {name}
-            </Link>
-          </div>
-        );
-      });
-      return participantData;
-    } catch (error) {
-      console.error("Error fetching summoner data:", error);
-      return null;
-    }
   };
 
   // Extracting participant placements
@@ -143,12 +103,7 @@ const MatchTile = ({
                   />
                 </div>
               </TooltipTrigger>
-              <TooltipContent>
-                <div className="my-1 w-48 select-none">
-                  <p className="mb-1 text-brand-secondary">{augment.name}</p>
-                  <p>{augment.desc}</p>
-                </div>
-              </TooltipContent>
+              <TooltipContent>{augment.name}</TooltipContent>
             </Tooltip>
           </TooltipProvider>
         </>
@@ -200,7 +155,7 @@ const MatchTile = ({
       return (
         <div
           key={`${starLevel} ${champion.apiName}`}
-          className="w-11 flex-col items-center justify-center md:w-12"
+          className="w-11 flex-col items-center justify-center md:w-14"
         >
           <div className="flex justify-center">
             {starLevel === 1 && (
@@ -265,8 +220,8 @@ const MatchTile = ({
             className={`mx-auto mb-2 rounded-full ${costColor}`}
             src={`https://raw.communitydragon.org/latest/game/${icon.toLowerCase()}`}
             alt={champion.name}
-            height="40"
-            width="40"
+            height="75"
+            width="75"
           />
           <div className="item-icons -mt-4 mb-2 flex h-[15px] justify-center">
             {itemData.map(({ name, icon }, index) => (
@@ -435,7 +390,6 @@ const MatchTile = ({
   const patch = getPatchNum();
   const augments = getParticipantAugments(puuid);
   const units = getParticipantUnits(puuid);
-  const allParticipants = renderParticipantData(puuid);
   const traits = getParticipantTraits(puuid);
 
   return (
@@ -484,7 +438,7 @@ const MatchTile = ({
         <FontAwesomeIcon className="h-[2px] w-[2px]" icon={faCircle} />
         <p>{patch}</p>
       </div>
-      <div className="my-3 hidden items-center justify-between gap-3 rounded-md bg-brand-bg2 md:flex">
+      <div className="my-3 hidden items-center gap-3 rounded-md bg-brand-bg2 md:flex">
         <div className="flex w-1/12 flex-col justify-center">
           <div className="match-placement justify-center">
             <p
@@ -495,19 +449,16 @@ const MatchTile = ({
             <p className="text-center text-xs">Place</p>
           </div>
         </div>
-        <div className="flex w-9/12 items-center justify-start gap-3">
+        <div className="flex w-11/12 items-center justify-start gap-3">
           <div className="flex w-2/12 flex-row flex-wrap items-center justify-center gap-1">
             {traits}
           </div>
           <div className="flex w-1/12 flex-col items-center justify-center gap-1">
             {augments}
           </div>
-          <div className="flex flex-wrap items-center justify-start gap-1">
+          <div className="flex flex-wrap items-center justify-start gap-4">
             {units}
           </div>
-        </div>
-        <div className="grid h-fit w-3/12 grid-cols-2 gap-1">
-          {allParticipants}
         </div>
       </div>
     </div>
