@@ -63,7 +63,7 @@ export default function Top10LeaderboardTable({ leaderboards }) {
               </div>
             </div>
 
-            <p
+            <div
               onClick={generateSummonerProfileLink}
               className="w-3/12 items-center truncate text-sm hover:cursor-pointer hover:underline md:flex md:text-base"
             >
@@ -74,7 +74,7 @@ export default function Top10LeaderboardTable({ leaderboards }) {
                   className="ml-1 text-xs text-white/50"
                 />
               </div>
-            </p>
+            </div>
             <p className="flex w-1/12 gap-1 md:w-2/12">
               <Image
                 src={`https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-static-assets/global/default/images/ranked-mini-crests/${tier}.svg`}
