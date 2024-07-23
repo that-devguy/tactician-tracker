@@ -46,6 +46,7 @@ export default async function getSummoner(summonerName, tagLine) {
     }
 
     const puuidData = await puuidResponse.json();
+    console.log(puuidData);
 
     const updateData = {
       summonerId: puuidData.id,
@@ -53,6 +54,8 @@ export default async function getSummoner(summonerName, tagLine) {
       puuid: puuidData.puuid,
       tagLine: summonerData.tagLine,
       gameName: summonerData.gameName,
+      profileIconId: puuidData.profileIconId,
+      summonerLevel: puuidData.summonerLevel,
       lastUpdated: new Date(),
     };
 
