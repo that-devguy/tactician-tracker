@@ -24,7 +24,6 @@ const MatchTile = ({
       game_datetime,
       game_length,
       game_version,
-      tft_set_number,
     },
     metadata: { match_id },
   } = matchDetails;

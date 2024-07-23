@@ -12,13 +12,14 @@ import MatchPlacementsTile from "@/app/components/MatchPlacementsTile";
 
 export default async function Profile({ params: { slug } }) {
   const [summonerName, tagLine] = slug.split("-");
-  console.log(summonerName, tagLine);
   const summonerData = await getSummoner(summonerName, tagLine);
+  summonerData.tagLine = tagLine;
   const puuid = summonerData.puuid;
   const summonerId = summonerData.summonerId;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
   const mutator = "TFTSet11";
+  // console.log(getMatchHistory(puuid));
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
@@ -44,7 +45,7 @@ export default async function Profile({ params: { slug } }) {
           <Image
             className="rounded-full border-4 border-transparent ring-4 ring-brand-main"
             src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${summonerData.profileIconId}.jpg`}
-            alt={summonerData.name}
+            alt={summonerData.gameName}
             height="100"
             width="100"
           />
@@ -52,7 +53,10 @@ export default async function Profile({ params: { slug } }) {
         <div className="flex flex-col items-center gap-1 md:items-start">
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-bold md:text-4xl">
-              {summonerData.name}
+              {summonerData.gameName}
+              <span className="ml-2 text-white/25">
+                #{summonerData.tagLine.toUpperCase()}
+              </span>
             </h1>
             <p className="md:text-md hidden select-none rounded-md bg-brand-bg2 px-3 py-1 text-sm font-bold md:block">
               NA
