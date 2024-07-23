@@ -10,13 +10,15 @@ import MatchTile from "@/app/components/MatchTile";
 import RankDataTile from "@/app/components/RankDataTile";
 import MatchPlacementsTile from "@/app/components/MatchPlacementsTile";
 
-export default async function Profile({ params: { summonerName } }) {
-  const summonerData = await getSummoner(summonerName);
+export default async function Profile({ params: { slug } }) {
+  const [summonerName, tagLine] = slug.split("-");
+  console.log(summonerName, tagLine);
+  const summonerData = await getSummoner(summonerName, tagLine);
   const puuid = summonerData.puuid;
-  const summonerId = summonerData.id;
+  const summonerId = summonerData.summonerId;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
-  const mutator = "TFTSet10";
+  const mutator = "TFTSet11";
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
@@ -24,7 +26,7 @@ export default async function Profile({ params: { summonerName } }) {
       return matchDetails;
     })
   );
-  
+
   const championData = await getUnitData(mutator);
   const augmentData = await getAugmentData();
   const traitData = await getTraitsData(mutator);

@@ -16,7 +16,7 @@ export default function Top10LeaderboardTable({ leaderboards }) {
         <p className="w-2/12 md:w-1/12">Games</p>
       </div>
       {leaderboards.slice(0, 10).map((leaderboard, index) => {
-        let rank = "leaderboard-tile"; // Default border style
+        let rank = "leaderboard-tile";
 
         if (index + 1 === 1) {
           rank = "first-placeTile";
@@ -38,7 +38,8 @@ export default function Top10LeaderboardTable({ leaderboards }) {
         function generateSummonerProfileLink() {
           const baseURL = "https://tacticiantracker.com/profile/";
           let summonerName = leaderboard.summonerName;
-          let dynamicLink = baseURL + summonerName;
+          let summonerTagLine = leaderboard.tagLine;
+          let dynamicLink = baseURL + summonerName + "-" + summonerTagLine;
 
           window.location.href = dynamicLink;
         }

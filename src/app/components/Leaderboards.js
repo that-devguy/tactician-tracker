@@ -74,7 +74,8 @@ export default function LeaderboardTable({ leaderboards }) {
         function generateSummonerProfileLink() {
           const baseURL = "https://tacticiantracker.com/profile/";
           let summonerName = leaderboard.summonerName;
-          let dynamicLink = baseURL + summonerName;
+          let summonerTagLine = leaderboard.tagLine;
+          let dynamicLink = baseURL + summonerName + "-" + summonerTagLine;
 
           window.location.href = dynamicLink;
         }
