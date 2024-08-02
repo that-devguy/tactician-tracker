@@ -18,7 +18,7 @@ export default async function Profile({ params: { slug } }) {
   const summonerId = summonerData.summonerId;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
-  const mutator = "TFTSet11";
+  const mutator = "TFTSet12";
   // console.log(getMatchHistory(puuid));
 
   const matchDetailsArray = await Promise.all(

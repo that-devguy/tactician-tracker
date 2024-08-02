@@ -13,63 +13,51 @@ export default async function getLeaderboardData() {
   try {
     const sortedLeaderboards = [];
 
-    // Fetch Challenger data
-    const challengerResponse = await fetch(endpoints.challenger, {
-      cache: "default",
-    });
-    if (challengerResponse.ok) {
-      const challengerData = await challengerResponse.json();
-      sortedLeaderboards.push(
-        ...challengerData.entries.map((entry) => ({
-          ...entry,
-          tier: "challenger",
-        }))
-      );
-    } else {
-      console.log("No Challenger data found, fetching Grandmaster data...");
-      // Fetch Grandmaster data if no Challenger data
-      const grandMasterResponse = await fetch(endpoints.grandmaster, {
-        cache: "no-cache",
-      });
-      if (grandMasterResponse.ok) {
-        const grandMasterData = await grandMasterResponse.json();
-        sortedLeaderboards.push(
-          ...grandMasterData.entries.map((entry) => ({
+    const fetchData = async (endpoint, tier) => {
+      const response = await fetch(endpoint, { cache: "no-cache" });
+      if (response.ok) {
+        const data = await response.json();
+        if (Array.isArray(data.entries)) {
+          return data.entries.map((entry) => ({
             ...entry,
-            tier: "grandmaster",
-          }))
-        );
-      } else {
-        console.log("No Grandmaster data found, fetching Master data...");
-        // Fetch Master data if no Grandmaster data
-        const masterResponse = await fetch(endpoints.master, {
-          cache: "no-cache",
-        });
-        if (masterResponse.ok) {
-          const masterData = await masterResponse.json();
-          sortedLeaderboards.push(
-            ...masterData.entries.map((entry) => ({
-              ...entry,
-              tier: "master",
-            }))
-          );
+            tier,
+          }));
         } else {
-          console.error("Failed to fetch leaderboard data");
+          console.warn(`No entries found in response from ${endpoint}`);
+          return [];
         }
-      }
-    }
-
-    sortedLeaderboards.sort((a, b) => {
-      if (a.tier !== b.tier) {
-        return a.tier.localeCompare(b.tier);
       } else {
-        return b.leaguePoints - a.leaguePoints;
+        console.error(
+          `Failed to fetch from ${endpoint}, status: ${response.status}`
+        );
+        return [];
       }
-    });
+    };
+
+    // Fetch data from all relevant endpoints
+    const masterData = await fetchData(endpoints.master, "master");
+    const grandmasterData = await fetchData(
+      endpoints.grandmaster,
+      "grandmaster"
+    );
+    const challengerData = await fetchData(endpoints.challenger, "challenger");
+
+    sortedLeaderboards.push(
+      ...masterData,
+      ...grandmasterData,
+      ...challengerData
+    );
 
     const db = await connectToDatabase();
     const collection = db.collection("summonerData");
 
+    if (sortedLeaderboards.length === 0) {
+      // Clear the database if no data is fetched
+      await collection.deleteMany({});
+      return { message: "Waiting for players to rank up" };
+    }
+
+    // Update database with new data
     for (const leaderboard of sortedLeaderboards) {
       const summonerId = leaderboard.summonerId;
       let summonerData = await collection.findOne({ summonerId });
@@ -116,8 +104,6 @@ export default async function getLeaderboardData() {
         leaderboard.tagLine = summonerData.tagLine;
       }
     }
-
-    // console.log(sortedLeaderboards);
 
     return sortedLeaderboards.map((entry) => ({
       ...entry,
