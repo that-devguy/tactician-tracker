@@ -34,13 +34,12 @@ export default async function getLeaderboardData() {
       }
     };
 
-    // Fetch data from all relevant endpoints
-    const masterData = await fetchData(endpoints.master, "master");
-    const grandmasterData = await fetchData(
-      endpoints.grandmaster,
-      "grandmaster"
-    );
-    const challengerData = await fetchData(endpoints.challenger, "challenger");
+    // Fetch data from all relevant endpoints in parallel
+    const [masterData, grandmasterData, challengerData] = await Promise.all([
+      fetchData(endpoints.master, "master"),
+      fetchData(endpoints.grandmaster, "grandmaster"),
+      fetchData(endpoints.challenger, "challenger"),
+    ]);
 
     sortedLeaderboards.push(
       ...masterData,
@@ -57,24 +56,33 @@ export default async function getLeaderboardData() {
       return { message: "Waiting for players to rank up" };
     }
 
-    // Update database with new data
-    for (const leaderboard of sortedLeaderboards) {
-      const summonerId = leaderboard.summonerId;
-      let summonerData = await collection.findOne({ summonerId });
+    // Get all existing summonerIds in the database in one query
+    const existingSummoners = await collection
+      .find({
+        summonerId: { $in: sortedLeaderboards.map((lb) => lb.summonerId) },
+      })
+      .toArray();
 
-      if (!summonerData) {
+    const existingSummonerMap = existingSummoners.reduce((acc, summoner) => {
+      acc[summoner.summonerId] = summoner;
+      return acc;
+    }, {});
+
+    // Update database with new data
+    const leaderboardUpdates = sortedLeaderboards.map(async (leaderboard) => {
+      const summonerId = leaderboard.summonerId;
+
+      if (!existingSummonerMap[summonerId]) {
         const summonerById = await fetch(
           `${endpoints.summonerById}${summonerId}?api_key=${riotAPI}`
         );
-
         if (summonerById.ok) {
-          summonerData = await summonerById.json();
+          const summonerData = await summonerById.json();
           const puuid = summonerData.puuid;
 
           const accountByPuuid = await fetch(
             `${endpoints.accountByPuuid}${puuid}?api_key=${riotAPI}`
           );
-
           if (accountByPuuid.ok) {
             const accountData = await accountByPuuid.json();
             summonerData.gameName = accountData.gameName;
@@ -91,19 +99,18 @@ export default async function getLeaderboardData() {
               },
               { upsert: true }
             );
-          } else {
-            console.error(`Failed to fetch game name for puuid: ${puuid}`);
+
+            leaderboard.summonerName = summonerData.gameName;
+            leaderboard.tagLine = accountData.tagLine;
           }
-        } else {
-          console.error(
-            `Failed to fetch summoner data for summonerId: ${summonerId}`
-          );
         }
       } else {
-        leaderboard.summonerName = summonerData.gameName;
-        leaderboard.tagLine = summonerData.tagLine;
+        leaderboard.summonerName = existingSummonerMap[summonerId].gameName;
+        leaderboard.tagLine = existingSummonerMap[summonerId].tagLine;
       }
-    }
+    });
+
+    await Promise.all(leaderboardUpdates);
 
     return sortedLeaderboards.map((entry) => ({
       ...entry,
