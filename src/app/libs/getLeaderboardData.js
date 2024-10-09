@@ -112,6 +112,15 @@ export default async function getLeaderboardData() {
 
     await Promise.all(leaderboardUpdates);
 
+    // Add sorting logic here
+    const tierOrder = ["challenger", "grandmaster", "master"];
+    sortedLeaderboards.sort((a, b) => {
+      if (tierOrder.indexOf(a.tier) !== tierOrder.indexOf(b.tier)) {
+        return tierOrder.indexOf(a.tier) - tierOrder.indexOf(b.tier);
+      }
+      return b.leaguePoints - a.leaguePoints;
+    });
+
     return sortedLeaderboards.map((entry) => ({
       ...entry,
       tagLine: entry.tagLine,
