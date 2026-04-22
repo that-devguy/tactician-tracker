@@ -2,129 +2,177 @@ const { connectToDatabase } = require("../../../libs/mongo");
 
 export default async function getLeaderboardData() {
   const riotAPI = process.env.API_KEY;
+
+  if (!riotAPI) {
+    console.error("Missing API_KEY environment variable.");
+    return [];
+  }
+
   const endpoints = {
     challenger: `https://na1.api.riotgames.com/tft/league/v1/challenger?queue=RANKED_TFT&api_key=${riotAPI}`,
     grandmaster: `https://na1.api.riotgames.com/tft/league/v1/grandmaster?queue=RANKED_TFT&api_key=${riotAPI}`,
     master: `https://na1.api.riotgames.com/tft/league/v1/master?queue=RANKED_TFT&api_key=${riotAPI}`,
-    summonerById: `https://na1.api.riotgames.com/tft/summoner/v1/summoners/`,
-    accountByPuuid: `https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/`,
+    summonerById: "https://na1.api.riotgames.com/tft/summoner/v1/summoners/",
+    accountByPuuid:
+      "https://americas.api.riotgames.com/riot/account/v1/accounts/by-puuid/",
   };
 
-  try {
-    const sortedLeaderboards = [];
+  const tierOrder = {
+    challenger: 0,
+    grandmaster: 1,
+    master: 2,
+  };
 
-    // Fetch Challenger data
-    const challengerResponse = await fetch(endpoints.challenger, {
-      cache: "default",
-    });
-    if (challengerResponse.ok) {
-      const challengerData = await challengerResponse.json();
-      sortedLeaderboards.push(
-        ...challengerData.entries.map((entry) => ({
-          ...entry,
-          tier: "challenger",
-        }))
-      );
-    } else {
-      console.log("No Challenger data found, fetching Grandmaster data...");
-      // Fetch Grandmaster data if no Challenger data
-      const grandMasterResponse = await fetch(endpoints.grandmaster, {
-        cache: "no-cache",
-      });
-      if (grandMasterResponse.ok) {
-        const grandMasterData = await grandMasterResponse.json();
-        sortedLeaderboards.push(
-          ...grandMasterData.entries.map((entry) => ({
-            ...entry,
-            tier: "grandmaster",
-          }))
-        );
-      } else {
-        console.log("No Grandmaster data found, fetching Master data...");
-        // Fetch Master data if no Grandmaster data
-        const masterResponse = await fetch(endpoints.master, {
-          cache: "no-cache",
-        });
-        if (masterResponse.ok) {
-          const masterData = await masterResponse.json();
-          sortedLeaderboards.push(
-            ...masterData.entries.map((entry) => ({
-              ...entry,
-              tier: "master",
-            }))
-          );
-        } else {
-          console.error("Failed to fetch leaderboard data");
-        }
-      }
+  async function fetchJson(url) {
+    const response = await fetch(url, { cache: "no-store" });
+
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status} ${response.statusText} for ${url}`);
     }
 
-    sortedLeaderboards.sort((a, b) => {
-      if (a.tier !== b.tier) {
-        return a.tier.localeCompare(b.tier);
-      } else {
-        return b.leaguePoints - a.leaguePoints;
+    return response.json();
+  }
+
+  async function fetchLeagueEntries(endpoint, tier) {
+    try {
+      const data = await fetchJson(endpoint);
+
+      if (!Array.isArray(data.entries)) {
+        console.warn(`No entries array returned for ${tier}`);
+        return [];
       }
-    });
 
-    const db = await connectToDatabase();
-    const collection = db.collection("summonerData");
+      return data.entries.map((entry) => ({
+        ...entry,
+        tier,
+        gameName: null,
+        tagLine: null,
+      }));
+    } catch (error) {
+      console.error(`Failed to fetch ${tier} leaderboard:`, error.message);
+      return [];
+    }
+  }
 
-    for (const leaderboard of sortedLeaderboards) {
-      const summonerId = leaderboard.summonerId;
-      let summonerData = await collection.findOne({ summonerId });
+  async function fetchPlayerIdentityBySummonerId(summonerId) {
+    try {
+      const summonerData = await fetchJson(
+        `${endpoints.summonerById}${summonerId}?api_key=${riotAPI}`
+      );
 
-      if (!summonerData) {
-        const summonerById = await fetch(
-          `${endpoints.summonerById}${summonerId}?api_key=${riotAPI}`
-        );
+      const puuid = summonerData?.puuid;
+      if (!puuid) {
+        return null;
+      }
 
-        if (summonerById.ok) {
-          summonerData = await summonerById.json();
-          const puuid = summonerData.puuid;
+      const accountData = await fetchJson(
+        `${endpoints.accountByPuuid}${puuid}?api_key=${riotAPI}`
+      );
 
-          const accountByPuuid = await fetch(
-            `${endpoints.accountByPuuid}${puuid}?api_key=${riotAPI}`
-          );
+      return {
+        puuid,
+        gameName: accountData?.gameName || null,
+        tagLine: accountData?.tagLine || null,
+      };
+    } catch (error) {
+      console.error(`Failed to fetch identity for summonerId ${summonerId}:`, error.message);
+      return null;
+    }
+  }
 
-          if (accountByPuuid.ok) {
-            const accountData = await accountByPuuid.json();
-            summonerData.gameName = accountData.gameName;
+  let db = null;
+  let collection = null;
+  let existingSummonerMap = {};
 
+  try {
+    db = await connectToDatabase();
+    collection = db.collection("summonerData");
+  } catch (dbError) {
+    console.error("Database unavailable, continuing without MongoDB:", dbError.message);
+  }
+
+  try {
+    const [masterData, grandmasterData, challengerData] = await Promise.all([
+      fetchLeagueEntries(endpoints.master, "master"),
+      fetchLeagueEntries(endpoints.grandmaster, "grandmaster"),
+      fetchLeagueEntries(endpoints.challenger, "challenger"),
+    ]);
+
+    const leaderboards = [...challengerData, ...grandmasterData, ...masterData];
+
+    if (leaderboards.length === 0) {
+      return [];
+    }
+
+    if (collection) {
+      const existingSummoners = await collection
+        .find({
+          summonerId: { $in: leaderboards.map((player) => player.summonerId) },
+        })
+        .toArray();
+
+      existingSummonerMap = existingSummoners.reduce((acc, player) => {
+        acc[player.summonerId] = player;
+        return acc;
+      }, {});
+    }
+
+    const enrichedLeaderboards = await Promise.all(
+      leaderboards.map(async (player) => {
+        const existing = existingSummonerMap[player.summonerId];
+
+        if (existing?.gameName && existing?.tagLine) {
+          return {
+            ...player,
+            puuid: existing.puuid || null,
+            gameName: existing.gameName,
+            tagLine: existing.tagLine,
+          };
+        }
+
+        const identity = await fetchPlayerIdentityBySummonerId(player.summonerId);
+
+        if (identity && collection) {
+          try {
             await collection.updateOne(
-              { summonerId },
+              { summonerId: player.summonerId },
               {
                 $set: {
-                  puuid,
-                  gameName: summonerData.gameName,
-                  tagLine: accountData.tagLine,
+                  summonerId: player.summonerId,
+                  puuid: identity.puuid,
+                  gameName: identity.gameName,
+                  tagLine: identity.tagLine,
                   lastUpdated: new Date(),
                 },
               },
               { upsert: true }
             );
-          } else {
-            console.error(`Failed to fetch game name for puuid: ${puuid}`);
+          } catch (writeError) {
+            console.error(
+              `Failed to upsert summoner ${player.summonerId}:`,
+              writeError.message
+            );
           }
-        } else {
-          console.error(
-            `Failed to fetch summoner data for summonerId: ${summonerId}`
-          );
         }
-      } else {
-        leaderboard.summonerName = summonerData.gameName;
-        leaderboard.tagLine = summonerData.tagLine;
-      }
-    }
 
-    // console.log(sortedLeaderboards);
+        return {
+          ...player,
+          puuid: identity?.puuid || null,
+          gameName: identity?.gameName || null,
+          tagLine: identity?.tagLine || null,
+        };
+      })
+    );
 
-    return sortedLeaderboards.map((entry) => ({
-      ...entry,
-      tagLine: entry.tagLine,
-    }));
+    enrichedLeaderboards.sort((a, b) => {
+      const tierDiff = tierOrder[a.tier] - tierOrder[b.tier];
+      if (tierDiff !== 0) return tierDiff;
+      return b.leaguePoints - a.leaguePoints;
+    });
+
+    return enrichedLeaderboards;
   } catch (error) {
-    console.error(error);
-    throw new Error("An error occurred while fetching leaderboard data.");
+    console.error("getLeaderboardData failed:", error.message);
+    return [];
   }
 }
