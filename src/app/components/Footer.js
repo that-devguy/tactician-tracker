@@ -18,11 +18,7 @@ export default function Footer() {
           </Link>
 
           <p className="mb-2 pr-6 text-sm text-white/50">
-            This app is a playground for my coding journey, where I&apos;m
-            constantly learning and improving my development skills. As of now,
-            it&apos;s a work in progress, but stay tuned for exciting updates,
-            new features, bug fixes, and more in future releases. Thank you for
-            joining me on this journey of growth and innovation!
+            This project has been archieved and will no longer be recieving updates.
           </p>
 
           {/* Mobile Footer Link Container */}

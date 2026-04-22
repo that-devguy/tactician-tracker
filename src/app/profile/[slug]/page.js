@@ -18,14 +18,14 @@ export default async function Profile({ params: { slug } }) {
   const summonerId = summonerData.summonerId;
   const matchHistoryArray = await getMatchHistory(puuid);
   const leagueData = await getSummonerLeagueData(summonerId);
-  const mutator = "TFTSet12";
+  const mutator = "TFTSet17";
   // console.log(getMatchHistory(puuid));
 
   const matchDetailsArray = await Promise.all(
     matchHistoryArray.map(async (match) => {
       const matchDetails = await getMatch(match.matchId);
       return matchDetails;
-    })
+    }),
   );
 
   const championData = await getUnitData(mutator);
@@ -34,8 +34,8 @@ export default async function Profile({ params: { slug } }) {
   const placements = matchDetailsArray.map(
     (matchDetails) =>
       matchDetails.info.participants.find(
-        (participant) => participant.puuid === puuid
-      ).placement
+        (participant) => participant.puuid === puuid,
+      ).placement,
   );
 
   return (
