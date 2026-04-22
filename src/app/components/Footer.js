@@ -18,7 +18,8 @@ export default function Footer() {
           </Link>
 
           <p className="mb-2 pr-6 text-sm text-white/50">
-            This project has been archieved and will no longer be recieving updates.
+            This project has been archived and will no longer be recieving
+            updates.
           </p>
 
           {/* Mobile Footer Link Container */}
